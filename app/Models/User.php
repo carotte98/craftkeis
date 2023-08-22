@@ -48,7 +48,7 @@ class User extends Authenticatable
 
     public function bankDetails()
     {
-        return $this->belongsTo(BankDetail::class);
+        return $this->belongsTo(BankDetail::class, 'bank_id');
     }
 
     public function user1Conversation() {
@@ -59,5 +59,11 @@ class User extends Authenticatable
     }
     public function messages() {
         return $this->hasMany(Message::class, 'sender_id');
+    }
+    public function orderClient() {
+        return $this->hasMany(Order::class);
+    }
+    public function orderCreator() {
+        return $this->hasMany(Order::class);
     }
 }

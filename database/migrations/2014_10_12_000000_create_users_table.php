@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->foreignId('bank_id');
             $table->string('password');
             $table->longtext('bio');
             $table->boolean('is_creator');

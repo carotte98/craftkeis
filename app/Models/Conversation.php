@@ -20,9 +20,9 @@ class Conversation extends Model
         return $this->hasMany(Message::class, 'message_id');
     }
     public function user1(){
-        return $this->belongsTo(Message::class);
+        return $this->belongsTo(User::class);
     }
     public function user2(){
-        return $this->belongsTo(Message::class);
+        return $this->belongsTo(User::class);
     }
 }
