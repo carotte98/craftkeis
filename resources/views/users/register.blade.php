@@ -115,7 +115,7 @@
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-key"></i>
-                    <input type="text" placeholder="Password" name="password">
+                    <input type="password" placeholder="Password" name="password">
                 </div>
             </div>
             @error('password')
@@ -126,7 +126,7 @@
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-key"></i>
-                    <input type="text" placeholder="Confirm Password" name="confirm_password">
+                    <input type="password" placeholder="Confirm Password" name="confirm_password">
                 </div>
             </div>
             @error('password')
@@ -137,7 +137,7 @@
                 <label for="password2" class="inline-block text-lg mb-2">
                     Are you a creator?
                 </label>
-                <input type="checkbox" id="role" name="role" value="creator" onclick="toggleInputs()">
+                <input type="checkbox" id="role" name="role" value="creator" onclick="toggleInputs()" name="is_creator">
             </div>
 
             {{-- this div is for the bio --}}
