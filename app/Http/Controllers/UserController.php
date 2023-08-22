@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bank_details;
 use Illuminate\Http\Request;
 
-class BankDetailsController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +33,7 @@ class BankDetailsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bank_details $bank_details)
+    public function show(string $id)
     {
         //
     }
@@ -42,7 +41,7 @@ class BankDetailsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bank_details $bank_details)
+    public function edit(string $id)
     {
         //
     }
@@ -50,7 +49,7 @@ class BankDetailsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bank_details $bank_details)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +57,7 @@ class BankDetailsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bank_details $bank_details)
+    public function destroy(string $id)
     {
         //
     }

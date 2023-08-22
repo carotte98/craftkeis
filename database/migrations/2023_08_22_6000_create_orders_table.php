@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('creator_id');
             $table->foreignId('client_id');
             $table->foreignId('service_id');
-            $table->foreignId('bank_id');
             $table->enum('order_status', ['finished', 'pending', 'accepted']);
             $table->timestamp('completed_at');
         });
