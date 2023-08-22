@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('is_creator');
             $table->string('image_address')->nullable();
             $table->string('phone_number')->nullable();
-            $table->tinyInteger('commission_amount')->default(0)->unsigned()->max(5); // Integer between 0 and 5
+            $table->tinyInteger('commission_amount')->default(0)->unsigned();
             $table->rememberToken();
             $table->timestamps();
         });
