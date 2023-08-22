@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'bio',
+        'is_creator',
     ];
 
     /**
@@ -42,4 +44,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function bankDetails()
+    {
+        return $this->belongsTo(BankDetail::class, 'bank_id');
+    }
+
+    public function user1Conversation() {
+        return $this->hasMany(Conversation::class, 'user1_id');
+    }
+    public function user2Conversation() {
+        return $this->hasMany(Conversation::class, 'user2_id');
+    }
+    public function messages() {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+    public function orderClient() {
+        return $this->hasMany(Order::class);
+    }
+    public function orderCreator() {
+        return $this->hasMany(Order::class);
+    }
 }
