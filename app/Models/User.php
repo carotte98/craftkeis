@@ -23,6 +23,9 @@ class User extends Authenticatable
         'password',
         'bio',
         'is_creator',
+        'image_address',
+        'phone_number',
+        'commission_amount',
     ];
 
     /**

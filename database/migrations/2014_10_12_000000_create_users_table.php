@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('password');
             $table->longtext('bio');
             $table->boolean('is_creator');
+            $table->string('image_address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->tinyInteger('commission_amount')->default(0)->unsigned();
             $table->rememberToken();
             $table->timestamps();
         });
