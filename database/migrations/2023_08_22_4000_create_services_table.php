@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('time');
             $table->enum('status',['open','overbooked'])->default('open');
             // foreign ids
-            $table->foreignId('user_id');
-            $table->foreignId('category_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');;
         });
     }
 
