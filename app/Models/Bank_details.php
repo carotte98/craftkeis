@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bank_details extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'bank_details';
 
     protected $fillable = [
@@ -17,5 +17,11 @@ class Bank_details extends Model
         'payment_method',
         'account_details',
     ];
+
+    public function user()
+       {
+        return $this->belongsTo(User::class);
+    }
+
 
 }
