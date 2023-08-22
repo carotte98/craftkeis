@@ -55,13 +55,13 @@ class User extends Authenticatable
     }
 
     public function user1Conversation() {
-        return $this->hasMany(Conversation::class, 'user1_id');
+        return $this->hasMany(Conversation::class, 'user_id1');
     }
     public function user2Conversation() {
-        return $this->hasMany(Conversation::class, 'user2_id');
+        return $this->hasMany(Conversation::class, 'user_id2');
     }
     public function messages() {
-        return $this->hasMany(Message::class, 'sender_id');
+        return $this->hasMany(Message::class, 'user_id');
     }
     public function orderClient() {
         return $this->hasMany(Order::class);
