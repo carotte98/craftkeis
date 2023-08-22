@@ -13,7 +13,7 @@ class ServiceController extends Controller
     public function index()
     {
         return view('services.index', [
-            'services' => Service::latest()->paginate(6),
+            'services' => Service::latest()/*->filter(request(['search', 'category']))*/->paginate(6),
         ]);
     }
 
@@ -36,9 +36,11 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Service $service)
     {
-        //
+        return view('services.show', [
+            'service' => $service
+        ]);
     }
 
     /**
