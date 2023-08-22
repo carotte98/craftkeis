@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bank_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');;
             $table->string('payment_method');
             $table->text('account_details');
             $table->timestamps();
