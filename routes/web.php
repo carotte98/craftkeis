@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 
@@ -20,3 +21,5 @@ use App\Http\Controllers\ServiceController;
 
 Route::get('/', [ServiceController::class, 'index']);
 Route::get('/services/{service}', [ServiceController::class, 'show']);
+//create new user(register)
+Route::get('/register',[UserController::class,'create']);
