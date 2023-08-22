@@ -14,19 +14,14 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
-            // foreign ids
-            // creator id
-            $table->foreignId('user_id');
-            // ->constrained()->onDelete('cascade');
-            $table->foreignId('category_id');
-            // ->constrained()->onDelete('cascade');
-
             $table->string('title');
             $table->longtext('description');
             $table->double('price');
             $table->string('time');
             $table->enum('status',['open','overbooked'])->default('open');
+            // foreign ids
+            $table->foreignId('user_id');
+            $table->foreignId('category_id');
         });
     }
 
