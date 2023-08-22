@@ -17,9 +17,6 @@ use App\Http\Controllers\ServiceController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', function () {
-    return view('test');
-});
 
 Route::get('/', [ServiceController::class, 'index']);
 Route::get('/services/{service}', [ServiceController::class, 'show']);
