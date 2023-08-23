@@ -56,7 +56,8 @@
     {{-- js script for showing the last 2 inputs when radio button is checked --}}
 </head>
 <div> {{-- x-layout, not div please replace when layout finished --}}
-    <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"> {{-- Here we also want to replace the div and input a x-card --}}
+    <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"> {{-- Here we also want to replace the div and input a x-card --}} 
+        {{-- ? Do we need a x-card, always found it wierd (cedric) --}}
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
                 Register
