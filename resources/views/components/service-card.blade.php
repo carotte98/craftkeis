@@ -1,6 +1,6 @@
 @props(['service'])
 
-<x-card> {{-- replace with <x-card> --}}
+<x-card>
     <div>
         <div>
             <div>{{ $service->status }}</div>
@@ -14,4 +14,4 @@
             <x-service-category :category="$service->category_id" />
         </div>
     </div>
-</x-card> {{-- replace with </x-card> --}}
+</x-card>
