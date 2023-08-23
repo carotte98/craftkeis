@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId('bank_id');
+            $table->foreignId('bank_id')->nullable();
             $table->string('password');
-            $table->longtext('bio');
-            $table->boolean('is_creator');
+            $table->longtext('bio')->nullable();
+            $table->boolean('is_creator')->default(false);
             $table->string('image_address')->nullable();
             $table->string('phone_number')->nullable();
             $table->tinyInteger('commission_amount')->default(0)->unsigned();
