@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -68,5 +69,9 @@ class User extends Authenticatable
     }
     public function orderCreator() {
         return $this->hasMany(Order::class);
+    }
+    
+    public function services(){
+        return $this->hasMany(Service::class, 'user_id');
     }
 }

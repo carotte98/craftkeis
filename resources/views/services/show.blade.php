@@ -5,7 +5,7 @@
     <x-card>
         <div>
             <div>{{ $service->status }}</div>
-            <h3>{{$service->name}}</h3>
+            <h3>{{$service->title}}</h3>
             <div>by {{ $service->user_id }}</div>
             <div>{{ $service->description }}</div>
             <div>{{ $service->time }}</div>

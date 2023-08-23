@@ -25,9 +25,17 @@ use App\Http\Controllers\ServiceController;
 // Show all services
 Route::get('/', [ServiceController::class, 'index']);
 // Create new service
-Route::get('/services/create', [ServiceController::class, 'create']);
+Route::get('/services/create', [ServiceController::class, 'create'])->middleware('auth');
 // Store new service
-Route::post('/services', [ServiceController::class, 'store']);
+Route::post('/services', [ServiceController::class, 'store'])->middleware('auth');
+// Edit service
+Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])->middleware('auth');
+// Update service
+Route::put('/services/{service}', [ServiceController::class, 'update'])->middleware('auth');
+// Delete service
+Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->middleware('auth');
+// Manage services
+Route::get('/services/manage', [ServiceController::class, 'manage'])->middleware('auth');
 // Show one service
 Route::get('/services/{service}', [ServiceController::class, 'show']);
 
