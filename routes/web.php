@@ -58,7 +58,10 @@ Route::get('/users/account/edit', [UserController::class, 'edit'])->middleware('
 Route::put('/users/account', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+
+
 //order show form
-Route::get('/orders/create/{order}', [OrderController::class,'create']);
+Route::get('/orders/create/{service}', [OrderController::class,'create']);
 //order show form
-Route::post('/orders/store', [OrderController::class,'store']);
+Route::post('/orders', [OrderController::class,'store']);

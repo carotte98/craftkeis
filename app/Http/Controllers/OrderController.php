@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -18,9 +19,11 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Service $service)
     {
-        return view('orders.create');
+        return view('orders.create', [
+            'service' => $service
+        ]);
     }
 
     /**
@@ -38,11 +41,16 @@ class OrderController extends Controller
 
         $formFields = $request->validate([
             'title' => 'required',
+            'description' => 'required',
+            'user_id1' => 'required',
+            'user_id2' => 'required',
+            'service_id' => 'required',
         ]);
-    
-        $formFields['user_id1'] = auth()->id();
+
         $formFields['order_status'] = 'pending';
-    
+        $formFields['completed_at'] = null;
+
+        // dd($formFields);
         Order::create($formFields);
     
         return redirect('/')->with('message', 'Order created successfully');
