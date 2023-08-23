@@ -137,9 +137,14 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $formFields = $request->validate([
+            'name' => ['required', 'min:3']
+        ]);
+        $user->update($formFields);
+
+        return redirect('/users/account')->with('message', 'Account updated successfully');
     }
 
     /**
