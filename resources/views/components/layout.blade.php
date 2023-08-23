@@ -131,7 +131,7 @@
                 <a href="/services">Categories</a>
             </div>
             <div class="flex flex-col">
-                <a href="users/manage">Account</a>
+                <a href="users/account">Account</a>
             </div>
 
         </section>

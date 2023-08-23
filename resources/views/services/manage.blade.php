@@ -18,7 +18,7 @@
                     </td>
                     <td>
                         <a href="/services/{{$service->id}}/edit">
-                            <i></i>Edit
+                            <i class="fa-solid fa-pencil"></i>Edit
                         </a>
                     </td>
                     <td>
