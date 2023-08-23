@@ -53,14 +53,12 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 //Display user account (after log-in for now)
 Route::get('/users/account',[UserController::class,'account'])->middleware('auth');
 //Edit user account
-Route::get('/users/account/edit', [UserController::class, 'edit'])->middleware('auth');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth');
 //Update user account
 Route::put('/users/account', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-
-
-
+//OrderController
 //order show form
 Route::get('/orders/create/{service}', [OrderController::class,'create']);
 //order show form
