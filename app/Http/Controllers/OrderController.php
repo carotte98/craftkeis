@@ -20,7 +20,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('orders.create');
     }
 
     /**
@@ -28,7 +28,24 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $table->id();
+        // $table->string('title');
+        // $table->foreignId('user_id1')->constrained()->onDelete('cascade');;
+        // $table->foreignId('user_id2')->constrained()->onDelete('cascade');;
+        // $table->foreignId('service_id')->constrained()->onDelete('cascade');;
+        // $table->enum('order_status', ['finished', 'pending', 'accepted']);
+        // $table->timestamp('completed_at');
+
+        $formFields = $request->validate([
+            'title' => 'required',
+        ]);
+    
+        $formFields['user_id1'] = auth()->id();
+        $formFields['order_status'] = 'pending';
+    
+        Order::create($formFields);
+    
+        return redirect('/')->with('message', 'Order created successfully');
     }
 
     /**

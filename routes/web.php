@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 
@@ -32,3 +33,7 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 Route::get('/users/account',[UserController::class,'account'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+//order show form
+Route::get('/orders/create/{order}', [OrderController::class,'create']);
+//order show form
+Route::post('/orders/store', [OrderController::class,'store']);

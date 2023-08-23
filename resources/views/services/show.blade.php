@@ -12,10 +12,9 @@
             <div>{{ $service->price }}</div>
             <x-service-category :category="$service->category_id" />
             {{-- order button, sents to order form --}}
-            <form action="" method="post" action="/">
-            {{-- <form action="" method="post" action="/listings/{{$listing->id}}"> --}}
+            <form action="" method="post" action="/orders/create">
                 <button class="text-center text-lg h-8 w-20 text-white rounded-lg bg-accent hover:bg-onhover">
-                    Order
+                    <a href="/orders/create/{{ $service->id }}">Order</a>
                 </button>
             </form>       
 
