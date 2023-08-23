@@ -1,4 +1,4 @@
-{{-- <x-layout> --}}
+<x-layout>
 <a href="/"><i class="fa-solid fa-arrow-left"></i> Back
 </a>
 <div>
@@ -14,4 +14,4 @@
         </div>
     </x-card>
 </div>
-{{-- </x-layout> --}}
+</x-layout>

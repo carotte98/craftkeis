@@ -22,7 +22,13 @@ use App\Http\Controllers\ServiceController;
 //     return view('test');
 // });
 
+// Show all services
 Route::get('/', [ServiceController::class, 'index']);
+// Create new service
+Route::get('/services/create', [ServiceController::class, 'create']);
+// Store new service
+Route::post('/services', [ServiceController::class, 'store']);
+// Show one service
 Route::get('/services/{service}', [ServiceController::class, 'show']);
 
 //*UserController
