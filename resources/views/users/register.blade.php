@@ -94,7 +94,7 @@
             </h2>
         </header>
 
-        <form action="/users" method="POST">
+        <form action="/users" method="POST" enctype="multipart/form-data">
             @csrf
 
             {{-- this div is for the name --}}
@@ -133,7 +133,7 @@
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-image"></i>
-                    <input type="file" placeholder="Image" name="image" value="{{old('image')}}">
+                    <input type="file" placeholder="Image" name="image_address" value="{{old('image_address')}}">
                 </div>
             </div>
 
