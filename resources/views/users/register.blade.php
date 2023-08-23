@@ -11,6 +11,8 @@
             width: 300px;
             /* Adjust width as needed */
             background-color: #f4f4f4;
+            margin:auto;
+            margin-top: 1rem;
         }
 
         .icon-input-container {
@@ -34,6 +36,33 @@
         .hidden {
             display: none;
         }
+        #Link-button{
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+        #facebook{
+            border: 2px solid #4267B2;
+            background-color: #4267B2;
+            border-radius: 10px;
+            padding:0.5rem 1rem 0.5rem 1rem;
+
+        }
+        #google
+        {
+            border: 2px solid white;
+            background-color: white;
+            border-radius: 10px;
+            padding:0.5rem 1rem 0.5rem 1rem;
+        }
+
+        .register-footer{
+            text-align: center;
+        }
+
+
+        #Register-button{
+            padding-left: 40%;
+        }
     </style>
     <script>
         function toggleInputs() {
@@ -55,7 +84,7 @@
     </script>
     {{-- js script for showing the last 2 inputs when radio button is checked --}}
 </head>
-<div> {{-- x-layout, not div please replace when layout finished --}}
+<x-layout> {{-- x-layout, not div please replace when layout finished --}}
     <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"> {{-- Here we also want to replace the div and input a x-card --}} 
         {{-- ? Do we need a x-card, always found it wierd (cedric) --}}
         <header class="text-center">
@@ -72,45 +101,41 @@
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" placeholder="Name" name="name">
+                    <input type="text" placeholder="Name" name="name" value="{{old('name')}}">
                 </div>
             </div>
-            @error('name')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
+            <div>
+                @error('name')
+                    <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
+                @enderror
+            </div>
 
             {{-- this div is for the email --}}
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-envelope"></i>
-                    <input type="text" placeholder="Email" name="email">
+                    <input type="text" placeholder="Email" name="email" value="{{old('email')}}">
                 </div>
             </div>
             @error('email')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
+                <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
             @enderror
 
             {{-- this div is for the phone Number --}}
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-phone"></i>
-                    <input type="number" placeholder="Phone Number" name="phone_number">
+                    <input type="number" placeholder="Phone Number" name="phone_number" value="{{old('phone_number')}}">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
 
             {{-- this div is for the image --}}
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-image"></i>
-                    <input type="file" placeholder="Image" name="image">
+                    <input type="file" placeholder="Image" name="image" value="{{old('image')}}">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
 
             {{-- this div is for the password --}}
             <div class="bordered-div">
@@ -120,7 +145,7 @@
                 </div>
             </div>
             @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
+                <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
             @enderror
 
             {{-- this div is for the conf password --}}
@@ -130,15 +155,16 @@
                     <input type="password" placeholder="Confirm Password" name="confirm_password">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
+            @error('confirm_password')
+                <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
             @enderror
 
-            <div>
-                <label for="password2" class="inline-block text-lg mb-2">
+            {{-- this div is for the checkbox --}}
+            <div class="bordered-div ">
+                <label for="is_creator" class="inline-block text-lg mb-2">
                     Are you a creator?
                 </label>
-                <input type="checkbox" id="role" name="role" value="creator" onclick="toggleInputs()" name="is_creator">
+                <input type="checkbox" id="role" onclick="toggleInputs()" name="is_creator" value="1">
             </div>
 
             {{-- this div is for the bio --}}
@@ -148,9 +174,7 @@
                     <input type="text" placeholder="Bio" name="bio">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
+
 
             {{-- this div is for the commission_amount --}}
             <div class="bordered-div hidden" id="commission-input">
@@ -159,9 +183,7 @@
                     <input type="number" placeholder="Commission Amount" name="commission_amount">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
+
 
             {{-- this div is for the bank_id --}}
             <div class="bordered-div hidden" id="bank_input">
@@ -170,17 +192,15 @@
                     <input type="text" placeholder="Bank ID" name="bank_id">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
 
-            <div class="mb-6">
-                <button><a href="">
+
+            <div class="mb-6" id="Link-button">
+                <button id="google">
+                    <a href="">
                         Google
-
                     </a>
                 </button>
-                <button>
+                <button id="facebook">
                     <a href="">
                         Facebook
 
@@ -190,16 +210,16 @@
 
 
 
-            <div class="mb-6">
-                <button type="submit" class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
+            <div class="mb-6" id="Register-button">
+                <button type="submit" class="bg-white text-black rounded py-2 px-4 hover:bg-white register-footer">
                     Sign Up
                 </button>
             </div>
 
-            <div class="mt-8">
+            <div class="mt-8 register-footer">
                 <p>
                     Already have an account?
-                    <a href="/login" class="text-laravel">Login</a>
+                    <a href="/login" >Login</a>
                 </p>
                 <div>
                     <a href="">Terms & conditions</a>
@@ -208,4 +228,4 @@
         </form>
     </div>{{-- Here we also want to replace the div and input a /x-card --}}
 
-</div>{{-- /x-layout, end of the layout --}}
+</x-layout>{{-- /x-layout, end of the layout --}}
