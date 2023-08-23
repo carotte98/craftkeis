@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
+use function Laravel\Prompts\password;
+
 class UserController extends Controller
 {
     /**
@@ -37,8 +39,10 @@ class UserController extends Controller
             'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()]
         ]);
 
+
         //Hash the password with bcrypt 
         $formFields['password'] = bcrypt($formFields['password']);
+
 
         //Create the new user
         $user = User::create($formFields);

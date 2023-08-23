@@ -55,7 +55,7 @@
     </script>
     {{-- js script for showing the last 2 inputs when radio button is checked --}}
 </head>
-<div> {{-- x-layout, not div please replace when layout finished --}}
+<x-layout> {{-- x-layout, not div please replace when layout finished --}}
     <div class="bg-gray-50 border border-gray-200 p-10 rounded max-w-lg mx-auto mt-24"> {{-- Here we also want to replace the div and input a x-card --}} 
         {{-- ? Do we need a x-card, always found it wierd (cedric) --}}
         <header class="text-center">
@@ -72,45 +72,41 @@
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" placeholder="Name" name="name">
+                    <input type="text" placeholder="Name" name="name" value="{{old('name')}}">
                 </div>
             </div>
-            @error('name')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
+            <div>
+                @error('name')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
             {{-- this div is for the email --}}
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-envelope"></i>
-                    <input type="text" placeholder="Email" name="email">
+                    <input type="text" placeholder="Email" name="email" value="{{old('email')}}">
                 </div>
             </div>
             @error('email')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
 
             {{-- this div is for the phone Number --}}
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-phone"></i>
-                    <input type="number" placeholder="Phone Number" name="phone_number">
+                    <input type="number" placeholder="Phone Number" name="phone_number" value="{{old('phone_number')}}">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
 
             {{-- this div is for the image --}}
             <div class="bordered-div">
                 <div class="icon-input-container">
                     <i class="fas fa-image"></i>
-                    <input type="file" placeholder="Image" name="image">
+                    <input type="file" placeholder="Image" name="image" value="{{old('image')}}">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
 
             {{-- this div is for the password --}}
             <div class="bordered-div">
@@ -120,7 +116,7 @@
                 </div>
             </div>
             @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
 
             {{-- this div is for the conf password --}}
@@ -130,10 +126,11 @@
                     <input type="password" placeholder="Confirm Password" name="confirm_password">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
+            @error('confirm_password')
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
 
+            {{-- this div is for the checkbox --}}
             <div>
                 <label for="password2" class="inline-block text-lg mb-2">
                     Are you a creator?
@@ -148,9 +145,7 @@
                     <input type="text" placeholder="Bio" name="bio">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
+
 
             {{-- this div is for the commission_amount --}}
             <div class="bordered-div hidden" id="commission-input">
@@ -159,9 +154,7 @@
                     <input type="number" placeholder="Commission Amount" name="commission_amount">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
+
 
             {{-- this div is for the bank_id --}}
             <div class="bordered-div hidden" id="bank_input">
@@ -170,9 +163,7 @@
                     <input type="text" placeholder="Bank ID" name="bank_id">
                 </div>
             </div>
-            @error('password')
-                <p class="text-red-500 text-xs mt-1"{{ $message }}></p>
-            @enderror
+
 
             <div class="mb-6">
                 <button><a href="">
@@ -208,4 +199,4 @@
         </form>
     </div>{{-- Here we also want to replace the div and input a /x-card --}}
 
-</div>{{-- /x-layout, end of the layout --}}
+</x-layout>{{-- /x-layout, end of the layout --}}
