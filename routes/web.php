@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceController;
 
@@ -57,3 +58,7 @@ Route::get('/users/account/edit', [UserController::class, 'edit'])->middleware('
 Route::put('/users/account', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+//order show form
+Route::get('/orders/create/{order}', [OrderController::class,'create']);
+//order show form
+Route::post('/orders/store', [OrderController::class,'store']);
