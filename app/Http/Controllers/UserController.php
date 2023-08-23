@@ -31,17 +31,31 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+     //attributes have certain specififcations some don't
     public function store(Request $request)
     {
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()]
+            'bank_id' => ['nullable'],
+            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()],
+            'bio' => ['nullable'],
+            'is_creator' => ['nullable'],
+            'image_address' => ['nullable'],
+            'phone_number' => ['nullable'],
+            'commission_amount' => ['nullable']
         ]);
 
 
         //Hash the password with bcrypt 
         $formFields['password'] = bcrypt($formFields['password']);
+
+        // You can explicitly set the attributes to their default values if they are not provided
+        $formFields['bio'] = $formFields['bio'] ?? null;
+        $formFields['is_creator'] = $formFields['is_creator'] ?? null;
+        $formFields['bank_id'] = $formFields['bank_id'] ?? null;
+        $formFields['commission_amount'] = $formFields['commission_amount'] ?? null;
 
 
         //Create the new user

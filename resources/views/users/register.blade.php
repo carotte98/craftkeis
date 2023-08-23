@@ -11,6 +11,8 @@
             width: 300px;
             /* Adjust width as needed */
             background-color: #f4f4f4;
+            margin:auto;
+            margin-top: 1rem;
         }
 
         .icon-input-container {
@@ -33,6 +35,33 @@
 
         .hidden {
             display: none;
+        }
+        #Link-button{
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+        #facebook{
+            border: 2px solid #4267B2;
+            background-color: #4267B2;
+            border-radius: 10px;
+            padding:0.5rem 1rem 0.5rem 1rem;
+
+        }
+        #google
+        {
+            border: 2px solid white;
+            background-color: white;
+            border-radius: 10px;
+            padding:0.5rem 1rem 0.5rem 1rem;
+        }
+
+        .register-footer{
+            text-align: center;
+        }
+
+
+        #Register-button{
+            padding-left: 40%;
         }
     </style>
     <script>
@@ -131,11 +160,11 @@
             @enderror
 
             {{-- this div is for the checkbox --}}
-            <div>
-                <label for="password2" class="inline-block text-lg mb-2">
+            <div class="bordered-div ">
+                <label for="is_creator" class="inline-block text-lg mb-2">
                     Are you a creator?
                 </label>
-                <input type="checkbox" id="role" name="role" value="creator" onclick="toggleInputs()" name="is_creator">
+                <input type="checkbox" id="role" onclick="toggleInputs()" name="is_creator" value="1">
             </div>
 
             {{-- this div is for the bio --}}
@@ -165,13 +194,13 @@
             </div>
 
 
-            <div class="mb-6">
-                <button><a href="">
+            <div class="mb-6" id="Link-button">
+                <button id="google">
+                    <a href="">
                         Google
-
                     </a>
                 </button>
-                <button>
+                <button id="facebook">
                     <a href="">
                         Facebook
 
@@ -181,16 +210,16 @@
 
 
 
-            <div class="mb-6">
-                <button type="submit" class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
+            <div class="mb-6" id="Register-button">
+                <button type="submit" class="bg-white text-black rounded py-2 px-4 hover:bg-white register-footer">
                     Sign Up
                 </button>
             </div>
 
-            <div class="mt-8">
+            <div class="mt-8 register-footer">
                 <p>
                     Already have an account?
-                    <a href="/login" class="text-laravel">Login</a>
+                    <a href="/login" >Login</a>
                 </p>
                 <div>
                     <a href="">Terms & conditions</a>
