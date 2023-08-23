@@ -1,4 +1,4 @@
-{{-- <x-layout> --}}
+<x-layout>
 <a href="/"><i class="fa-solid fa-arrow-left"></i> Back
 </a>
 <div>
@@ -11,7 +11,15 @@
             <div>{{ $service->time }}</div>
             <div>{{ $service->price }}</div>
             <x-service-category :category="$service->category_id" />
+            {{-- order button, sents to order form --}}
+            <form action="" method="post" action="/">
+            {{-- <form action="" method="post" action="/listings/{{$listing->id}}"> --}}
+                <button class="text-center text-lg h-8 w-20 text-white rounded-lg bg-accent hover:bg-onhover">
+                    Order
+                </button>
+            </form>       
+
         </div>
     </x-card>
 </div>
-{{-- </x-layout> --}}
+</x-layout>
