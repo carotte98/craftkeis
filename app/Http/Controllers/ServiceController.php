@@ -13,7 +13,7 @@ class ServiceController extends Controller
     public function index()
     {
         return view('services.index', [
-            'services' => Service::latest()/*->filter(request(['search', 'category']))*/->paginate(6),
+            'services' => Service::latest()->filter(request(['search', 'category_id']))->paginate(6),
         ]);
     }
 
