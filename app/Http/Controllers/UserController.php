@@ -32,7 +32,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
 
-     //attributes have certain specififcations some don't
+    //attributes have certain specififcations some don't
     public function store(Request $request)
     {
         $formFields = $request->validate([
@@ -47,6 +47,14 @@ class UserController extends Controller
             'commission_amount' => ['nullable']
         ]);
 
+        //for the images storing them apart locally
+        if ($request->hasFile('image_address')) {
+            $formFields['image_address'] = $request->file('image_address')->store('images', 'public');
+            //formfields['logo']->this will add a 'logo' key to our array of data from the form
+            //$request->file('logo') >> retrieve the image file that has been uploaded(could be any file really)
+            //store('logos','public') > the file will be stored in
+            //public/logos/ instead of just public
+        }
 
         //Hash the password with bcrypt 
         $formFields['password'] = bcrypt($formFields['password']);
@@ -58,16 +66,19 @@ class UserController extends Controller
         $formFields['commission_amount'] = $formFields['commission_amount'] ?? null;
 
 
+
+
         //Create the new user
         $user = User::create($formFields);
+
 
         //TODO
         //Using auth() helper handles all the login/logout process for us
         //It saves us an ENORMUS amount of time
-        //auth()->login($user);
+        auth()->login($user);
 
         //When user is created and logged in, we will show them the homepage so they can start navigate the website
-        return redirect('/'); //->with('message', 'User created and logged in!');
+        return redirect('/')->with('message', 'User created and logged in!');
     }
 
     public function login()
