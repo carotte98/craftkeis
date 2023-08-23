@@ -50,7 +50,7 @@
                 @include('partials._search')
             </div>
 
-            <a href="/services">Services</a>
+            <a href="/services/manage">Services</a>
 
             {{-- language select --}}
             <a href=""><i class="fas fa-globe"></i>EN</a>
@@ -96,7 +96,7 @@
     </section>
     </nav>
 
-    <main>
+    <main class="pt-20">
 
         {{-- page contents --}}
         {{$slot}}
@@ -131,7 +131,7 @@
                 <a href="/services">Categories</a>
             </div>
             <div class="flex flex-col">
-                <a href="users/manage">Account</a>
+                <a href="users/account">Account</a>
             </div>
 
         </section>

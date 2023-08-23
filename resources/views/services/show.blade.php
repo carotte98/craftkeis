@@ -1,11 +1,11 @@
-{{-- <x-layout> --}}
+<x-layout>
 <a href="/"><i class="fa-solid fa-arrow-left"></i> Back
 </a>
 <div>
     <x-card>
         <div>
             <div>{{ $service->status }}</div>
-            <h3>{{$service->name}}</h3>
+            <h3>{{$service->title}}</h3>
             <div>by {{ $service->user_id }}</div>
             <div>{{ $service->description }}</div>
             <div>{{ $service->time }}</div>
@@ -14,4 +14,4 @@
         </div>
     </x-card>
 </div>
-{{-- </x-layout> --}}
+</x-layout>
