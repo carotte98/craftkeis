@@ -1,4 +1,4 @@
-{{-- x-layout later --}}
+<x-layout> 
 <div>
     <h2 class="text-2xl font-bold uppercase mb-1">
         Login
@@ -22,7 +22,7 @@
             </label>
             <input type="password" name="password" />
             @error('password')
-                <p class=>{{ $message }}</p>
+                <p>{{ $message }}</p>
             @enderror
         </div>
 
@@ -40,4 +40,4 @@
     </form>
 
 </div>
-</div>
+</x-layout>
