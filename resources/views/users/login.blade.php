@@ -22,7 +22,7 @@
             </label>
             <input type="password" name="password" />
             @error('password')
-                <p class=>{{ $message }}</p>
+                <p>{{ $message }}</p>
             @enderror
         </div>
 

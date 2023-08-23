@@ -106,7 +106,7 @@
             </div>
             <div>
                 @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
                 @enderror
             </div>
 
@@ -118,7 +118,7 @@
                 </div>
             </div>
             @error('email')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
             @enderror
 
             {{-- this div is for the phone Number --}}
@@ -145,7 +145,7 @@
                 </div>
             </div>
             @error('password')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
             @enderror
 
             {{-- this div is for the conf password --}}
@@ -156,7 +156,7 @@
                 </div>
             </div>
             @error('confirm_password')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
             @enderror
 
             {{-- this div is for the checkbox --}}
