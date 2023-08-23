@@ -24,5 +24,18 @@ use App\Http\Controllers\ServiceController;
 
 Route::get('/', [ServiceController::class, 'index']);
 Route::get('/services/{service}', [ServiceController::class, 'show']);
-//create new user(register)
+
+//*UserController
+//Register user (form)
 Route::get('/register',[UserController::class,'create']);
+//Login user (form)
+//name login, for when someone wants to bypass login and go directly the account page through url then gets redirected to login
+Route::get('/login',[UserController::class,'login'])->name('login');
+//Create new user (db)
+Route::post('/users', [UserController::class, 'store']);
+//Log user in
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+//Display user account (after log-in for now)
+Route::get('/users/account',[UserController::class,'account'])->middleware('auth');
+//Log user out
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
