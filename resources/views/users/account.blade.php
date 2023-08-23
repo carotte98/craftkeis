@@ -15,6 +15,9 @@
         <a href="/users/{{$user->id}}/edit">
             <i class="fa-solid fa-pencil"></i>Edit
         </a>
+        <a href="/users/account/orders">
+            <i class="fa-solid fa-gear"></i>Orders
+        </a>
     </x-card>
     <form class="inline" method="POST" action="/logout">
         @csrf

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longtext('description');
+            $table->double('price');
             $table->foreignId('user_id1')->constrained()->onDelete('cascade');
             $table->foreignId('user_id2')->constrained()->onDelete('cascade');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
