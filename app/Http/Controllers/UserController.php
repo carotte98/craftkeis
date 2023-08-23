@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
@@ -83,8 +84,30 @@ class UserController extends Controller
     {
         // Get the currently authenticated user
         $user = Auth::user();
+
+        //Search for all conversations where user is present
+        $conversations = DB::table('conversations')
+            ->where('user_id1', $user->id)
+            ->orWhere('user_id2', $user->id)
+            ->get();
+
+        $contactUsers = [];
+
+        //For each conversation put the other contact(user) in an array 
+        foreach ($conversations as $conversation) {
+            $contactUserId = $conversation->user_id1 == $user->id ? $conversation->user_id2 : $conversation->user_id1;
+            $contactUser = DB::table('users')->find($contactUserId);
+
+            // Append the other user's details to the $otherUsers array
+            $contactUsers[] = $contactUser;
+        }
+
         // Pass the user data to the view
-        return view('users.account', ['user' => $user]);
+        return view('users.account', [
+            'user' => $user,
+            'tempContacts' => User::all(), //Temporary for chat purpose
+            'contacts' => $contactUsers,
+        ]);
     }
 
     //Logout user

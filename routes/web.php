@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ConversationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +41,13 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 Route::get('/users/account',[UserController::class,'account'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+//*ConversationController
+//Open conversation
+Route::get('/users/account/chat/conversation/{contactId}',[ConversationController::class,'create'])->middleware('auth');
+//Create conversation
+Route::get('/users/account/chat/{contactId}', [ConversationController::class, 'createChat'])->middleware('auth');
+
+//*MessageController
+//Create new message
+Route::post('/users/account/chat/conversation', [MessageController::class, 'store'])->middleware('auth');

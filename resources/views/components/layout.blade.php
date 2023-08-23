@@ -96,7 +96,7 @@
     </section>
     </nav>
 
-    <main>
+    <main class="pt-20">
 
         {{-- page contents --}}
         {{$slot}}
