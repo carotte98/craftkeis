@@ -12,7 +12,7 @@
             <div>Bio:</div>
             <div>{{ $user->bio}}</div><br>
         </div>
-        <a href="/users/account/edit">
+        <a href="/users/{{$user->id}}/edit">
             <i class="fa-solid fa-pencil"></i>Edit
         </a>
     </x-card>
