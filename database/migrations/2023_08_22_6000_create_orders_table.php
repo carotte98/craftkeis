@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('creator_id');
-            $table->foreignId('client_id');
-            $table->foreignId('service_id');
-            $table->foreignId('bank_id');
+            $table->longtext('description');
+            $table->foreignId('user_id1')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id2')->constrained()->onDelete('cascade');
+            $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->enum('order_status', ['finished', 'pending', 'accepted']);
             $table->timestamp('completed_at');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('orders');
     }
 };

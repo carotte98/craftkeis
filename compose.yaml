@@ -1,0 +1,41 @@
+
+
+# compose.yaml
+# docker-compose up -d
+
+### Open docker container terminal
+# sudo docker exec -it docker-php-apache-1 /bin/bash
+
+### Install mysqli into the container
+# docker-php-ext-install mysqli   
+version: '3.1'
+services:
+  db:
+    container_name: db
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database
+    ports:
+      - '3308:3306'
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - '8080:80'
+  laravel:
+    image: bitnami/laravel
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_DATABASE=craftkeis
+    volumes:
+      - ".:/app"
