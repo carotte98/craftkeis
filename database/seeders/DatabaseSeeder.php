@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::factory()->create();
+        // $user = User::factory()->create();
 
         $base = Category::create([
             'name' => '3D Modelling'
@@ -34,8 +34,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Logo Design'
         ]);
 
-        $client = User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'John Doe',
+            'email' => 'john@gmail.com',
+            'password' => '1234',
             'is_creator' => false,
         ]);
 
