@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -79,3 +79,10 @@ Route::get('/users/account/chat/{contactId}', [ConversationController::class, 'c
 //*MessageController
 //Create new message
 Route::post('/users/account/chat/conversation', [MessageController::class, 'store'])->middleware('auth');
+
+//BankDetailController
+//create bank_details
+Route::get('/register/{user}/bankDetails',[BankDetailsController::class,'create']);
+
+//store bank_details
+Route::post('/bankDetails',[BankDetailsController::class,'store']);

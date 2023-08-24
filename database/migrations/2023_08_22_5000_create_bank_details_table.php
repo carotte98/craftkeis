@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('bank_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->bigInteger('cardNumber');
             $table->string('payment_method');
-            $table->text('account_details');
+            $table->smallInteger('ccv');
+            $table->text('expireDate');
             $table->timestamps();
         });
     }

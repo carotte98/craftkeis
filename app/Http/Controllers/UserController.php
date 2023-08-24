@@ -39,7 +39,7 @@ class UserController extends Controller
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'bank_id' => ['nullable'],
+            // 'bank_id' => ['nullable'],
             'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()],
             'bio' => ['nullable'],
             'is_creator' => ['nullable'],
@@ -63,20 +63,25 @@ class UserController extends Controller
         // You can explicitly set the attributes to their default values if they are not provided
         $formFields['bio'] = $formFields['bio'] ?? null;
         $formFields['is_creator'] = $formFields['is_creator'] ?? null;
-        $formFields['bank_id'] = $formFields['bank_id'] ?? null;
+        // $formFields['bank_id'] = $formFields['bank_id'] ?? null;
         $formFields['commission_amount'] = $formFields['commission_amount'] ?? null;
-
-
-
-
+         // Set is_creator value based on checkbox
+        $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
+        
         //Create the new user
         $user = User::create($formFields);
+        auth()->login($user);
 
+        if($user->is_creator)
+        {
+            session_start();
+            session(['user'=> $user]);
+            return redirect('/register/{user}/bankDetails');
+        }
 
         //TODO
         //Using auth() helper handles all the login/logout process for us
         //It saves us an ENORMUS amount of time
-        auth()->login($user);
 
         //When user is created and logged in, we will show them the homepage so they can start navigate the website
         return redirect('/')->with('message', 'User created and logged in!');
