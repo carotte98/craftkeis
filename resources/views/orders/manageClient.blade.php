@@ -28,13 +28,18 @@
                     Status Unknown
                 @endif
             </p>
+
+            {{-- only cancel while not completed --}}
+            @unless ($order->order_status === 'finished')
             <form action="/orders/{{$order->id}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 mt-1 rounded">
                     <i class="fa-solid fa-trash"></i> Cancel
                 </button>
-            </form>
+            </form>                
+            @endunless
+   
         </x-card>
     @endforeach
     
