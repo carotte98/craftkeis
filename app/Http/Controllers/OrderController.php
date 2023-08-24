@@ -13,7 +13,14 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('orders.index', [
+            'orders' => Order::latest()->paginate(6),
+        ]);
+    }
+
+    public function manage()
+    {
+        return view('orders.manage', ['orders' => auth()->user()->orderClient()->get()]);
     }
 
     /**
@@ -31,20 +38,13 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        // $table->id();
-        // $table->string('title');
-        // $table->foreignId('user_id1')->constrained()->onDelete('cascade');;
-        // $table->foreignId('user_id2')->constrained()->onDelete('cascade');;
-        // $table->foreignId('service_id')->constrained()->onDelete('cascade');;
-        // $table->enum('order_status', ['finished', 'pending', 'accepted']);
-        // $table->timestamp('completed_at');
-
         $formFields = $request->validate([
             'title' => 'required',
             'description' => 'required',
             'user_id1' => 'required',
             'user_id2' => 'required',
             'service_id' => 'required',
+            'price' => 'required',
         ]);
 
         $formFields['order_status'] = 'pending';

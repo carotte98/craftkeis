@@ -65,10 +65,10 @@ class User extends Authenticatable
         return $this->hasMany(Message::class, 'user_id');
     }
     public function orderClient() {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'user_id2');
     }
     public function orderCreator() {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'user_id1');
     }
     
     public function services(){

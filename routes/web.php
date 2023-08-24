@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ConversationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +61,21 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('a
 Route::put('/users/account', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-//OrderController
-//order show form
-Route::get('/orders/create/{service}', [OrderController::class,'create']);
-//order show form
-Route::post('/orders', [OrderController::class,'store']);
+
+/////////OrderController
+//order create form
+Route::get('/orders/create/{service}', [OrderController::class,'create'])->middleware('auth');
+//order post form
+Route::post('/orders', [OrderController::class,'store'])->middleware('auth');
+// Show all orders of looged in user
+Route::get('/users/account/orders', [OrderController::class, 'manage']);
+
+//*ConversationController
+//Open conversation
+Route::get('/users/account/chat/conversation/{contactId}',[ConversationController::class,'create'])->middleware('auth');
+//Create conversation
+Route::get('/users/account/chat/{contactId}', [ConversationController::class, 'createChat'])->middleware('auth');
+
+//*MessageController
+//Create new message
+Route::post('/users/account/chat/conversation', [MessageController::class, 'store'])->middleware('auth');
