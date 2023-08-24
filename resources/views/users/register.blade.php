@@ -69,7 +69,7 @@
             const isChecked = document.getElementById('role').checked;
             const bioInput = document.getElementById('bio-input');
             const commissionInput = document.getElementById('commission-input');
-            const bankInput = document.getElementById('bank_input');
+            const bankInput = document.getElementById('bank-input');
 
             if (isChecked) {
                 bioInput.classList.remove('hidden');

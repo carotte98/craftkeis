@@ -173,9 +173,11 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        return view('users.creator', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -192,11 +194,19 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $formFields = $request->validate([
-            'name' => ['required', 'min:3']
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+            'bank_id' => ['nullable'],
+            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()],
+            'bio' => ['nullable'],
+            'is_creator' => ['nullable'],
+            'image_address' => ['nullable'],
+            'phone_number' => ['nullable'],
+            'commission_amount' => ['nullable']
         ]);
         $user->update($formFields);
 
-        return redirect('/users/account')->with('message', 'Account updated successfully');
+        return redirect('/users/' . $user->id)->with('message', 'Account updated successfully');
     }
 
     /**
