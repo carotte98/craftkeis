@@ -133,9 +133,11 @@
             <div class="flex flex-col">
                 <a href="/services">Categories</a>
             </div>
+            @auth
             <div class="flex flex-col">
-                <a href="../users/account">Account</a>
+                <a href="../../users/{{auth()->user()->id}}">Account</a>
             </div>
+            @endauth
 
         </section>
 
@@ -143,7 +145,13 @@
         <section class="space-x-6 space-y-2">
             <hr>
             <p class="ml-2">Copyright &copy; 2023</p>          
-            <br>  
+            <br>
+            <a href="/login-as-user/3" class="btn btn-primary">
+                Login as Maus katti
+            </a>              
+            <a href="/login-as-user/1" class="btn btn-primary">
+                Login as John Doe
+            </a>              
         </section>
     </footer>
 

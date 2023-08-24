@@ -7,11 +7,14 @@
             <h3>
                 <a href="/services/{{ $service->id }}">{{ $service->title }}</a>
             </h3>
-            <div>by {{ $service->user_id }}</div>
+            <div>
+                by 
+                <a href="/creators/{{ $service->users->id }}">{{ $service->users->name }}</a>
+            </div>
             <div>{{ $service->description }}</div>
             <div>{{ $service->time }}</div>
-            <div>{{ $service->price }}</div>
-            <x-service-category :category="$service->category_id" />
+            <div>{{ $service->price }} €</div>
+            <a href="?category_id={{$service->category_id}}">{{$service->categories->name}}</a>
         </div>
     </div>
 </x-card>

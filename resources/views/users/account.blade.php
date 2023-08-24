@@ -18,6 +18,11 @@
         <a href="/users/account/orders">
             <i class="fa-solid fa-gear"></i>Orders
         </a>
+        {{-- inbox for creators --}}
+        <span class="text-lg">
+            <i class="fa-solid fa-inbox"></i>
+            <a href="/users/account/commissions" class="hover:text-accent">Inbox</a>
+        </span>
     </x-card>
     <form class="inline" method="POST" action="/logout">
         @csrf

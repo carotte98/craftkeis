@@ -6,11 +6,11 @@
         <div>
             <div>{{ $service->status }}</div>
             <h3>{{$service->title}}</h3>
-            <div>Creator: {{ $service->user_id }}</div>
+            <div>Creator: <a href="/creators/{{ $service->users->id }}">{{ $service->users->name }}</a></div>
             <div>{{ $service->description }}</div>
             <div>{{ $service->time }}</div>
             <div>{{ $service->price }}</div>
-            <x-service-category :category="$service->category_id" />
+            <div>{{ $service->categories->name }}</div>
             {{-- order button, sents to order form --}}
             <form action="" method="post" action="/orders/create">
                 <button class="text-center text-lg h-8 w-20 text-white rounded-lg bg-accent hover:bg-onhover">

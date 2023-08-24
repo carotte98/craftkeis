@@ -69,7 +69,7 @@
             const isChecked = document.getElementById('role').checked;
             const bioInput = document.getElementById('bio-input');
             const commissionInput = document.getElementById('commission-input');
-            const bankInput = document.getElementById('bank_input');
+            const bankInput = document.getElementById('bank-input');
 
             if (isChecked) {
                 bioInput.classList.remove('hidden');
@@ -182,16 +182,19 @@
                     <i class="fa-solid fa-briefcase"></i>
                     <input type="number" placeholder="Commission Amount" name="commission_amount">
                 </div>
+                @error('commission_amount')
+                <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
+            @enderror
             </div>
 
 
             {{-- this div is for the bank_id --}}
-            <div class="bordered-div hidden" id="bank_input">
+            {{-- <div class="bordered-div hidden" id="bank_input">
                 <div class="icon-input-container">
                     <i class="fa-solid fa-building-columns"></i>
                     <input type="text" placeholder="Bank ID" name="bank_id">
                 </div>
-            </div>
+            </div> --}}
 
 
             <div class="mb-6" id="Link-button">

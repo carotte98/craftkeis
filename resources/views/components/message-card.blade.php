@@ -7,3 +7,4 @@
         <span class="message-timestamp">{{ $message->created_at }}</span>
     </div>
 </div>
+
