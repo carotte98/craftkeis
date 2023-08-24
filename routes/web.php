@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ConversationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +69,13 @@ Route::get('/orders/create/{service}', [OrderController::class,'create'])->middl
 Route::post('/orders', [OrderController::class,'store'])->middleware('auth');
 // Show all orders of looged in user
 Route::get('/users/account/orders', [OrderController::class, 'manage']);
+
+//*ConversationController
+//Open conversation
+Route::get('/users/account/chat/conversation/{contactId}',[ConversationController::class,'create'])->middleware('auth');
+//Create conversation
+Route::get('/users/account/chat/{contactId}', [ConversationController::class, 'createChat'])->middleware('auth');
+
+//*MessageController
+//Create new message
+Route::post('/users/account/chat/conversation', [MessageController::class, 'store'])->middleware('auth');
