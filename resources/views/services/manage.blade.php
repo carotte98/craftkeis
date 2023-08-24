@@ -1,6 +1,7 @@
 <x-layout>
     <x-card>
         <header>
+            <a href="/services/create">Create new Service</a>
             <h1>
                 Manage Services
             </h1>

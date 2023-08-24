@@ -69,7 +69,7 @@
             const isChecked = document.getElementById('role').checked;
             const bioInput = document.getElementById('bio-input');
             const commissionInput = document.getElementById('commission-input');
-            const bankInput = document.getElementById('bank_input');
+            const bankInput = document.getElementById('bank-input');
 
             if (isChecked) {
                 bioInput.classList.remove('hidden');
@@ -186,7 +186,7 @@
 
 
             {{-- this div is for the bank_id --}}
-            <div class="bordered-div hidden" id="bank_input">
+            <div class="bordered-div hidden" id="bank-input">
                 <div class="icon-input-container">
                     <i class="fa-solid fa-building-columns"></i>
                     <input type="text" placeholder="Bank ID" name="bank_id">
