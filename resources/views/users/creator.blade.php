@@ -18,4 +18,13 @@
     @foreach ($user->services as $service)
         <x-service-card :service="$service" />
     @endforeach
+<div>
+    <x-card>
+        <div>
+            <h2>
+                {{$user->name}}'s Shop
+            </h2>
+        </div>
+    </x-card>
+</div>
 </x-layout>
