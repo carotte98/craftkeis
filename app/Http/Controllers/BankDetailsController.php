@@ -20,7 +20,7 @@ class BankDetailsController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.bankDetails');
     }
 
     /**
@@ -28,7 +28,20 @@ class BankDetailsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields =$request->validate([
+            'firstName'=>['required'],
+            'lastName'=>['required'],
+            'cardNumber'=>['required'],
+            'payment_method'=>['required'],
+            'ccv'=>['required'],
+            'expireDate'=>['required']
+        ]);
+        $formFields['user_id']=auth()->user()->id;
+
+        Bank_details::create($formFields);
+
+        return redirect('/')->with('message','Account and bank Details created');
+
     }
 
     /**

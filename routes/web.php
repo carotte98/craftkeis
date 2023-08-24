@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MessageController;
@@ -60,6 +60,8 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('a
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+// Show one service
+Route::get('/creators/{user}', [UserController::class, 'show']);
 
 /////////OrderController
 //order create form
@@ -88,3 +90,10 @@ Route::get('/users/account/chat/{contactId}', [ConversationController::class, 'c
 //*MessageController
 //Create new message
 Route::post('/users/account/chat/conversation', [MessageController::class, 'store'])->middleware('auth');
+
+//BankDetailController
+//create bank_details
+Route::get('/register/{user}/bankDetails',[BankDetailsController::class,'create']);
+
+//store bank_details
+Route::post('/bankDetails',[BankDetailsController::class,'store']);
