@@ -66,8 +66,16 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::get('/orders/create/{service}', [OrderController::class,'create'])->middleware('auth');
 //order post form
 Route::post('/orders', [OrderController::class,'store'])->middleware('auth');
-// Show all orders of looged in user
-Route::get('/users/account/orders', [OrderController::class, 'manage']);
+// Show all orders of logged in user
+Route::get('/users/account/orders', [OrderController::class, 'manageClient']);
+// Show all requests if you are creator
+Route::get('/users/account/commissions', [OrderController::class, 'manageCreator']);
+// update order status
+Route::put('/orders/{order}', [OrderController::class, 'updateStatus']);
+
+// DEVELOPMENT DELETE LATER
+Route::get('/login-as-user/{userId}', [OrderController::class, 'loginAsUser']);
+
 
 //*ConversationController
 //Open conversation

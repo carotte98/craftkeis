@@ -35,9 +35,16 @@
         </div>
     
         <div class="mb-6">
-            <button class="bg-accent text-white rounded py-2 px-4 hover:bg-onhover">
-                Request now
-            </button>
+            {{-- the user cannor order if he is the services creator --}}
+            @if ($service->user_id != auth()->id())
+                <button class="bg-accent text-white rounded py-2 px-4 hover:bg-onhover">
+                    Request now
+                </button>
+            @else
+                <button class="bg-gray-300 text-gray-500 rounded py-2 px-4" disabled>
+                    Request now
+                </button>
+            @endif
     
             <a href="{{ url()->previous() }}" class="text-black ml-4">Back</a>
         </div>

@@ -5,6 +5,8 @@
         <p>No orders found</p>
     @endif
     
+    <h1 class="text-center">Stuff you commissioned</h1>
+    
     @foreach ($orders as $order)
         <x-card>
             <h2>{{ $order->title }}</h2>
@@ -14,7 +16,7 @@
             <p>Description: <br>{{ $order->description }}</p>
             <p>Price: {{ $order->price }}</p>
             <p>Status:
-                @if ($order->order_status === 'pending')
+                @if ($order->order_status === 'pending') 
                     <i class="fas fa-hourglass-half text-yellow-500"></i> Pending
                 @elseif ($order->order_status === 'finished')
                     <i class="fas fa-check-circle text-green-500"></i> Completed

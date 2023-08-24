@@ -147,7 +147,13 @@
         <section class="space-x-6 space-y-2">
             <hr>
             <p class="ml-2">Copyright &copy; 2023</p>          
-            <br>  
+            <br>
+            <a href="/login-as-user/1" class="btn btn-primary">
+                Login as Maus katti
+            </a>              
+            <a href="/login-as-user/2" class="btn btn-primary">
+                Login as John Doe
+            </a>              
         </section>
     </footer>
 
