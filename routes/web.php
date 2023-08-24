@@ -72,6 +72,8 @@ Route::get('/users/account/orders', [OrderController::class, 'manageClient']);
 Route::get('/users/account/commissions', [OrderController::class, 'manageCreator']);
 // update order status
 Route::put('/orders/{order}', [OrderController::class, 'updateStatus']);
+// Delete order
+Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->middleware('auth');
 
 // DEVELOPMENT DELETE LATER
 Route::get('/login-as-user/{userId}', [OrderController::class, 'loginAsUser']);
