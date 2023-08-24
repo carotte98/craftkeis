@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ConversationController;
@@ -54,11 +53,11 @@ Route::post('/users', [UserController::class, 'store']);
 //Log user in
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 //Display user account (after log-in for now)
-Route::get('/users/account',[UserController::class,'account'])->middleware('auth');
+Route::get('/users/{user}',[UserController::class,'account'])->middleware('auth');
 //Edit user account
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth');
 //Update user account
-Route::put('/users/account', [UserController::class, 'update'])->middleware('auth');
+Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
