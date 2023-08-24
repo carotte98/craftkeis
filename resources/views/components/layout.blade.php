@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
     {{-- AlpineJS --}}
     <script src="//unpkg.com/alpinejs" defer></script>
     {{-- tailwind css --}}
@@ -18,9 +19,10 @@
             theme: {
                 extend: {
                     colors: {
-                        accent: "green",
-                        onhover: "lightgreen",
-                        background: "skyblue",
+                        accent: "#F4A051",
+                        onhover: "#E5A66C",
+                        background: "#D9D9D9",
+                        buttons : "#C3C3C3",
                     },
                     borderRadius: {
                         'lg': '10px',
@@ -37,63 +39,64 @@
     {{-- <x-flash-message/>  --}}
 
     {{-- navbar --}}
-    <nav class="top-0 left-0 fixed w-full flex flex-col justify-start bg-background ">
+    <nav class="w-3/4 mx-auto flex flex-col items-center">
         {{-- top section of navbar --}}
-        <section class="flex"> 
-        <div class="flex space-x-6 mr-6 items-center">
-            <div class="flex">
-                <a href="/">
-                    {{-- placeholder logo --}}
-                    <img class="w-24 logo" src="{{ asset('images/logo.svg') }}" alt="LOGO" />
-                </a>
-                {{-- Search bar --}}
-                @include('partials._search')
+        <section class="w-full dropshadow flex justify-center h-20 bg-background rounded-b-lg"> 
+            <div class="flex space-x-6 mr-6 items-center grid grid-cols-3 w-11/12 gap-x-52">
+                {{-- Col 1 --}}
+                <div class="flex"> 
+                    {{-- Search bar --}}
+                    @include('partials._search')
+                </div>
+
+                
+                <div class="w-full flex justify-center">
+                    <a href="/" class="customLogo">Craftkeis</a>
+                </div>
+                
+                <div class="w-full flex justify-evenly space-x-2">
+                        <a href="/services/manage" class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">Services</a>
+
+                    {{-- language select --}}
+                    {{-- <a href="" class="text-center text-lg h-8 w-24 text-black rounded-lg bg-buttons hover:text-white hover:bg-onhover"><i class="fas fa-globe"></i></a> --}}
+
+                    {{-- auth directive only shows the elements when logged in --}}
+                    @auth 
+                        <div class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">
+                            <a href="../users/account">Account</a>
+                        </div>
+                        {{-- logout button --}}
+                        <form class="inline" action="/logout" method="post">
+                            @csrf
+                            <button class="text-center text-lg h-8 w-24 text-black rounded-lg bg-buttons hover:bg-onhover">
+                                <i class="fa-solid fa-door-closed"></i> Logout
+                            </button>
+                        </form>
+                        {{-- else when not logged in --}}
+                        @else
+                        <span class="text-center text-lg h-8 w-24 text-text-black rounded-lg bg-buttons hover:bg-onhover">
+                            <a href="/login" class="hover:text-white">Login</a>
+                        </span>
+                        <span class="text-center text-lg h-8 w-24 text-white rounded-lg bg-accent hover:bg-onhover">
+                            <a href="/register" class="" >Register</a>
+                        </span>
+                    @endauth
+                </div>
+
             </div>
+        </section>
 
-            <a href="/services/manage">Services</a>
-
-            {{-- language select --}}
-            <a href=""><i class="fas fa-globe"></i>EN</a>
-
-            {{-- auth directive only shows the elements when logged in --}}
-            @auth 
-                <span class="font-bold uppercase">
-                    {{-- to access logged user name, we need to use the auth() helper --}}
-                    Welcome {{auth()->user()->name}}
-                    {{-- user() is the user object --}}
-                </span>
-                {{-- logout button --}}
-                <form class="inline" action="/logout" method="post">
-                    @csrf
-                    <button>
-                        <i class="fa-solid fa-door-closed"></i> Logout
-                    </button>
-                </form>
-                {{-- else when not logged in --}}
-                @else
-                <span class="text-lg">
-                    <a href="/login" class="hover:text-accent">Login</a>
-                </span>
-                <span class="text-center text-lg h-8 w-20 text-white rounded-lg bg-accent hover:bg-onhover">
-                    <a href="/register" class="" >Register</a>
-                </span>
-            @endauth
-
-        </div>
-    </section>
-
-    {{-- categories list --}}
-    <section class="nav-categories">
-        <hr>
-        <ul class="flex space-x-6 mr-6">
-            <li><a href="?category_id=1">3D Modelling</a></li>
-            <li><a href="?category_id=2">2D Illustration</a></li>
-            <li><a href="?category_id=3">Painting</a></li>
-            <li><a href="?category_id=4">SFX</a></li>
-            <li><a href="?category_id=5">Wood Sculpting</a></li>
-            <li><a href="?category_id=6">Logo Design</a></li>
-        </ul>
-    </section>
+        {{-- categories list --}}
+        <section class="flex w-2/3 h-14 justify-center bg-background rounded-b-lg dropshadowCat">
+            <ul class="flex space-x-2 mr-6 h-11 w-11/12 justify-center text-base text-center align-middle">
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=1">3D Modelling</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=2">2D Illustration</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=3">Painting</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=4">SFX</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=5">Wood Sculpting</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=6">Logo Design</a></li>
+            </ul>
+        </section>
     </nav>
 
     <main class="pt-20">

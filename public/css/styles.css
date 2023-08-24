@@ -1,0 +1,36 @@
+@font-face {
+    font-family: Aquire;
+    src: url('/fonts/Aquire-BMWox.otf') format('otf');
+}
+
+@font-face {
+    font-family: AquireBold;
+    src: url('/fonts/AquireBold-8Ma60.otf') format('otf');
+}
+
+@font-face {
+    font-family: AquireLight;
+    src: url('/fonts/AquireLight-YzE0o.otf') format('otf');
+}
+
+body{
+    background-color: #E7D0BB;
+}
+
+.dropshadow{
+    box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
+    z-index: 10;
+}
+
+.dropshadowCat{
+    z-index: 0;
+    box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
+}
+
+.customLogo{
+    font-size: 2rem;
+    color: #676666;
+    font-family: 'Aquire';
+    text-decoration: none;
+}
+
