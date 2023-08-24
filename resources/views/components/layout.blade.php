@@ -137,7 +137,7 @@
             </div>
             @auth
             <div class="flex flex-col">
-                <a href="../../users/{{auth()->user()->id}}">Account</a>
+                <a href="/users/{{auth()->user()->id}}">Account</a>
             </div>
             @endauth
 

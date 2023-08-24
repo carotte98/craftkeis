@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Product;
 use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
@@ -96,7 +97,8 @@ class DatabaseSeeder extends Seeder
             'user_id' => 3,
             'category_id' => 1
         ]);
-
+        
+        Product::factory(10)->create();
 
     }
 }
