@@ -50,10 +50,10 @@ class User extends Authenticatable
     ];
 
 
-    public function bankDetails()
-    {
-        return $this->belongsTo(BankDetail::class, 'bank_id');
-    }
+    // public function bankDetails()
+    // {
+    //     return $this->belongsTo(BankDetail::class, 'bank_id');
+    // }
 
     public function user1Conversation() {
         return $this->hasMany(Conversation::class, 'user_id1');
