@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
+use function Laravel\Prompts\password;
+
 class UserController extends Controller
 {
     /**
@@ -30,27 +32,54 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    //attributes have certain specififcations some don't
     public function store(Request $request)
     {
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()]
+            'bank_id' => ['nullable'],
+            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()],
+            'bio' => ['nullable'],
+            'is_creator' => ['nullable'],
+            'image_address' => ['nullable'],
+            'phone_number' => ['nullable'],
+            'commission_amount' => ['nullable']
         ]);
+
+        //for the images storing them apart locally
+        if ($request->hasFile('image_address')) {
+            $formFields['image_address'] = $request->file('image_address')->store('images', 'public');
+            //formfields['logo']->this will add a 'logo' key to our array of data from the form
+            //$request->file('logo') >> retrieve the image file that has been uploaded(could be any file really)
+            //store('logos','public') > the file will be stored in
+            //public/logos/ instead of just public
+        }
 
         //Hash the password with bcrypt 
         $formFields['password'] = bcrypt($formFields['password']);
 
+        // You can explicitly set the attributes to their default values if they are not provided
+        $formFields['bio'] = $formFields['bio'] ?? null;
+        $formFields['is_creator'] = $formFields['is_creator'] ?? null;
+        $formFields['bank_id'] = $formFields['bank_id'] ?? null;
+        $formFields['commission_amount'] = $formFields['commission_amount'] ?? null;
+
+
+
+
         //Create the new user
         $user = User::create($formFields);
+
 
         //TODO
         //Using auth() helper handles all the login/logout process for us
         //It saves us an ENORMUS amount of time
-        //auth()->login($user);
+        auth()->login($user);
 
         //When user is created and logged in, we will show them the homepage so they can start navigate the website
-        return redirect('/'); //->with('message', 'User created and logged in!');
+        return redirect('/')->with('message', 'User created and logged in!');
     }
 
     public function login()
@@ -134,17 +163,22 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $formFields = $request->validate([
+            'name' => ['required', 'min:3']
+        ]);
+        $user->update($formFields);
+
+        return redirect('/users/account')->with('message', 'Account updated successfully');
     }
 
     /**

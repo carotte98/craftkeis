@@ -1,4 +1,4 @@
-{{-- <x-layout> --}}
+<x-layout>
 
 <x-layout>
 @if (count($services) == 0)
@@ -14,4 +14,4 @@
     {{$services->links()}}
 </x-layout>
 
-{{-- </x-layout> --}}
+</x-layout>

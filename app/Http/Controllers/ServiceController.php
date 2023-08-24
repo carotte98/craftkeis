@@ -35,9 +35,10 @@ class ServiceController extends Controller
             'description' => 'required',
             'price' => 'required',
             'time' => 'required',
-            'status' => 'required',
             'category_id' => 'required'
         ]);
+        
+        $formFields['status'] = 'open';
 
         $formFields['user_id'] = auth()->id();
 
