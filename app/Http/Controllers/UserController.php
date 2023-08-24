@@ -57,34 +57,47 @@ class UserController extends Controller
             //public/logos/ instead of just public
         }
 
-        //Hash the password with bcrypt 
-        $formFields['password'] = bcrypt($formFields['password']);
-
-        // You can explicitly set the attributes to their default values if they are not provided
-        $formFields['bio'] = $formFields['bio'] ?? null;
-        $formFields['is_creator'] = $formFields['is_creator'] ?? null;
-        // $formFields['bank_id'] = $formFields['bank_id'] ?? null;
-        $formFields['commission_amount'] = $formFields['commission_amount'] ?? null;
-         // Set is_creator value based on checkbox
-        $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
         
-        //Create the new user
-        $user = User::create($formFields);
-        auth()->login($user);
-
-        if($user->is_creator)
+        //validation, to check if passwords match or not
+        if($request->confirm_password==$formFields['password'])
         {
-            session_start();
-            session(['user'=> $user]);
-            return redirect('/register/{user}/bankDetails');
+            //Hash the password with bcrypt 
+            $formFields['password'] = bcrypt($formFields['password']);
+    
+            // You can explicitly set the attributes to their default values if they are not provided
+            $formFields['bio'] = $formFields['bio'] ?? null;
+            $formFields['is_creator'] = $formFields['is_creator'] ?? null;
+            // $formFields['bank_id'] = $formFields['bank_id'] ?? null;
+            $formFields['commission_amount'] = $formFields['commission_amount'] ?? null;
+             // Set is_creator value based on checkbox
+            $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
+
+
+
+            //Create the new user
+            $user = User::create($formFields);
+            auth()->login($user);
+    
+            if($user->is_creator)
+            {
+                session_start();
+                session(['user'=> $user]);
+                return redirect('/register/{user}/bankDetails');
+            }
+    
+            //TODO
+            //Using auth() helper handles all the login/logout process for us
+            //It saves us an ENORMUS amount of time
+    
+            //When user is created and logged in, we will show them the homepage so they can start navigate the website
+            return redirect('/')->with('message', 'User created and logged in!');
+        }
+        else
+        {
+            return back()->withErrors(['confirm_password' => "Passwords don't match" ,
+                                        'password'=>"Passwords don't match"]);
         }
 
-        //TODO
-        //Using auth() helper handles all the login/logout process for us
-        //It saves us an ENORMUS amount of time
-
-        //When user is created and logged in, we will show them the homepage so they can start navigate the website
-        return redirect('/')->with('message', 'User created and logged in!');
     }
 
     public function login()
