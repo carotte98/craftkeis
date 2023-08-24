@@ -101,7 +101,7 @@ class OrderController extends Controller
         // the creator updates the status of the order
         $newStatus = $request->input('status');
 
-        if ($newStatus === 'accepted' || $newStatus === 'declined') {
+        if ($newStatus === 'accepted' || $newStatus === 'declined' || $newStatus === 'finished') {
             $order->order_status = $newStatus;
             $order->save();
 
@@ -116,6 +116,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect(url()->previous())->with('message', 'Order deleted successfully');
     }
 }
