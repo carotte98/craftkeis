@@ -86,6 +86,9 @@ Route::get('/login-as-user/{userId}', [OrderController::class, 'loginAsUser']);
 Route::get('/users/account/chat/conversation/{contactId}',[ConversationController::class,'create'])->middleware('auth');
 //Create conversation
 Route::get('/users/account/chat/{contactId}', [ConversationController::class, 'createChat'])->middleware('auth');
+//Polling conversation
+Route::get('/users/account/chat/conversation/poll/{conversationId}', [ConversationController::class, 'pollConversation'])->middleware('auth');
+
 
 //*MessageController
 //Create new message
