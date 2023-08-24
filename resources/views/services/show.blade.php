@@ -6,7 +6,7 @@
         <div>
             <div>{{ $service->status }}</div>
             <h3>{{$service->title}}</h3>
-            <div>Creator: {{ $service->users->name }}</div>
+            <div>Creator: <a href="/creators/{{ $service->users->id }}">{{ $service->users->name }}</a></div>
             <div>{{ $service->description }}</div>
             <div>{{ $service->time }}</div>
             <div>{{ $service->price }}</div>
