@@ -60,6 +60,8 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('a
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+// Show one service
+Route::get('/creators/{user}', [UserController::class, 'show']);
 
 /////////OrderController
 //order create form

@@ -7,7 +7,10 @@
             <h3>
                 <a href="/services/{{ $service->id }}">{{ $service->title }}</a>
             </h3>
-            <div>by {{ $service->users->name }}</div>
+            <div>
+                by 
+                <a href="/creators/{{ $service->users->id }}">{{ $service->users->name }}</a>
+            </div>
             <div>{{ $service->description }}</div>
             <div>{{ $service->time }}</div>
             <div>{{ $service->price }} €</div>
