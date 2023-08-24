@@ -12,10 +12,13 @@ class Bank_details extends Model
     protected $table = 'bank_details';
 
     protected $fillable = [
-        'bank_id',
         'user_id',
+        'firstName',
+        'lastLame',
+        'cardNumber',
+        'ccv',
+        'expireDate',
         'payment_method',
-        'account_details',
     ];
 
     public function user()

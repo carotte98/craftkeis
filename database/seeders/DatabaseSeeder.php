@@ -34,15 +34,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Logo Design'
         ]);
 
-        $user = User::factory()->create([
-            'name' => 'John Doe',
-            'email' => 'john@gmail.com',
-            'password' => '1234',
-            'is_creator' => false,
+        
+        $this->call([
+            DefaultUserSeeder::class,
+            // Other seeders
         ]);
 
-        $creator = User::factory()->create([
+        User::factory()->create([
             'name' => 'Maus Kaetti',
+            'email' => 'maus@gmail.com',
+            'password' => '1234',
             'is_creator' => true,
         ]);
 
@@ -95,7 +96,6 @@ class DatabaseSeeder extends Seeder
             'user_id' => 3,
             'category_id' => 1
         ]);
-
 
 
     }
