@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ConversationController;
@@ -75,6 +74,9 @@ Route::get('/users/account/orders', [OrderController::class, 'manage']);
 Route::get('/users/account/chat/conversation/{contactId}',[ConversationController::class,'create'])->middleware('auth');
 //Create conversation
 Route::get('/users/account/chat/{contactId}', [ConversationController::class, 'createChat'])->middleware('auth');
+//Polling conversation
+Route::get('/users/account/chat/conversation/poll/{conversationId}', [ConversationController::class, 'pollConversation'])->middleware('auth');
+
 
 //*MessageController
 //Create new message
