@@ -4,10 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    // DEVELOPMENT DELETE LATER
+    public function loginAsUser($userId)
+    {
+        $user = User::findOrFail($userId);
+        Auth::login($user);
+
+        return redirect('/');
+    }
+    
     /**
      * Display a listing of the resource.
      */
@@ -18,9 +29,14 @@ class OrderController extends Controller
         ]);
     }
 
-    public function manage()
+    public function manageClient()
     {
-        return view('orders.manage', ['orders' => auth()->user()->orderClient()->get()]);
+        return view('orders.manageClient', ['orders' => auth()->user()->orderClient()->get()]);
+    }
+
+    public function manageCreator()
+    {
+        return view('orders.manageCreator', ['orders' => auth()->user()->orderCreator()->get()]);
     }
 
     /**
@@ -80,11 +96,27 @@ class OrderController extends Controller
         //
     }
 
+    public function updateStatus(Request $request, Order $order)
+    {
+        // the creator updates the status of the order
+        $newStatus = $request->input('status');
+
+        if ($newStatus === 'accepted' || $newStatus === 'declined' || $newStatus === 'finished') {
+            $order->order_status = $newStatus;
+            $order->save();
+
+            return redirect()->back()->with('status', 'Order status updated successfully.');
+        }
+
+        return redirect()->back()->withErrors('Invalid status update.');
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect(url()->previous())->with('message', 'Order deleted successfully');
     }
 }

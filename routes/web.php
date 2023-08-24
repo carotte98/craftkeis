@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MessageController;
@@ -53,21 +53,33 @@ Route::post('/users', [UserController::class, 'store']);
 //Log user in
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 //Display user account (after log-in for now)
-Route::get('/users/account',[UserController::class,'account'])->middleware('auth');
+Route::get('/users/{user}',[UserController::class,'account'])->middleware('auth');
 //Edit user account
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth');
 //Update user account
-Route::put('/users/account', [UserController::class, 'update'])->middleware('auth');
+Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+// Show one service
+Route::get('/creators/{user}', [UserController::class, 'show']);
 
 /////////OrderController
 //order create form
 Route::get('/orders/create/{service}', [OrderController::class,'create'])->middleware('auth');
 //order post form
 Route::post('/orders', [OrderController::class,'store'])->middleware('auth');
-// Show all orders of looged in user
-Route::get('/users/account/orders', [OrderController::class, 'manage']);
+// Show all orders of logged in user
+Route::get('/users/account/orders', [OrderController::class, 'manageClient']);
+// Show all requests if you are creator
+Route::get('/users/account/commissions', [OrderController::class, 'manageCreator']);
+// update order status
+Route::put('/orders/{order}', [OrderController::class, 'updateStatus']);
+// Delete order
+Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->middleware('auth');
+
+// DEVELOPMENT DELETE LATER
+Route::get('/login-as-user/{userId}', [OrderController::class, 'loginAsUser']);
+
 
 //*ConversationController
 //Open conversation
@@ -81,3 +93,10 @@ Route::get('/users/account/chat/conversation/poll/{conversationId}', [Conversati
 //*MessageController
 //Create new message
 Route::post('/users/account/chat/conversation', [MessageController::class, 'store'])->middleware('auth');
+
+//BankDetailController
+//create bank_details
+Route::get('/register/{user}/bankDetails',[BankDetailsController::class,'create']);
+
+//store bank_details
+Route::post('/bankDetails',[BankDetailsController::class,'store']);

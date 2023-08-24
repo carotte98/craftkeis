@@ -48,19 +48,24 @@
                 </a>
                 {{-- Search bar --}}
                 @include('partials._search')
-            </div>
-
-            <a href="/services/manage">Services</a>
+            </div>          
 
             {{-- language select --}}
             <a href=""><i class="fas fa-globe"></i>EN</a>
 
             {{-- auth directive only shows the elements when logged in --}}
             @auth 
+            @php
+                if (auth()->user()->is_creator == 1) {
+                    echo '<a href="/services/manage">Manage Services</a>';
+                }
+            @endphp
                 <span class="font-bold uppercase">
-                    {{-- to access logged user name, we need to use the auth() helper --}}
-                    Welcome {{auth()->user()->name}}
-                    {{-- user() is the user object --}}
+                    <a href="../../users/{{auth()->user()->id}}">
+                        {{-- to access logged user name, we need to use the auth() helper --}}
+                        Welcome {{auth()->user()->name}}
+                        {{-- user() is the user object --}}
+                    </a>
                 </span>
                 {{-- logout button --}}
                 <form class="inline" action="/logout" method="post">
@@ -130,9 +135,11 @@
             <div class="flex flex-col">
                 <a href="/services">Categories</a>
             </div>
+            @auth
             <div class="flex flex-col">
-                <a href="../users/account">Account</a>
+                <a href="../../users/{{auth()->user()->id}}">Account</a>
             </div>
+            @endauth
 
         </section>
 
@@ -140,7 +147,13 @@
         <section class="space-x-6 space-y-2">
             <hr>
             <p class="ml-2">Copyright &copy; 2023</p>          
-            <br>  
+            <br>
+            <a href="/login-as-user/3" class="btn btn-primary">
+                Login as Maus katti
+            </a>              
+            <a href="/login-as-user/1" class="btn btn-primary">
+                Login as John Doe
+            </a>              
         </section>
     </footer>
 

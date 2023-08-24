@@ -1,4 +1,14 @@
+@auth    
+    @php
+        if (auth()->user()->is_creator !== 1) {
+            header('Location: http://localhost:8000/');
+            exit();
+        }
+    @endphp
+@endauth
+
 <x-layout>
+    @auth
     <x-card>
         <header>
             <h2>
@@ -65,5 +75,7 @@
             </div>
         </form>
     </x-card>  
+        
+    @endauth
 
 </x-layout>
