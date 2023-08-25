@@ -196,7 +196,6 @@ class UserController extends Controller
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
-            'bank_id' => ['nullable'],
             'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()],
             'bio' => ['nullable'],
             'is_creator' => ['nullable'],
