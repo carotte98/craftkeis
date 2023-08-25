@@ -1,3 +1,3 @@
-<div class="bg-background shadow-md rounded-lg p-6 mb-2 max-w-sm mx-auto">
+<div class="bg-background dropshadow rounded-lg p-6 mb-2">
     {{$slot}}
 </div>
