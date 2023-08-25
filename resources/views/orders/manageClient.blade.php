@@ -21,14 +21,15 @@
                 {{-- when order is completed, client gets asked to pay --}}
                 @elseif ($order->order_status === 'finished')
                     <i class="fa-solid fa-check-circle text-green-500"></i> Completed
-                    {{-- payment button --}}
-                    <form action="/payment/{{$order}}" method="POST">
+                    <form action="/payment/{{$order}}/session" method="POST">
                         @csrf
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <input type="hidden" name="total" value="{{$order->price}}">
+                        <input type="hidden" name="service_name" value="{{$order->service->categories->name}}">
                         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 mt-1 rounded">
                             <i class="fa-solid fa-hand-holding-dollar"></i> Pay now
                         </button>
                     </form>
-
                 @elseif ($order->order_status === 'declined')
                     <i class="fa-solid fa-ban text-red-500"></i> Declined
                 @elseif ($order->order_status === 'accepted')
