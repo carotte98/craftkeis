@@ -19,15 +19,13 @@ class UserFactory extends Factory
     {
         $usernames = ['CreativeBrush', 'PixelPallete', 'DesignVirtuoso', 'CraftyComposer', 'InkDreamer', 'ArtisticScribe', 'ColorWhisperer', 'IllustrationMage', 'DigitalDoodle', 'CraftyCanvas', 'VisualSymphony', 'MasterOfDesigns', 'InnovativeInkling', 'BrushstrokesMagic', 'PixelArtisan', 'ImaginaryPalette', 'SketchCraftsman', 'WhimsicalVisions', 'EaselEnchanter', 'DesignAlchemy'];
 
-
         return [
             'name' => fake()->unique()->randomElement($usernames),
-            // 'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => rand(1,3000), // password
+            'password' => rand(1,900),
             'bio' => $this->faker->paragraph(5),
-            // 'is_creator' => $this->faker->boolean(),
+            // our fake account are all creators
             'is_creator' => true,
             'remember_token' => Str::random(10),
         ];

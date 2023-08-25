@@ -42,7 +42,7 @@ class DefaultUserSeeder extends Seeder
             'is_creator' => true,
         ]);
         
-        User::factory()->times(4)->create([
+        User::factory()->times(10)->create([
             'is_creator' => true,
         ]);
         

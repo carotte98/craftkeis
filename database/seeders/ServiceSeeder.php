@@ -53,14 +53,7 @@ class ServiceSeeder extends Seeder
             'category_id' => 1
         ]);
 
-        Service::factory(4)->create([
-            'title' => 'VR Chat Model',
-            'description' => '3D character models that can be used for VR Chat',
-            'price' => '200.00',
-            'time' => '2 months (at least)',
-            'status' => 'closed',
-            'user_id' => rand(5,8),
-            'category_id' => rand(1,6)
-        ]);
+        // Service::factory()->count(4)->categoryLogo()->create();
+        Service::factory()->times(18)->create();
     }
 }
