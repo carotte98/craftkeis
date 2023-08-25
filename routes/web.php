@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
 

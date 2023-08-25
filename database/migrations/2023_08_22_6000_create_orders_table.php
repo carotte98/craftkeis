@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('user_id2')->constrained()->onDelete('cascade');
             $table->foreignId('service_id')->constrained()->onDelete('cascade');
             $table->enum('order_status', ['finished', 'pending', 'accepted', 'declined']);
-            $table->timestamp('completed_at');
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }

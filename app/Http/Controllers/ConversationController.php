@@ -35,7 +35,7 @@ class ConversationController extends Controller
             }
         }
 
-        return redirect('/users/account');
+        return back();
     }
 
     /**
