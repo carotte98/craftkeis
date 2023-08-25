@@ -168,8 +168,8 @@
         {{-- bootom copyright part --}}
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
-            <a href="/login-as-user/3" class="btn btn-primary">
-                Login as Jhempi
+            <a href="/login-as-user/2" class="btn btn-primary">
+                Login as Maus katti
             </a>              
             <a href="/login-as-user/1" class="btn btn-primary">
                 Login as John Doe
