@@ -25,7 +25,7 @@ class ConversationController extends Controller
                 ['user_id1', $contact->id],
                 ['user_id2', $user->id],
             ])->first();
-            
+
             //If the conversation does not exist then create it
             if (!$conversation) {
                 $conversation = Conversation::create([
@@ -35,7 +35,7 @@ class ConversationController extends Controller
             }
         }
 
-        return redirect('/users/account');
+        return back();
     }
 
     /**
@@ -44,10 +44,6 @@ class ConversationController extends Controller
     public function create($contactId)
     {
         $user = auth()->user();
-        //$contactId = (int)$contactId; // Convert to integer
-
-        // dd($user->id);
-        // dd($contactId);
 
         //Get the exact conversation
         $conversation = Conversation::where([
@@ -58,17 +54,30 @@ class ConversationController extends Controller
             ['user_id2', $user->id],
         ])->first();
 
-        // dd($conversation->id);
-
-        //$messages = Message::where('conversation_id', $conversation->id)->get();
-
-        // dd($messages);
-
         return view('chat.window', [
             'user' => $user,
             'contact' => DB::table('users')->find($contactId),
             'messages' => $conversation->messages, // Fetch all messages associated with the conversation
             'conversationId' => $conversation->id,
+        ]);
+    }
+
+    public function pollConversation($conversationId)
+    {
+        // Retrieve the conversation using the provided conversation ID
+        $conversation = Conversation::find($conversationId);
+
+        // Fetch all messages associated with the conversation
+        $messages = $conversation->messages;
+
+        // Loop through messages and add the user's name to each message
+        foreach ($messages as $message) {
+            $message->user_name = $message->users->name;
+        }
+
+        // Return the updated conversation data as JSON
+        return response()->json([
+            'messages' => $messages,
         ]);
     }
 

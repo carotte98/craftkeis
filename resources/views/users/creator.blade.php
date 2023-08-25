@@ -24,6 +24,9 @@
             <h2>
                 {{$user->name}}'s Shop
             </h2>
+            @foreach ($user->products as $product)
+                <x-product-card :product="$product" />
+            @endforeach
         </div>
     </x-card>
 </div>
