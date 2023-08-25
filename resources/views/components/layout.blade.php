@@ -24,7 +24,9 @@
                         background: "#D9D9D9",
                         buttons : "#C3C3C3",
                         disabled : "#4f4f4f",
-                        bgsec : "#676666",
+                        bgsec : "#949494",
+                        open : "#B1E320",
+                        closed : "#E34320"
                     },
                     borderRadius: {
                         'lg': '10px',
@@ -33,10 +35,15 @@
             },
         };
     </script>
+    <style>
+        body{
+            min-height: fit-content;
+        }
+    </style>
     <title>Craftkéis - Find Artists</title>
 </head>
 
-<body class="mb-48">
+<body>
     {{-- message box --}}
     {{-- <x-flash-message/>  --}}
 
@@ -65,7 +72,7 @@
                     {{-- auth directive only shows the elements when logged in --}}
                     @auth 
                         <div class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">
-                            <a href="../../users/{{auth()->user()->id}}">Account</a>
+                            <a href="/users/{{auth()->user()->id}}">Account</a>
                         </div>
                         {{-- logout button --}}
                         <form class="inline" action="/logout" method="post">
@@ -101,15 +108,17 @@
         </section>
     </nav>
 
-    <main class="pt-20">
+    <main class="pt-20 w-full">
 
+    {{-- message box --}}
+    <x-flash-message/> 
         {{-- page contents --}}
         {{$slot}}
         
     </main>
 
     {{-- footer --}}
-    <footer class="w-full flex flex-col items-center justify-center mt-10">
+    <footer class="static bottom-0 w-full flex flex-col items-center justify-center mt-10">
         {{-- top part --}}
         <section class="bg-background w-1/6 rounded-t-lg  dropshadowF">
             <div class="w-full flex justify-center p-2">
@@ -145,7 +154,7 @@
                 
                     @auth
                     
-                        <a href="../../users/{{auth()->user()->id}}">Account</a>
+                        <a href="/users/{{auth()->user()->id}}">Account</a>
                     @else
                         
                         <p class="text-disabled">Account</p>
@@ -159,7 +168,7 @@
         {{-- bootom copyright part --}}
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
-            <a href="/login-as-user/3" class="btn btn-primary">
+            <a href="/login-as-user/2" class="btn btn-primary">
                 Login as Maus katti
             </a>              
             <a href="/login-as-user/1" class="btn btn-primary">

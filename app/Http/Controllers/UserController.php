@@ -45,7 +45,7 @@ class UserController extends Controller
             'is_creator' => ['nullable'],
             'image_address' => ['nullable'],
             'phone_number' => ['nullable'],
-            'commission_amount' => ['nullable']
+
         ]);
 
         //for the images storing them apart locally
@@ -68,7 +68,6 @@ class UserController extends Controller
             $formFields['bio'] = $formFields['bio'] ?? null;
             $formFields['is_creator'] = $formFields['is_creator'] ?? null;
             // $formFields['bank_id'] = $formFields['bank_id'] ?? null;
-            $formFields['commission_amount'] = $formFields['commission_amount'] ?? null;
              // Set is_creator value based on checkbox
             $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
 
@@ -196,7 +195,6 @@ class UserController extends Controller
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
-            'bank_id' => ['nullable'],
             'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()],
             'bio' => ['nullable'],
             'is_creator' => ['nullable'],
@@ -204,6 +202,11 @@ class UserController extends Controller
             'phone_number' => ['nullable'],
             'commission_amount' => ['nullable']
         ]);
+        
+        if ($request->hasFile('image_address')) {
+            $formFields['image_address'] = $request->file('image_address')->store('images', 'public');
+        }
+
         $user->update($formFields);
 
         return redirect('/users/' . $user->id)->with('message', 'Account updated successfully');
