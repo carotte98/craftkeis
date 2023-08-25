@@ -31,8 +31,6 @@
         </button>
     </form>
 </div>
-</x-layout>
-<x-layout>
     <div>
         <h2>
             Hello {{ $user->name }}

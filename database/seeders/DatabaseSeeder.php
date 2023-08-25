@@ -41,23 +41,6 @@ class DatabaseSeeder extends Seeder
             // Other seeders
         ]);
 
-        User::factory()->create([
-            'name' => 'Maus Kaetti',
-            'email' => 'maus@gmail.com',
-            'password' => '1234',
-            'is_creator' => true,
-        ]);
-
-        User::factory()->create([
-            'name' => 'Jhempi',
-            'is_creator' => true,
-        ]);
-
-        User::factory()->create([
-            'name' => 'xXCoolArtistXx',
-            'is_creator' => true,
-        ]);
-
         Service::factory()->create([
             'title' => 'Oil Portraits',
             'description' => 'I do traditional portraits using oil paints.',
