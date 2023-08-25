@@ -203,6 +203,11 @@ class UserController extends Controller
             'phone_number' => ['nullable'],
             'commission_amount' => ['nullable']
         ]);
+        
+        if ($request->hasFile('image_address')) {
+            $formFields['image_address'] = $request->file('image_address')->store('images', 'public');
+        }
+
         $user->update($formFields);
 
         return redirect('/users/' . $user->id)->with('message', 'Account updated successfully');
