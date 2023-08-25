@@ -61,7 +61,7 @@
                 }
             @endphp
                 <span class="font-bold uppercase">
-                    <a href="../../users/{{auth()->user()->id}}">
+                    <a href="/users/{{auth()->user()->id}}">
                         {{-- to access logged user name, we need to use the auth() helper --}}
                         Welcome {{auth()->user()->name}}
                         {{-- user() is the user object --}}
@@ -137,7 +137,7 @@
             </div>
             @auth
             <div class="flex flex-col">
-                <a href="../../users/{{auth()->user()->id}}">Account</a>
+                <a href="/users/{{auth()->user()->id}}">Account</a>
             </div>
             @endauth
 
