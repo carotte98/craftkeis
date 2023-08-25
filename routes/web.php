@@ -1,10 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ConversationController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,7 +63,7 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('a
 Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth');
 //Log user out
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-// Show one service
+// Show one user
 Route::get('/creators/{user}', [UserController::class, 'show']);
 
 /////////OrderController

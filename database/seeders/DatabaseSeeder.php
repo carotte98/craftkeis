@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Product;
 use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
@@ -38,23 +39,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             DefaultUserSeeder::class,
             // Other seeders
-        ]);
-
-        User::factory()->create([
-            'name' => 'Maus Kaetti',
-            'email' => 'maus@gmail.com',
-            'password' => '1234',
-            'is_creator' => true,
-        ]);
-
-        User::factory()->create([
-            'name' => 'Jhempi',
-            'is_creator' => true,
-        ]);
-
-        User::factory()->create([
-            'name' => 'xXCoolArtistXx',
-            'is_creator' => true,
         ]);
 
         Service::factory()->create([
@@ -96,7 +80,8 @@ class DatabaseSeeder extends Seeder
             'user_id' => 3,
             'category_id' => 1
         ]);
-
+        
+        Product::factory(10)->create();
 
     }
 }

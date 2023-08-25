@@ -1,5 +1,5 @@
 <script>
-    const scrollThreshold = 100; // Adjust this value for scroll threshold
+    const scrollThreshold = 75; // Adjust this value for scroll threshold
 
     function pollConversation(conversationId) {
         fetch(`/users/account/chat/conversation/poll/${conversationId}`)
@@ -57,13 +57,32 @@
 
     // Start polling when the DOM is ready
     document.addEventListener('DOMContentLoaded', () => {
+        const emojiList = document.querySelectorAll('.emoji');
+        const messageTextarea = document.getElementById('new_message');
+        
+        emojiList.forEach(emoji => {
+            emoji.addEventListener('click', function() {
+                const emojiCode = this.textContent;
+                const cursorPosition = messageTextarea.selectionStart;
+                const currentText = messageTextarea.value;
+                
+                const newText = currentText.substring(0, cursorPosition) + emojiCode + currentText.substring(cursorPosition);
+                messageTextarea.value = newText;
+                
+                // Optionally, focus on the textarea after inserting the emoji
+                messageTextarea.focus();
+            });
+        });
+        
         // Pass the conversation ID from the view
         const conversationId = {{ $conversationId }};
         // Scroll to the bottom of the message list initially
         const messageList = document.querySelector('#message-window');
         messageList.scrollTop = messageList.scrollHeight;
         // Call the polling
-        pollConversation(conversationId);
+        // pollConversation(conversationId);
+
+        
     });
 </script>
 <style>
@@ -83,7 +102,7 @@
 </style>
 <x-layout>
     <div class="center">
-        <h2>Chat Window with {{ $contact->name }}</h2>
+        <h2>Chat Window with {{ $contact->name }} &#x1F600;</h2>
 
         <div class="message-list" id="message-window">
             {{-- Display all messages using message-card --}}
@@ -96,7 +115,17 @@
             @csrf
             <input type="hidden" name="conversation_id" value="{{ $conversationId }}">
             <input type="hidden" name="user_id" value="{{ $user->id }}">
-            <textarea name="message_content" id="new_message" placeholder="Type your message..."></textarea>
+            
+            <!-- Textarea with emoji insertion -->
+            <div class="textarea-container">
+                <textarea name="message_content" id="new_message" placeholder="Type your message..."></textarea>
+                <div class="emoji-icons">
+                    <span class="emoji" data-emoji="\ud83d\ude00">&#x1F600;</span>
+                    <span class="emoji" data-emoji="\ud83d\udc4d">&#x1F44D;</span>
+                    <!-- Add more emoji icons/buttons here -->
+                </div>
+            </div>
+            
             <button type="submit">Send</button>
         </form>
     </div>
