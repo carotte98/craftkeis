@@ -159,8 +159,6 @@
         {{-- bootom copyright part --}}
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
-            <p class="ml-2">Copyright &copy; 2023</p>          
-            <br>
             <a href="/login-as-user/3" class="btn btn-primary">
                 Login as Maus katti
             </a>              
