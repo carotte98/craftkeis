@@ -1,6 +1,6 @@
 @props(['service'])
 
-<x-card>
+<x-card-sec>
     <div>
         <div>
             <div>{{ $service->status }}</div>
@@ -17,4 +17,4 @@
             <a href="?category_id={{$service->category_id}}">{{$service->categories->name}}</a>
         </div>
     </div>
-</x-card>
+</x-card-sec>
