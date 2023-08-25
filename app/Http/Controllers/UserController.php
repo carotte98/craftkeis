@@ -45,7 +45,7 @@ class UserController extends Controller
             'is_creator' => ['nullable'],
             'image_address' => ['nullable'],
             'phone_number' => ['nullable'],
-            'commission_amount' => ['nullable']
+
         ]);
 
         //for the images storing them apart locally
@@ -68,7 +68,6 @@ class UserController extends Controller
             $formFields['bio'] = $formFields['bio'] ?? null;
             $formFields['is_creator'] = $formFields['is_creator'] ?? null;
             // $formFields['bank_id'] = $formFields['bank_id'] ?? null;
-            $formFields['commission_amount'] = $formFields['commission_amount'] ?? null;
              // Set is_creator value based on checkbox
             $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
 
