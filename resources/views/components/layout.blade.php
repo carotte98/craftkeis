@@ -23,6 +23,8 @@
                         onhover: "#E5A66C",
                         background: "#D9D9D9",
                         buttons : "#C3C3C3",
+                        disabled : "#4f4f4f",
+                        bgsec : "#676666",
                     },
                     borderRadius: {
                         'lg': '10px',
@@ -63,7 +65,7 @@
                     {{-- auth directive only shows the elements when logged in --}}
                     @auth 
                         <div class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">
-                            <a href="../users/account">Account</a>
+                            <a href="../../users/{{auth()->user()->id}}">Account</a>
                         </div>
                         {{-- logout button --}}
                         <form class="inline" action="/logout" method="post">
@@ -107,42 +109,55 @@
     </main>
 
     {{-- footer --}}
-    <footer class="fixed bottom-0 left-0 w-full flex flex-col items-center justify-start bg-background text-white">
+    <footer class="w-full flex flex-col items-center justify-center mt-10">
         {{-- top part --}}
-        <section class="flex space-x-6 space-y-2">
+        <section class="bg-background w-1/6 rounded-t-lg  dropshadowF">
+            <div class="w-full flex justify-center p-2">
+                <a href="/" class="customLogo">Craftkeis</a>
+            </div>
+        </section>
+        <section class="flex flex-col bg-background w-full pt-5 dropshadowFB">
+            
+            <hr class="border-accent w-3/4 mx-auto my-2">
             {{-- logo and icons on left --}}
-            <div class="justify-start">
-                <a href="/">
-                    {{-- placeholder logo --}}
-                    <img class="logo" src="{{ asset('images/logo.svg') }}" alt="LOGO" />
-                </a>
-                {{-- social media icons --}}    
-                <div class="text-xl space-x-2">
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-linkedin"></i>
-                </div> 
-            </div>
+            <div class="flex flex-row justify-center w-full mt-4">
+                
+    
+                {{-- links from website --}}
+                <div class="flex flex-row gap-24 mx-64">
+                    <a href="/about">About Us</a>
+                    <a href="/contact">Contact</a>
+                </div>
 
-            {{-- links from website --}}
-            <div class="flex flex-col">
-                <a href="/about">About Us</a>
-                <a href="/contact">Contact</a>
+                <div class="justify-center">
+                
+                    {{-- social media icons --}}    
+                    <div class="text-xl space-x-2">
+                        <i class="fab fa-facebook"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-linkedin"></i>
+                    </div> 
+                </div>
+
+                <div class="flex flex-row gap-24 mx-64">
+                    <a href="/services">Categories</a>
+                
+                    @auth
+                    
+                        <a href="../../users/{{auth()->user()->id}}">Account</a>
+                    @else
+                        
+                        <p class="text-disabled">Account</p>
+                    
+                    @endauth
+                </div>
             </div>
-            <div class="flex flex-col">
-                <a href="/services">Categories</a>
-            </div>
-            @auth
-            <div class="flex flex-col">
-                <a href="../../users/{{auth()->user()->id}}">Account</a>
-            </div>
-            @endauth
 
         </section>
 
         {{-- bootom copyright part --}}
-        <section class="space-x-6 space-y-2">
+        <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
             <p class="ml-2">Copyright &copy; 2023</p>          
             <br>
