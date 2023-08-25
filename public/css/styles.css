@@ -52,3 +52,64 @@ body{
     text-decoration: none;
 }
 
+/* styles from register form */
+
+.bordered-div {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+    /* Adjust width as needed */
+    background-color: #f4f4f4;
+    margin:auto;
+    margin-top: 1rem;
+}
+
+.icon-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-input-container i {
+    margin-right: 10px;
+    color: #ccc;
+}
+
+.icon-input-container input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    width: 100%;
+    background-color: #f4f4f4;
+}
+
+.hidden {
+    display: none;
+}
+#Link-button{
+    text-align: center;
+    margin-top: 0.8rem;
+}
+#facebook{
+    border: 2px solid #C3C3C3;
+    background-color: #C3C3C3;
+    border-radius: 10px;
+    padding:0.5rem 1rem 0.5rem 1rem;
+
+}
+#google
+{
+    border: 2px solid #C3C3C3;
+    background-color: #C3C3C3;
+    border-radius: 10px;
+    padding:0.5rem 1rem 0.5rem 1rem;
+}
+
+.register-footer{
+    text-align: center;
+}
+
+
+#Register-button{
+    
+}
