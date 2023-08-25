@@ -38,7 +38,7 @@
 
 <body class="mb-48">
     {{-- message box --}}
-    {{-- <x-flash-message/>  --}}
+    <x-flash-message/> 
 
     {{-- navbar --}}
     <nav class="w-3/4 mx-auto flex flex-col items-center">
