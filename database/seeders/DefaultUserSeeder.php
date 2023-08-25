@@ -13,12 +13,17 @@ class DefaultUserSeeder extends Seeder
      */
     public function run()
     {
+        // default logged in user
         $user = User::factory()->create([
             'name' => 'John Doe',
             'email' => 'john@gmail.com',
             'password' => '1234',
             'is_creator' => false,
         ]);
+
+        auth()->login($user); // Log in the created user
+
+        // example users
 
         User::factory()->create([
             'name' => 'Maus Kaetti',
@@ -37,7 +42,9 @@ class DefaultUserSeeder extends Seeder
             'is_creator' => true,
         ]);
         
-        auth()->login($user); // Log in the created user
-
+        User::factory()->times(10)->create([
+            'is_creator' => true,
+        ]);
+        
     }
 }

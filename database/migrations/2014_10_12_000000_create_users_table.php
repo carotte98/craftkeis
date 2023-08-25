@@ -22,7 +22,6 @@ return new class extends Migration
             $table->boolean('is_creator')->default(0);
             $table->string('image_address')->nullable();
             $table->string('phone_number')->nullable();
-            $table->tinyInteger('commission_amount')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

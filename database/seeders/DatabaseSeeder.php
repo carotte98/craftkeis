@@ -14,9 +14,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // $user = User::factory()->create();
 
-        $base = Category::create([
+        Category::create([
             'name' => '3D Modelling'
         ]);
         Category::create([
@@ -38,49 +37,9 @@ class DatabaseSeeder extends Seeder
         
         $this->call([
             DefaultUserSeeder::class,
-            // Other seeders
+            ServiceSeeder::class,
         ]);
 
-        Service::factory()->create([
-            'title' => 'Oil Portraits',
-            'description' => 'I do traditional portraits using oil paints.',
-            'price' => '70.00',
-            'time' => '2 weeks',
-            'status' => 'open',
-            'user_id' => 2,
-            'category_id' => 3
-        ]);
-
-        Service::factory()->create([
-            'title' => 'Background Art',
-            'description' => 'Beautiful backgrounds for videos and more.',
-            'price' => '59.99',
-            'time' => 'approximatly 1 month',
-            'status' => 'open',
-            'user_id' => 3,
-            'category_id' => 2
-        ]);
-
-        Service::factory()->create([
-            'title' => 'Stream Alert Sounds',
-            'description' => 'Simple sound effects for any stream alerts you may need',
-            'price' => '15.50',
-            'time' => 'a couple days',
-            'status' => 'open',
-            'user_id' => 4,
-            'category_id' => 4
-        ]);
-
-        Service::factory()->create([
-            'title' => 'VR Chat Model',
-            'description' => '3D character models that can be used for VR Chat',
-            'price' => '200.00',
-            'time' => '2 months (at least)',
-            'status' => 'overbooked',
-            'user_id' => 3,
-            'category_id' => 1
-        ]);
-        
         Product::factory(10)->create();
 
     }

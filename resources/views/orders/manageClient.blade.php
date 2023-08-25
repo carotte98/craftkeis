@@ -18,6 +18,7 @@
             <p>Status:
                 @if ($order->order_status === 'pending') 
                     <i class="fa-solid fa-hourglass-half text-yellow-500"></i> Pending
+                {{-- when order is completed, client gets asked to pay --}}
                 @elseif ($order->order_status === 'finished')
                     <i class="fa-solid fa-check-circle text-green-500"></i> Completed
                     <form action="/payment/{{$order}}/session" method="POST">

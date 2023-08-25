@@ -3,7 +3,7 @@
 </a>
 <div>
     <x-card>
-        <div>
+        <x-card-sec>
             <div>{{ $service->status }}</div>
             <h3>{{$service->title}}</h3>
             <div>Creator: <a href="/creators/{{ $service->users->id }}">{{ $service->users->name }}</a></div>
@@ -18,7 +18,7 @@
                 </button>
             </form>       
 
-        </div>
+        </x-card-sec>
     </x-card>
 </div>
 </x-layout>
