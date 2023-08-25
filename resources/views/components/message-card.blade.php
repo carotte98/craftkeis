@@ -1,4 +1,4 @@
-<div class="message-card">
+<div class="inner-message-card {{ auth()->user()->id == $message->user_id ? 'user' : '' }}" id="inner-message-card">
     <div class="message-sender">
         <span>{{ $message->users->name }}</span>
     </div>
