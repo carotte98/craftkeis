@@ -37,9 +37,6 @@
 </head>
 
 <body class="mb-48">
-    {{-- message box --}}
-    {{-- <x-flash-message/>  --}}
-
     {{-- navbar --}}
     <nav class="w-3/4 mx-auto flex flex-col items-center">
         {{-- top section of navbar --}}
@@ -91,18 +88,20 @@
         {{-- categories list --}}
         <section class="flex w-2/3 h-14 justify-center bg-background rounded-b-lg dropshadowCat">
             <ul class="flex space-x-2 mr-6 h-11 w-11/12 justify-center text-base text-center align-middle">
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=1">3D Modelling</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=2">2D Illustration</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=3">Painting</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=4">SFX</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=5">Wood Sculpting</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=6">Logo Design</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=1">3D Modelling</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=2">2D Illustration</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=3">Painting</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=4">SFX</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=5">Wood Sculpting</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=6">Logo Design</a></li>
             </ul>
         </section>
     </nav>
 
-    <main class="pt-20">
+    <main class="pt-20 w-full">
 
+    {{-- message box --}}
+    <x-flash-message/> 
         {{-- page contents --}}
         {{$slot}}
         
@@ -160,7 +159,7 @@
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
             <a href="/login-as-user/3" class="btn btn-primary">
-                Login as Maus katti
+                Login as Jhempi
             </a>              
             <a href="/login-as-user/1" class="btn btn-primary">
                 Login as John Doe
