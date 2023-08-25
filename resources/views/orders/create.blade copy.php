@@ -1,6 +1,5 @@
 <x-layout>
     <x-card>
-    <x-card-sec>
     
     <form action="/orders" method="POST">
         @csrf
@@ -51,7 +50,6 @@
         </div>
     </form>
     
-</x-card-sec>
 </x-card>
     
 </x-layout>
