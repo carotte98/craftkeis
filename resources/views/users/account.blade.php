@@ -26,38 +26,37 @@
                 <a href="/users/account/commissions" class="hover:text-accent">Inbox</a>
             </span>
         </x-card>
-
-    <div>
-        @foreach ($user->orderClient as $order)
-        <h2>
-            {{$order}}
-            <strong>Title: {{$order->title}}</strong>
-            <strong>Description: {{$order->description}}</strong>
-        </h2>
-        @endforeach
-    </div>
-    <hr>
-    {{-- *TEST --}}
-    {{-- Click to add user to contacts --}}
-    <h2>All Users (click to add to contacts)</h2>
-    <div>
-        @foreach ($tempContacts as $contact)
+        <div>
+            @foreach ($user->orderClient as $order)
+                <h2>
+                    {{ $order }}
+                    <strong>Title: {{ $order->title }}</strong>
+                    <strong>Description: {{ $order->description }}</strong>
+                </h2>
+            @endforeach
+        </div>
+        <hr>
+        {{-- *TEST --}}
+        {{-- Click to add user to contacts --}}
+        <h2>All Users (click to add to contacts)</h2>
+        <div>
+            @foreach ($tempContacts as $contact)
+                <div>
+                    <strong>
+                        <a href="/users/account/chat/{{ $contact->id }}">{{ $contact->name }}</a>
+                    </strong>
+                </div>
+            @endforeach
+        </div>
+        <hr>
+        {{-- Contacts after conversation has been created --}}
+        {{-- Example user clicks to connect with creator --}}
+        <h2>Contacts</h2>
+        @foreach ($contacts as $contact)
             <div>
                 <strong>
-                    <a href="/users/account/chat/{{ $contact->id }}">{{ $contact->name }}</a>
+                    <a href="/users/account/chat/conversation/{{ $contact->id }}">{{ $contact->name }}</a>
                 </strong>
             </div>
         @endforeach
-    </div>
-    <hr>
-    {{-- Contacts after conversation has been created --}}
-    {{-- Example user clicks to connect with creator --}}
-    <h2>Contacts</h2>
-    @foreach ($contacts as $contact)
-        <div>
-            <strong>
-                <a href="/users/account/chat/conversation/{{ $contact->id }}">{{ $contact->name }}</a>
-            </strong>
-        </div>
-    @endforeach
 </x-layout>

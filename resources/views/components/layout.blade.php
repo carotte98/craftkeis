@@ -91,12 +91,12 @@
         {{-- categories list --}}
         <section class="flex w-2/3 h-14 justify-center bg-background rounded-b-lg dropshadowCat">
             <ul class="flex space-x-2 mr-6 h-11 w-11/12 justify-center text-base text-center align-middle">
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=1">3D Modelling</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=2">2D Illustration</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=3">Painting</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=4">SFX</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=5">Wood Sculpting</a></li>
-                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="?category_id=6">Logo Design</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=1">3D Modelling</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=2">2D Illustration</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=3">Painting</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=4">SFX</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=5">Wood Sculpting</a></li>
+                <li class="bg-buttons hover:bg-onhover w-1/6 p-1 pt-2 rounded-b-md"><a href="/?category_id=6">Logo Design</a></li>
             </ul>
         </section>
     </nav>
