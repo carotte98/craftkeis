@@ -27,15 +27,15 @@
             </span>
         </x-card>
 
-    <div>
-        @foreach ($user->orderClient as $order)
-        <h2>
-            {{$order}}
-            <strong>Title: {{$order->title}}</strong>
-            <strong>Description: {{$order->description}}</strong>
-        </h2>
-        @endforeach
-    </div>
+        <x-card>
+            @foreach ($user->orderClient as $order)
+                <h2>
+                    {{$order}}
+                    <strong>Title: {{$order->title}}</strong>
+                    <strong>Description: {{$order->description}}</strong>
+                </h2>
+            @endforeach
+        </x-card>
     <hr>
     {{-- *TEST --}}
     {{-- Click to add user to contacts --}}
