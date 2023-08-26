@@ -2,7 +2,7 @@
     const apiKey = "25a2f71e1af3649df4c7055758bf64fb6a52f7b7";
     const apiUrl = `https://emoji-api.com/emojis?access_key=${apiKey}`;
 
-    const scrollThreshold = 75; // Adjust this value for scroll threshold
+    const scrollThreshold = 80; // Adjust this value for scroll threshold
 
     // GET EMOJIS
     function getEmojis() {
@@ -67,7 +67,21 @@
                 // Clone for each message
                 data.messages.forEach(message => {
                     const messageCard = messageCardToBeCloned.cloneNode(true);
-                    console.log(message);
+                    const messageCardFirstChild = messageCard.firstElementChild; // Get the first child
+
+                    console.log(message.user_id);
+                    console.log(messageCard.firstElementChild);
+                    console.log({{ $user->id }});
+                    console.log({{ $user->id }} == message.user_id);
+
+                    messageCardFirstChild.className = ''; // This removes all classes
+
+                    console.log(messageCard.firstElementChild.classList);
+                    if ({{ $user->id }} == message.user_id) {
+                        messageCardFirstChild.classList.add('inner-message-card', 'user');
+                    } else {
+                        messageCardFirstChild.classList.add('inner-message-card');
+                    }
                     // Clean the date
                     const time = message.created_at.replace('T', ' ').slice(0, -8);
 
@@ -126,9 +140,9 @@
             emojiContainer.classList.toggle('show');
         });
         // Call the polling
-        const user = {{$user->id}};
+        const user = {{ $user->id }};
         console.log(user);
-        // pollConversation(conversationId);
+        pollConversation(conversationId);
 
 
     });
@@ -145,7 +159,7 @@
     .message-list {
         width: 360px;
         height: 360px;
-        overflow: auto;
+        overflow-y: auto;
         border: 5px solid white;
         display: flex;
         flex-direction: column;
@@ -168,6 +182,7 @@
         margin-left: auto;
         background-color: lightblue;
     }
+
     /* ############################################### */
 
 
@@ -204,7 +219,9 @@
         float: left;
     }
 
-
+    .message-content {
+        overflow-wrap: break-word;
+    }
 </style>
 <x-layout>
     <div class="window">

@@ -57,18 +57,17 @@ class UserController extends Controller
             //public/logos/ instead of just public
         }
 
-        
+
         //validation, to check if passwords match or not
-        if($request->confirm_password==$formFields['password'])
-        {
+        if ($request->confirm_password == $formFields['password']) {
             //Hash the password with bcrypt 
             $formFields['password'] = bcrypt($formFields['password']);
-    
+
             // You can explicitly set the attributes to their default values if they are not provided
             $formFields['bio'] = $formFields['bio'] ?? null;
             $formFields['is_creator'] = $formFields['is_creator'] ?? null;
             // $formFields['bank_id'] = $formFields['bank_id'] ?? null;
-             // Set is_creator value based on checkbox
+            // Set is_creator value based on checkbox
             $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
 
 
@@ -76,27 +75,25 @@ class UserController extends Controller
             //Create the new user
             $user = User::create($formFields);
             auth()->login($user);
-    
-            if($user->is_creator)
-            {
+
+            if ($user->is_creator) {
                 session_start();
-                session(['user'=> $user]);
+                session(['user' => $user]);
                 return redirect('/register/{user}/bankDetails');
             }
-    
+
             //TODO
             //Using auth() helper handles all the login/logout process for us
             //It saves us an ENORMUS amount of time
-    
+
             //When user is created and logged in, we will show them the homepage so they can start navigate the website
             return redirect('/')->with('message', 'User created and logged in!');
+        } else {
+            return back()->withErrors([
+                'confirm_password' => "Passwords don't match",
+                'password' => "Passwords don't match"
+            ]);
         }
-        else
-        {
-            return back()->withErrors(['confirm_password' => "Passwords don't match" ,
-                                        'password'=>"Passwords don't match"]);
-        }
-
     }
 
     public function login()
@@ -118,7 +115,7 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             //Redirect to account page for now
-            return redirect('users/account'); //->with('message', 'You are now logged in!');
+            return redirect('/')->with('message', 'You are now logged in!');
         }
 
         //Go back to login form with error message for 'email' field
@@ -146,6 +143,15 @@ class UserController extends Controller
 
             // Append the other user's details to the $otherUsers array
             $contactUsers[] = $contactUser;
+        }
+
+        // If user is admin then return admin dashboard view
+        if ($user->email === 'admin@gmail.com') {
+            return view('users.admin', [
+                'user' => $user,
+                'users' => User::all(), //Temporary for chat purpose
+                'contacts' => $contactUsers,
+            ]);
         }
 
         // Pass the user data to the view
@@ -202,7 +208,7 @@ class UserController extends Controller
             'phone_number' => ['nullable'],
             'commission_amount' => ['nullable']
         ]);
-        
+
         if ($request->hasFile('image_address')) {
             $formFields['image_address'] = $request->file('image_address')->store('images', 'public');
         }
