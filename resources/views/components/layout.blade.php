@@ -20,7 +20,8 @@
                 extend: {
                     colors: {
                         accent: "#F4A051",
-                        onhover: "#E5A66C",
+                        onhover: "#f07c0f",
+                        // onhover: "#E5A66C",
                         background: "#D9D9D9",
                         buttons : "#C3C3C3",
                         disabled : "#4f4f4f",
