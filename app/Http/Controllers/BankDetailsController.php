@@ -49,7 +49,9 @@ class BankDetailsController extends Controller
      */
     public function show(Bank_details $bank_details)
     {
-        //
+        return view('components.dashboard-bank', [
+            'bank_details' => $bank_details
+        ]);
     }
 
     /**

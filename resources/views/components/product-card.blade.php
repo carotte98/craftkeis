@@ -1,6 +1,6 @@
 @props(['product'])
 
-<x-card>
+<x-card-sec>
     <div>
         <div>
             <h3>
@@ -10,4 +10,4 @@
             <div>{{ $product->price }} €</div>
         </div>
     </div>
-</x-card>
+</x-card-sec>

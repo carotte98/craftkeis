@@ -2,6 +2,20 @@
     <h2>
         Bank Details
     </h2>
-    <div>Payment Method: {{$user->bank_details->payment_method}}</div>
-    <div>Card Number: {{$user->bank_details->cardNumber}}</div>
+    @unless ($user->bank_details == null)
+        <div>Payment Method: {{$user->bank_details->payment_method}}</div>
+        <div>Card Number: ****
+            @php
+                echo substr ($user->bank_details->cardNumber, -4);
+            @endphp
+        </div><br>
+        <a href="/bankDetails/{{ $user->id }}/edit"> <!-- edit page for bank_details does not exist yet -->
+            <i class="fa-solid fa-pencil"></i>Edit
+        </a>
+    @else
+        <div>No bank data found!</div>
+        <a href="/register/{{ $user->id }}/bankDetails">
+            <i class="fa-solid fa-pencil"></i>Add Bank Details
+        </a>
+    @endunless
 </x-card-sec>
