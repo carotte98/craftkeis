@@ -2,7 +2,7 @@
     <header>
         <i class="fa-solid fa-pencil"></i>
         <a href="/products/create">Create new Product</a>
-        <h2>Manage Shop</h2>
+        <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">Manage Shop</h2>
     </header>            
     <x-card-sec>
         @unless ($user->products->isEmpty())
