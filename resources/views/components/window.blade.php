@@ -120,7 +120,7 @@
                         messageList.scrollTop = messageList.scrollHeight;
                     }
                     pollConversation(conversationId);
-                }, 1000); // Poll after 1 second
+                }, 1500); // Poll after 1 second
             })
             .catch(error => {
                 console.error('Polling error:', error);
@@ -128,12 +128,35 @@
                 setTimeout(() => {
                     // conversationId = getConversationId();
                     pollConversation(conversationId);
-                }, 1000); // Retry after 1 second
+                }, 1500); // Retry after 1 second
             });
     }
 
+    // SEND FROM TO SERVER
+    function sendDataToServer(formData) {
+        fetch('/users/account/chat/conversation', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response:', data);
 
-    // Start when the DOM is ready
+                // Clear the message textarea
+                const messageTextarea = document.querySelector('#new_message');
+                messageTextarea.value = '';
+
+                // Optionally, update the UI or perform other actions based on the response
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    // START WHEN DOM IS READY
     document.addEventListener('DOMContentLoaded', () => {
 
         //Fetch Emojis, insert into HTML, add EventListener
@@ -163,6 +186,17 @@
             pollConversation(newConversationIdValue);
         }
 
+        //Evenlistener for message-form submit
+        const form = document.querySelector('#message-form');
+        const sendButton = document.querySelector('#send-button');
+        sendButton.addEventListener('click', () => {
+            // Prevent the default form submission
+            event.preventDefault(); 
+            const formData = new FormData(form);
+            sendDataToServer(formData);
+        });
+
+        //EventListener for each contact
         contacts.forEach(contact => {
             contact.addEventListener('click', () => {
 
@@ -275,7 +309,7 @@
                 <x-message-card />
             </div>
         </div>
-        <form action="/users/account/chat/conversation" method="POST">
+        <form method="POST" id="message-form">
             @csrf
             <input type="hidden" name="conversation_id" id="form-conversation_id" value="">
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
@@ -287,7 +321,7 @@
                 <textarea name="message_content" id="new_message" placeholder="Type your message..."></textarea>
                 <button id="show-emoji" type="button"> &#x1F600;</button>
                 <div class="text-buttons">
-                    <button type="submit">Send</button>
+                    <button id="send-button" type="submit">Send</button>
                 </div>
             </div>
         </form>
