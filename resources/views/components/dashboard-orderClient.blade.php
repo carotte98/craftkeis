@@ -4,8 +4,9 @@
     </h2>
 
     <hr class="border-accent w-5/6 mx-auto my-6">
-    <div class="grid grid-cols-2 gap-3">
-        @unless ($user->orderClient->isEmpty())                
+    
+        @unless ($user->orderClient->isEmpty())   
+        <div class="grid grid-cols-2 gap-3">             
             @foreach ($user->orderClient as $order)
                 <x-card-sec>
                     <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->title }}</h2>
@@ -48,9 +49,11 @@
                     @endunless
                 </x-card-sec>
             @endforeach
+        </div>
         @else
-            <hr class="border-accent w-5/6 mx-auto my-6">
-            <p>No orders found</p>
+            <div class="w-full flex justify-center">
+                    <p><strong>No orders found</strong></p>
+            </div>
         @endunless
-    </div>
+
 </x-card-sec>

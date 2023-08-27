@@ -8,9 +8,10 @@
         <a href="/services/create"><button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover space-x-2 flex flex-row"><i class="fa-solid fa-pencil"></i><p>Create new Service</p></button></a>
        </div>
     </header>            
-    <div class="grid grid-cols-3 gap-3">
+    
         
             @unless ($user->services->isEmpty())
+            <div class="grid grid-cols-3 gap-3">
                 @foreach ($user->services as $service)
                 <x-card-sec>
                     <a class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo" href="/services/{{$service->id}}">
@@ -35,9 +36,12 @@
                     </div>    
                 </x-card-sec>   
                 @endforeach
+            </div>
             @else
-                <p>No services found</p>
+            <div class="w-full flex justify-center">
+                <p><strong>No services found</strong></p>
+             </div>
             @endunless
         
-    </div>
+
 </x-card-sec>

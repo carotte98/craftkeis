@@ -101,11 +101,11 @@
         <section class="flex w-2/3 h-16 xl:h-14 justify-center bg-background rounded-b-lg dropshadowCat">
             <ul class="flex space-x-2 h-14 xl:h-12 w-11/12 justify-center text-sm text-center align-middle">
                 <li class="w-1/6"><a href="/?category_id=1"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">3D Modelling</button></a></li>
-                <li class="w-1/6"><a href="/?category_id=1"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">2D illustration</button></a></li>
-                <li class="w-1/6"><a href="/?category_id=1"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Painting</button></a></li>
-                <li class="w-1/6"><a href="/?category_id=1"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">SFX</button></a></li>
-                <li class="w-1/6"><a href="/?category_id=1"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Wood Sculpt</button></a></li>
-                <li class="w-1/6"><a href="/?category_id=1"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Logo Design</button></a></li>
+                <li class="w-1/6"><a href="/?category_id=2"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">2D illustration</button></a></li>
+                <li class="w-1/6"><a href="/?category_id=3"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Painting</button></a></li>
+                <li class="w-1/6"><a href="/?category_id=4"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">SFX</button></a></li>
+                <li class="w-1/6"><a href="/?category_id=5"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Wood Sculpt</button></a></li>
+                <li class="w-1/6"><a href="/?category_id=6"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Logo Design</button></a></li>
             </ul>
         </section>
     </nav>
