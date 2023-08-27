@@ -4,6 +4,7 @@
 
     const scrollThreshold = 80; // Adjust this value for scroll threshold
 
+    let pollingTimeoutId = null;
     // GET EMOJIS
     function getEmojis() {
         fetch(apiUrl)
@@ -48,13 +49,19 @@
             });
     };
 
+    // STOP POLLING
+    function stopPolling() {
+        clearTimeout(pollingTimeoutId);
+    }
+
     // START POLLING
     function pollConversation(conversationId) {
         fetch(`/users/account/chat/conversation/poll/${conversationId}`)
             .then(response => response.json())
             .then(data => {
 
-                // console.log(data);
+                // UPDATE MESSAGE 
+                // clone last card, remove clear, html
                 const messageList = document.querySelector('#message-window');
                 const innerMessageCard = document.querySelector('#inner-message-card')
 
@@ -64,20 +71,16 @@
                 // Clear existing messages
                 messageList.innerHTML = '';
 
-                // Clone for each message
+                // Clone for each message redundant later
                 data.messages.forEach(message => {
+                    //Last message card gets cloned
                     const messageCard = messageCardToBeCloned.cloneNode(true);
                     const messageCardFirstChild = messageCard.firstElementChild; // Get the first child
-
-                    console.log(message.user_id);
-                    console.log(messageCard.firstElementChild);
-                    console.log({{ $user->id }});
-                    console.log({{ $user->id }} == message.user_id);
 
                     messageCardFirstChild.className = ''; // This removes all classes
 
                     console.log(messageCard.firstElementChild.classList);
-                    if ({{ $user->id }} == message.user_id) {
+                    if ({{ auth()->user()->id }} == message.user_id) {
                         messageCardFirstChild.classList.add('inner-message-card', 'user');
                     } else {
                         messageCardFirstChild.classList.add('inner-message-card');
@@ -96,8 +99,18 @@
                     messageList.appendChild(messageCard);
                 });
 
+                // Check if the initial fetch is done
+                if (!initialFetchDone) {
+                    // Scroll to the bottom of the message list initially
+                    const messageList = document.querySelector('#message-window');
+                    messageList.scrollTop = messageList.scrollHeight;
+
+                    // Set the flag to true after the initial fetch
+                    initialFetchDone = true;
+                }
+
                 // Restart polling after a delay
-                setTimeout(() => {
+                pollingTimeoutId = setTimeout(() => {
                     const messageList = document.querySelector('#message-window');
                     const isNearBottom = messageList.scrollTop + messageList.clientHeight +
                         scrollThreshold >= messageList.scrollHeight;
@@ -113,6 +126,7 @@
                 console.error('Polling error:', error);
                 // Handle errors and restart polling
                 setTimeout(() => {
+                    // conversationId = getConversationId();
                     pollConversation(conversationId);
                 }, 1000); // Retry after 1 second
             });
@@ -125,26 +139,51 @@
         //Fetch Emojis, insert into HTML, add EventListener
         getEmojis();
 
-        // Pass the conversation ID from the view
-        const conversationId = {{ $conversationId }};
-
-        // Scroll to the bottom of the message list initially
-        const messageList = document.querySelector('#message-window');
-        messageList.scrollTop = messageList.scrollHeight;
-
         // Event Listener for emoji button to toggle class show
         const emojiContainer = document.querySelector('#emoji-container');
         const emojiButton = document.querySelector('#show-emoji');
-
         emojiButton.addEventListener('click', () => {
             emojiContainer.classList.toggle('show');
         });
-        // Call the polling
-        const user = {{ $user->id }};
-        console.log(user);
-        pollConversation(conversationId);
 
+        //EventListener for when click on contact to change chat window
+        const contacts = document.querySelectorAll("#contact");
 
+        // If previous session variable exists then start conversation
+        const lastConversation = {{ session('last_conversation') }};
+        console.log(lastConversation)
+        if (lastConversation != 0) {
+            //Add conversationID to the form
+            const conversationIdInput = document.querySelector('#form-conversation_id');
+            const newConversationIdValue = lastConversation;
+            conversationIdInput.value = newConversationIdValue;
+            // Set the flag to false before the initial fetch
+            initialFetchDone = false;
+            // Start new Conversation Polling
+            pollConversation(newConversationIdValue);
+        }
+
+        contacts.forEach(contact => {
+            contact.addEventListener('click', () => {
+
+                stopPolling();
+
+                // Set the flag to false before the initial fetch
+                initialFetchDone = false;
+
+                //Get the value(conversationID) of the clicked contact
+                const conversationId = parseInt(contact.getAttribute('value'));
+
+                //Add conversationID to the form
+                const conversationIdInput = document.querySelector('#form-conversation_id');
+                const newConversationIdValue = conversationId;
+                conversationIdInput.value = newConversationIdValue;
+
+                // Start new Conversation Polling
+                pollConversation(conversationId);
+
+            });
+        });
     });
 </script>
 <style>
@@ -166,7 +205,7 @@
     }
 
     .outer-message-card {
-        border: 1px solid black;
+        /* border: 1px solid black; */
         width: 100%;
     }
 
@@ -181,6 +220,10 @@
     .user {
         margin-left: auto;
         background-color: lightblue;
+    }
+
+    .display-none {
+        display: none;
     }
 
     /* ############################################### */
@@ -223,24 +266,19 @@
         overflow-wrap: break-word;
     }
 </style>
-<x-layout>
+<div>
+    {{-- Chat window --}}
     <div class="window">
-        <h2>Chat Window with {{ $contact->name }}</h2>
-
         <div class="message-list" id="message-window">
-            {{-- Display all messages using message-card --}}
-            @foreach ($messages as $message)
-                <div class="outer-message-card" id="outer-message-card">
-                    <x-message-card :message="$message" />
-                </div>
-            @endforeach
+            {{-- Display all messages using message-card and javascript --}}
+            <div class="outer-message-card" id="outer-message-card">
+                <x-message-card />
+            </div>
         </div>
-
         <form action="/users/account/chat/conversation" method="POST">
             @csrf
-            <input type="hidden" name="conversation_id" value="{{ $conversationId }}">
-            <input type="hidden" name="user_id" value="{{ $user->id }}">
-
+            <input type="hidden" name="conversation_id" id="form-conversation_id" value="">
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
             <!-- Textarea with emoji insertion -->
             <div class="emoji-icons" id="emoji-container">
                 <!-- Function will add more emoji icons/buttons here -->
@@ -251,9 +289,7 @@
                 <div class="text-buttons">
                     <button type="submit">Send</button>
                 </div>
-
             </div>
-
         </form>
     </div>
-</x-layout>
+</div>

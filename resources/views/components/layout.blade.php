@@ -45,8 +45,15 @@
 </head>
 
 <body>
-    {{-- message box --}}
-    {{-- <x-flash-message/>  --}}
+    {{-- Creating session variables on every page reload for authenticated users --}}
+    @if (auth()->check())
+        @php
+        //Creat last_conversation session variable if it does not exist
+        if (!session()->has('last_conversation')) {
+            session(['last_conversation' => 0]);
+        }
+        @endphp
+    @endif
 
     {{-- navbar --}}
     <nav class="w-3/4 mx-auto flex flex-col items-center">

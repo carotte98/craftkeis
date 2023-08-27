@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Message;
+use App\Models\Conversation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\Password;
 
 use function Laravel\Prompts\password;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -136,28 +138,53 @@ class UserController extends Controller
 
         $contactUsers = [];
 
+        //Search for first conversation of user
+        $firstConversation = Conversation::where('user_id1', $user->id)
+        ->orWhere('user_id2', $user->id)
+        ->first();
+
         //For each conversation put the other contact(user) in an array 
         foreach ($conversations as $conversation) {
             $contactUserId = $conversation->user_id1 == $user->id ? $conversation->user_id2 : $conversation->user_id1;
             $contactUser = DB::table('users')->find($contactUserId);
 
-            // Append the other user's details to the $otherUsers array
+            //Get exact conversation id for that user
+            $conversation = Conversation::where([
+                ['user_id1', $user->id],
+                ['user_id2', $contactUser->id],
+            ])->orWhere([
+                ['user_id1', $contactUser->id],
+                ['user_id2', $user->id],
+            ])->first();
+
+            // Append the other user's details along with the conversation ID
+            $contactUser->conversation_id = $conversation->id;
             $contactUsers[] = $contactUser;
+            // dd($contactUser);
         }
 
         // If user is admin then return admin dashboard view
         if ($user->email === 'admin@gmail.com') {
             return view('users.admin', [
-                'user' => $user,
+                //'user' => $user,//Can be removed
                 'users' => User::all(), //Temporary for chat purpose
                 'contacts' => $contactUsers,
             ]);
         }
+        // dd($contactUser);
+        // dd($conversations[0]->id);
+        // dd($firstConversation->id);
+        // $messages = 0;
+        if ($firstConversation) {
+            $messages = $firstConversation->messages; // Accessing the messages relationship
+            // dd($messages);
+        }
 
         // Pass the user data to the view
         return view('users.account', [
-            'user' => $user,
-            'tempContacts' => User::all(), //Temporary for chat purpose
+            'user' => $user, //Can be removed
+            'conversationId' => $firstConversation ? $firstConversation->id : "", //First conversations user has
+            'messages' => $messages,
             'contacts' => $contactUsers,
         ]);
     }

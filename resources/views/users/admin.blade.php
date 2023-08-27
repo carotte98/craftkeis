@@ -17,20 +17,13 @@
     p {
         max-width: 100%;
         overflow-wrap: break-word;
+        text-align: left;
     }
 </style>
 <x-layout>
     <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left"></i> Back</a>
     </a>
-    <x-card>{{-- DMs --}}
-        {{-- <x-dashboard-bank :user=$user />
-
-                    <x-dashboard-service :user=$user />
-
-                    <x-dashboard-orderClient :user=$user />
-
-                    <x-dashboard-orderCreator :user=$user /> --}}
-
+    <x-card>
         <x-card-sec class="flex flex-col items-center">
             <h2 class="font-bold text-5xl mt-5 tracking-tight">
                 ADMIN DASHBOARD
@@ -43,7 +36,7 @@
             @foreach ($users as $user)
                 <x-card-sec class="py-5">
                     <details class="group">
-                        <summary class="flex justify-between items-center font-medium cursor-pointer list-none">
+                        <summary class="flex items-center font-medium cursor-pointer list-none">
                             <span class="transition group-open:rotate-180">
                                 <svg fill="none" height="24" shape-rendering="geometricPrecision"
                                     stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
