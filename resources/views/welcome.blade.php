@@ -15,7 +15,8 @@
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>Craftkéis is an Online freelancing platform. A community of Freelancers in many domains of Arts are present already, from the more modern approaches like 3d modelling to more classical painting or wood Sculpting. Browse now our vast list of services given by our Freelancers or join us as one and find your next dream contract !</p>
+                    <p>Craftkéis is a premier online freelancing platform dedicated to the arts. We proudly host a diverse community of freelancers skilled in a broad spectrum of artistic domains, ranging from cutting-edge 3D modeling to traditional painting and wood sculpting. Explore our extensive roster of services offered by our esteemed freelancers, or join our community to secure your next distinguished project.</p>
+                    {{-- <p>Craftkéis is an Online freelancing platform. A community of Freelancers in many domains of Arts are present already, from the more modern approaches like 3d modelling to more classical painting or wood Sculpting. Browse now our vast list of services given by our Freelancers or join us as one and find your next dream contract !</p> --}}
 
                     <hr class="border-accent w-5/6 my-6">
 
@@ -109,9 +110,9 @@
 
 
         {{-- TEXTS --}}
-        <div class="relative bg-background dropshadowUp rounded-t-lg p-6 mb-2 z-40">
+        {{-- <div class="relative bg-background dropshadowUp rounded-t-lg p-6 mb-2 z-40"> --}}
 
-            {{-- Freelancer --}}
+            {{-- Freelancer
             <div id="free" class="block">
 
                 <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
@@ -163,7 +164,7 @@
 
 
             {{-- Particular --}}
-            <div id="part" class="hidden">
+            {{-- <div id="part" class="hidden">
 
                 <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
                     Register as client
@@ -208,7 +209,104 @@
 
                 <hr class="border-accent w-full my-3">
 
+            </div> --}}
+
+            <div class="relative bg-background dropshadowUp rounded-t-lg p-6 mb-2 z-40">
+
+                {{-- Freelancer --}}
+                <div id="free" class="block">
+            
+                    <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
+                        Seamless Registration
+                    </h2>
+            
+                    <p class="mb-1 ml-2 text-lg">
+                        If you're an artist or freelancer seeking greater visibility and opportunities, Craftkéis is designed for you. Opt for the 'Creator' registration and seamlessly link your bank account for secure transactions.
+                    </p>
+            
+                    <hr class="border-accent w-full my-3">
+            
+                    <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
+                        Efficient and Customizable Service Listings
+                    </h2>
+            
+                    <p class="mb-1 ml-2 text-lg">
+                        List multiple services with ease, providing ample details for potential clients. Incorporate images, set your pricing, and more to enhance your listing.
+                    </p>
+            
+                    <hr class="border-accent w-full my-3">
+            
+                    <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
+                        Simplified Management
+                    </h2>
+            
+                    <p class="mb-1 ml-2 text-lg">
+                        Our intuitive creator dashboard simplifies the management of your services and orders. Access, modify, or add details with just a few clicks.
+                    </p>
+            
+                    <hr class="border-accent w-full my-3">
+            
+                    <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
+                        Real-time Client Communication
+                    </h2>
+            
+                    <p class="mb-1 ml-2 text-lg">
+                        Our integrated chat feature facilitates real-time communication between artists and clients. Say goodbye to extended email threads; a brief chat can set the stage for your next project.
+                    </p>
+            
+                    <hr class="border-accent w-full my-3">
+            
+                </div>
+            
+                {{-- ========================================= --}}
+            
+                {{-- Particular --}}
+                <div id="part" class="hidden">
+            
+                    <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
+                        Client Registration
+                    </h2>
+            
+                    <p class="mb-1 ml-2 text-lg">
+                        Join Craftkéis as a client with a straightforward registration process. No credit card required—simply input your details and become a part of our community.
+                    </p>
+            
+                    <hr class="border-accent w-full my-3">
+            
+                    <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
+                        Discover Talented Artists
+                    </h2>
+            
+                    <p class="mb-1 ml-2 text-lg">
+                        Explore our curated selection of artists and creators. If you have a specific requirement, our categorized listings will guide you to the perfect match swiftly.
+                    </p>
+            
+                    <hr class="border-accent w-full my-3">
+            
+                    <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
+                        Initiate a Project
+                    </h2>
+            
+                    <p class="mb-1 ml-2 text-lg">
+                        Found an artist that resonates with your vision? Submit your request, outline your needs, and we'll facilitate the connection. Need more details? Engage in real-time chat before finalizing your order.
+                    </p>
+            
+                    <hr class="border-accent w-full my-3">
+            
+                    <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
+                        Monitor Your Project's Progress
+                    </h2>
+            
+                    <p class="mb-1 ml-2 text-lg">
+                        Track your orders with unparalleled ease through our chat feature and dedicated client dashboard. View all orders, communications, and transaction details in one consolidated space.
+                    </p>
+            
+                    <hr class="border-accent w-full my-3">
+            
+                </div>
+            
             </div>
+            
 
         </div>
     </x-card>
