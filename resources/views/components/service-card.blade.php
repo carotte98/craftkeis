@@ -32,11 +32,9 @@
                 <div class=" space-x-2">
 
                     {{-- Order button --}}
-                    <form action="" method="post" action="/orders/create">
                         <button class="text-center text-sm h-6 w-20 text-white rounded-lg bg-accent hover:bg-onhover">
                             <a href="/orders/create/{{ $service->id }}">Order</a>
                         </button>
-                    </form>
                     {{-- Connect button --}}
                     <x-connect-btn class="connect-btn" :contactId="$service->users->id" />
                 </div>

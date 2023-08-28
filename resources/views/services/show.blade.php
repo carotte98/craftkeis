@@ -1,6 +1,4 @@
 <x-layout>
-<a href="/"><i class="fa-solid fa-arrow-left"></i> Back
-</a>
 <div>
     <x-card>
         <x-card-sec>
@@ -12,13 +10,14 @@
             <div>{{ $service->price }}</div>
             <div>{{ $service->categories->name }}</div>
             {{-- order button, sents to order form --}}
-            <form action="" method="post" action="/orders/create">
                 <button class="text-center text-lg h-8 w-20 text-white rounded-lg bg-accent hover:bg-onhover">
                     <a href="/orders/create/{{ $service->id }}">Order</a>
-                </button>
-            </form>       
+                </button>    
 
         </x-card-sec>
+        <div class="w-full flex justify-center mt-3">
+            <a href="{{ url()->previous() }}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
+        </div>
     </x-card>
 </div>
 </x-layout>
