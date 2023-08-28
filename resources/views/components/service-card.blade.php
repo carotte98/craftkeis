@@ -16,7 +16,7 @@
         <div class="p-7 pt-0 pb-0">
 
             {{-- Div containing over the line content --}}
-            <div class="mb-2 flex flex-row justify-between align-center text-center">
+            <div class="mb-2 flex flex-row flex-wrap justify-between align-center text-center">
                 
                 <div class="flex flex-row space-x-2">
                     {{-- Artist name --}}
@@ -25,20 +25,18 @@
                         <a href="/creators/{{ $service->users->id }}">{{ $service->users->name }}</a>
                     </div>
 
-                    {{-- Category bubble --}}
-                    <a class="w-24 text-sm" href="?category_id={{$service->category_id}}"><button class=" w-full rounded-full bg-buttons p-1 text-xs">{{$service->categories->name}}</button></a>
                 </div>
 
-                <div class=" space-x-2">
+                <div class="flex flex-row space-x-2">
 
                     {{-- Order button --}}
-                    <form action="" method="post" action="/orders/create">
                         <button class="text-center text-sm h-6 w-20 text-white rounded-lg bg-accent hover:bg-onhover">
-                            <a href="/orders/create/{{ $service->id }}">Order</a>
+                            <a href="/orders/create/{{ $service->id }}">Request</a>
                         </button>
                     </form>
-                    {{-- Connect button --}}
-                    <x-connect-btn class="connect-btn" :contactId="$service->users->id" />
+                    {{-- Category bubble --}}
+                    <a class="w-24 text-sm" href="?category_id={{$service->category_id}}"><button class=" w-full rounded-full bg-buttons p-1 text-xs">{{$service->categories->name}}</button></a>
+                   
                 </div>
 
             </div>

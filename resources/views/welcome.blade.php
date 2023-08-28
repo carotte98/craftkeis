@@ -9,7 +9,7 @@
                 {{-- TEXT --}}
                 <div class="flex justify-center items-center flex-col w-2/3 text-xl text-center">
 
-                    <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
+                    <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogoBold">
                         What is Craftkéis
                     </h2>
 
@@ -47,8 +47,40 @@
     </x-card>
 
     {{-- ==================== --}}
-
+    <br>
     {{-- How to use craftkeis --}}
+
+    {{-- User stats --}}
+
+    <x-card>
+        <x-card-sec>
+            <div class="flex flex-col items-center justify-center">
+                <hr class="border-accent w-5/6 my-6">
+                <div class="grid grid-cols-3 w-5/6 mx-auto p-4 text-center text-2xl my-4">
+                    <div class="border-4 border-accent w-1/2 rounded-full mx-auto">
+                        <i class="fa-solid fa-user relative -top-6 text-4xl"></i>
+                        <p class="font-bold">{{ $totalUsers }}</p>
+                        <h3 class="relative font-bold top-8 text-lg">Total Users</h3>
+                    </div>
+    
+                    <div class="border-4 border-accent w-1/2 rounded-full mx-auto">
+                        <i class="fa-solid fa-paintbrush relative -top-6 text-4xl"></i>
+                        <p class="font-bold">{{ $totalCreators }}</p>
+                        <h3 class="relative font-bold top-8 text-lg">Total Creators</h3>
+                    </div>
+    
+                    <div class="border-4 border-accent w-1/2 rounded-full mx-auto">
+                        <i class="fa-solid fa-file-pen relative -top-6 text-4xl"></i>
+                        <p class="font-bold">{{ $totalServices }}</p>
+                        <h3 class="relative font-bold top-8 text-lg">Total Services</h3>
+                    </div>
+                </div>
+                <hr class="border-accent w-5/6 my-6">
+            </div>
+        </x-card-sec>
+    </x-card>
+    <br>
+    {{-- ======================== --}}
 
     <x-card>
 
@@ -74,6 +106,7 @@
             </button>
 
         </div>
+
 
         {{-- TEXTS --}}
         <div class="relative bg-background dropshadowUp rounded-t-lg p-6 mb-2 z-40">
@@ -128,6 +161,7 @@
 
             {{-- ========================================= --}}
 
+
             {{-- Particular --}}
             <div id="part" class="hidden">
 
@@ -180,16 +214,10 @@
     </x-card>
 
     {{-- ==================== --}}
-
-    {{-- User stats --}}
-
-
-
-
-    {{-- Artworks --}}
-
-
+ 
+    
     <script>
+
         
         // Buttons as variables
         const freelance = document.querySelector("#freeB");

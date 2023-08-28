@@ -12,6 +12,7 @@
                     <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->title }}</h2>
                     <hr class="border-accent w-5/6 mx-auto my-6">
                     {{-- uses the table relationships to get the information --}}
+                    <p><strong>Service : </strong> {{ $order->service->title }}</p>
                     <p><strong>Category : </strong> {{ $order->service->categories->name }}</p>
                     <p><strong>Creator : </strong> {{ $order->userCreator->name }}</p>
                     <p><strong>Description : </strong> <br>{{ $order->description }}</p>

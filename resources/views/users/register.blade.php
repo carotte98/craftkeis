@@ -12,14 +12,14 @@
 
             <hr class="border-accent w-5/6 mx-auto my-6">
 
-            <form action="/users" method="POST" enctype="multipart/form-data">
+            <form  action="/users" method="POST" enctype="multipart/form-data" id="signUp">
                 @csrf
 
                 {{-- this div is for the name --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Name" name="name" value="{{old('name')}}">
+                        <input type="text" placeholder="Username" name="name" value="{{old('name')}}">
                     </div>
                 </div>
                 <div>
@@ -59,7 +59,14 @@
                 <div class="bordered-div">
                     <div class="icon-input-container">
                         <i class="fas fa-key"></i>
-                        <input type="password" placeholder="Password" name="password">
+                        <input id="pswd" type="password" placeholder="Password" name="password">
+                    </div>
+                    <div id="pswd_info" class="bg-green-100 p-4 mt-2 rounded border border-green-200" style="display: none;">
+                        <p id="number" class="text-red-500">Must contain at least one number</p>
+                        <p id="symbol" class="text-red-500">A special symbol</p>
+                        <p id="capital" class="text-red-500">Must contain at least one uppercase letter</p>
+                        <p id="letter" class="text-red-500">Must contain at least one lowercase letter</p>
+                        <p id="length" class="text-red-500">Must be at least 6 characters</p>
                     </div>
                 </div>
                 @error('password')
@@ -102,6 +109,7 @@
                         <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
                             Sign Up
                         </button>
+                        <a href="{{ url()->previous() }}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
                     </div>
                 </div>
 
@@ -124,10 +132,10 @@
                 <div class="mt-4 register-footer">
                     <p>
                         Already have an account?
-                        <a href="/login" >Login</a>
+                        <a href="/login" ><strong>Login</strong></a>
                     </p>
                     <div>
-                        <a href="">Terms & conditions</a>
+                        <p>Terms & conditions</p>
                     </div>
                 </div>
             </form>
@@ -135,3 +143,6 @@
     </div>{{-- Here we also want to replace the div and input a /x-card --}}
 
 </x-layout>{{-- /x-layout, end of the layout --}}
+
+<script src="/js/app.js"></script>
+

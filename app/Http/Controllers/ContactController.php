@@ -23,7 +23,7 @@ class ContactController extends Controller
         ]);
 
         // Send the email
-        Mail::to('ekgndqhr@sharklasers.com')->send(new ContactFormMail($validatedData));
+        Mail::to('craftkeis.devs@gmail.com')->send(new ContactFormMail($validatedData));
 
         // Redirect or respond back
         return redirect('/contact')->with('message', 'Your message has been sent successfully!');

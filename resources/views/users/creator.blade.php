@@ -1,6 +1,4 @@
 <x-layout>
-    <a href="/"><i class="fa-solid fa-arrow-left"></i> Back
-    </a>
     <x-card>
         <x-card-sec>
             <img class="w-48 mr-6 mb-6" src="{{ $user->image_address ? asset('storage/' . $user->image_address) : asset('images/no-image.png')}}" alt="profile-picture" />
@@ -17,13 +15,8 @@
                 <x-service-card :service="$service" />
             @endforeach
         </x-card-sec>
-        <x-card-sec>
-            <h2>
-                {{$user->name}}'s Shop
-            </h2>
-            @foreach ($user->products as $product)
-                <x-product-card :product="$product" />
-            @endforeach
-        </x-card-sec>
+        <div class="w-full flex justify-center mt-3">
+            <a href="{{ url()->previous() }}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
+        </div>
     </x-card>
 </x-layout>
