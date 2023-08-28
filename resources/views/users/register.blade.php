@@ -64,6 +64,7 @@
                     </div>
                     <div id="pswd_info" class="bg-green-100 p-4 mt-2 rounded border border-green-200" style="display: none;">
                         <p id="number" class="text-red-500">Must contain at least one number</p>
+                        <p id="symbol" class="text-red-500">A special symbol</p>
                         <p id="capital" class="text-red-500">Must contain at least one uppercase letter</p>
                         <p id="letter" class="text-red-500">Must contain at least one lowercase letter</p>
                         <p id="length" class="text-red-500">Must be at least 6 characters</p>

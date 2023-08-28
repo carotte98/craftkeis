@@ -16,27 +16,28 @@ document.querySelector("#pswd").addEventListener("keyup", function() {
     toggleClass("#capital", "text-green-500", /[A-Z]/.test(pwdValue));
     toggleClass("#letter", "text-green-500", /[a-z]/.test(pwdValue));
     toggleClass("#length", "text-green-500", pwdValue.length >= 6);
+    toggleClass("#symbol", "text-green-500", /[!@#$%^&*(),.?":{}|<>]/.test(pwdValue));
   });
   
   document.querySelector("form#signUp").addEventListener("submit", function(event) {
     // event.preventDefault();
   
-    const pwdValue = document.querySelector("#pswd").value;
-    const pwdConfirmValue = document.querySelector("#pswdConfirm").value;
+    // const pwdValue = document.querySelector("#pswd").value;
+    // const pwdConfirmValue = document.querySelector("#pswdConfirm").value;
   
-    const capitalValid = /[A-Z]/.test(pwdValue);
-    const letterValid = /[a-z]/.test(pwdValue);
-    const digitValid = /\d/.test(pwdValue);
-    const lengthValid = pwdValue.length >= 8;
-    const matchingPWD = pwdValue === pwdConfirmValue;
+    // const capitalValid = /[A-Z]/.test(pwdValue);
+    // const letterValid = /[a-z]/.test(pwdValue);
+    // const digitValid = /\d/.test(pwdValue);
+    // const lengthValid = pwdValue.length >= 8;
+    // const matchingPWD = pwdValue === pwdConfirmValue;
   
-    const allIsGood = capitalValid && letterValid && digitValid && lengthValid && matchingPWD;
+    // const allIsGood = capitalValid && letterValid && digitValid && lengthValid && matchingPWD;
   
-    if (allIsGood) {
-      this.innerHTML = "<h2 class='text-center text-green-500'>You are registered correctly</h2>";
-    } else {
-      alert("Something's wrong my friend");
-    }
+    // if (allIsGood) {
+    //   this.innerHTML = "<h2 class='text-center text-green-500'>You are registered correctly</h2>";
+    // } else {
+    //   alert("Something's wrong my friend");
+    // }
   });
   
   document.querySelector("#pswd").addEventListener("focus", function() {
