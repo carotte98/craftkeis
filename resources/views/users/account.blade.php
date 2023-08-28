@@ -36,7 +36,7 @@
                     </button>
                 </a>
             </div>
-                <!-- {{-- inbox for creators, no longer needed i think? --}}
+                 {{-- inbox for creators, no longer needed i think? --}}
                 <span class="text-lg">
                     <i class="fa-solid fa-inbox"></i>
                     <a href="/users/account/commissions" class="hover:text-accent">Inbox</a>
@@ -53,7 +53,8 @@
 
             <x-dashboard-orderCreator :user=$user/>
 
-        <x-card-sec> {{-- DMs --}}
+        <x-card-sec> 
+            {{-- DMs --}}
             {{-- Contacts after conversation has been created --}}
             {{-- Example user clicks to connect with creator --}}
             <h2>Contacts</h2>
