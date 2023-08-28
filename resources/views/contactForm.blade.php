@@ -1,13 +1,6 @@
 <x-layout>
-    <div class="flex justify-center mb-3">
-        <a href="{{ url()->previous() }}">
-            <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">
-                <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-        </a>
-    </div>
-    <x-card>
-        <div class="bg-background dropshadow rounded-lg p-6 mb-2 w-3/6">
+    <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
+        <x-card-sec>
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                 Contact Us
             </h2>
@@ -54,6 +47,6 @@
                     </button>
                 </div>
             </form>
-        </div>
-    </x-card>
+        </x-card-sec>
+    </div>
 </x-layout>
