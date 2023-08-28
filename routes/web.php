@@ -105,6 +105,10 @@ Route::get('/users/account/chat/conversation/poll/{conversationId}', [Conversati
 Route::get('/register/{user}/bankDetails',[BankDetailsController::class,'create']);
 //store bank_details
 Route::post('/bankDetails',[BankDetailsController::class,'store']);
+//Edit bank_details
+Route::get('/bankDetails/{bank_details}/edit', [BankDetailsController::class, 'edit'])->middleware('auth');
+//Update bank_details
+Route::put('/bankDetails/{bank_details}', [BankDetailsController::class, 'update'])->middleware('auth');
 
 //payments
 //payment_page

@@ -9,7 +9,7 @@
                 echo substr ($user->bank_details->cardNumber, -4);
             @endphp
         </div><br>
-        <a href="/bankDetails/{{ $user->id }}/edit"> <!-- edit page for bank_details does not exist yet -->
+        <a href="/bankDetails/{{ $user->bank_details->id }}/edit"> <!-- edit page for bank_details does not exist yet -->
             <i class="fa-solid fa-pencil"></i>Edit
         </a>
     @else
