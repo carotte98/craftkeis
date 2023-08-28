@@ -13,7 +13,7 @@
             width: 300px;
             /* Adjust width as needed */
             background-color: #f4f4f4;
-            margin:auto;
+            margin: auto;
             margin-top: 1rem;
         }
 
@@ -43,12 +43,12 @@
         }
 
 
-        .register-footer{
+        .register-footer {
             text-align: center;
         }
 
 
-        #Register-button{
+        #Register-button {
             margin-left: 47%;
             margin-top: 1rem;
         }
@@ -62,42 +62,30 @@
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                 Bank Details
             </h2>
-    
+
             <hr class="border-accent w-5/6 mx-auto my-6">
             <form action="/bankDetails" method="POST">
                 @csrf
-            
+
                 {{-- this div is for the first name --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="First Name" name="firstName" value="{{old('firstName')}}">
+                        <input type="text" placeholder="Full name" name="full_name" value="{{ old('full_name') }}">
                     </div>
                 </div>
                 <div>
-                    @error('firstName')
+                    @error('full_name')
                         <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
                     @enderror
                 </div>
-            
-                {{-- this div is for the last name --}}
-                <div class="bordered-div">
-                    <div class="icon-input-container">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Last Name" name="lastName" value="{{old('lastName')}}">
-                    </div>
-                </div>
-                <div>
-                    @error('lastName')
-                        <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
-                    @enderror
-                </div>
-            
+
                 {{-- this div is for the cardNumber --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
                         <i class="fa-solid fa-user"></i>
-                        <input type="number" placeholder="Card Number" name="cardNumber" value="{{old('cardNumber')}}">
+                        <input type="number" placeholder="Card Number" name="cardNumber"
+                            value="{{ old('cardNumber') }}">
                     </div>
                 </div>
                 <div>
@@ -105,36 +93,12 @@
                         <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
                     @enderror
                 </div>
-            
-                    {{-- this div is for the payment_method --}}
-                    <div class="bordered-div">
-                        <div class="icon-input-container">
-                            <i class="fa-solid fa-card"></i>
-                            <select name="payment_method">
-                                <option value="Visa">Visa</option>
-                                <option value="MasterCard">MasterCard</option>
-                                <option value="Maestro">Maestro</option>
-                            </select>
-                        </div>
-                    </div>
-                                {{-- this div is for the CCV --}}
+
+                {{-- this div is for the expiration Date --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
                         <i class="fa-solid fa-user"></i>
-                        <input type="number" placeholder="CCV" name="ccv" value="{{old('ccv')}}">
-                    </div>
-                </div>
-                <div>
-                    @error('ccv')
-                        <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
-                    @enderror
-                </div>
-            
-                        {{-- this div is for the expiration Date --}}
-                <div class="bordered-div">
-                    <div class="icon-input-container">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="MM / YY" name="expireDate" value="{{old('expireDate')}}">
+                        <input type="text" placeholder="MM / YY" name="expireDate" value="{{ old('expireDate') }}">
                     </div>
                 </div>
                 <div>
@@ -142,16 +106,31 @@
                         <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
                     @enderror
                 </div>
+                
+                {{-- this div is for the CCV --}}
+                <div class="bordered-div">
+                    <div class="icon-input-container">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="number" placeholder="CCV" name="ccv" value="{{ old('ccv') }}">
+                    </div>
+                </div>
+                <div>
+                    @error('ccv')
+                        <p class="text-red-500 text-xs mt-1 register-footer">{{ $message }}</p>
+                    @enderror
+                </div>
 
                 <hr class="border-accent w-5/6 mx-auto my-6">
-            
+
                 <div class="mb-6" id="Register-button">
-                    <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                    <button type="submit"
+                        class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
                         Submit
                     </button>
                 </div>
-            
-            
+
+
+
         </x-card-sec>
     </div>
 </x-layout>

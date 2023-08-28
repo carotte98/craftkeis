@@ -40,6 +40,7 @@
                                 @csrf
                                 <input type="hidden" name="service_name" value="{{ $order->title }}">
                                 <input type="hidden" name="total" value="{{ $order->price }}">
+                                {{-- <input type="hidden" name="completed_at" value="{{$order->completed_at}}"> --}}
                                 <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-blue-500 hover:bg-blue-600">
                                     <i class="fa-solid fa-hand-holding-dollar"></i> Pay now
                                 </button>
