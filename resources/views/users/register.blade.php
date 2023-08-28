@@ -1,74 +1,7 @@
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    {{-- thsi is the font awesome-icons link --}}
-    <style>
-        .bordered-div {
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            width: 300px;
-            /* Adjust width as needed */
-            background-color: #f4f4f4;
-            margin:auto;
-            margin-top: 1rem;
-        }
+{{-- no more JS T.T --}}
 
-        .icon-input-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .icon-input-container i {
-            margin-right: 10px;
-            color: #ccc;
-        }
-
-        .icon-input-container input {
-            border: none;
-            border-bottom: 1px solid #ccc;
-            padding: 5px;
-            width: 100%;
-            background-color: #f4f4f4;
-        }
-
-        .hidden {
-            display: none;
-        }
-        #Link-button{
-            text-align: center;
-            margin-top: 0.8rem;
-        }
-        #facebook{
-            border: 2px solid #C3C3C3;
-            background-color: #C3C3C3;
-            border-radius: 10px;
-            padding:0.5rem 1rem 0.5rem 1rem;
-
-        }
-        #google
-        {
-            border: 2px solid #C3C3C3;
-            background-color: #C3C3C3;
-            border-radius: 10px;
-            padding:0.5rem 1rem 0.5rem 1rem;
-        }
-
-        .register-footer{
-            text-align: center;
-        }
-
-
-        #Register-button{
-            
-        }
-    </style>
-
-    {{-- js script for showing the last 2 inputs when radio button is checked --}}
-</head>
 <x-layout> {{-- x-layout, not div please replace when layout finished --}}
-    <x-card class="w-2/6 "> {{-- Here we also want to replace the div and input a x-card --}} 
+    <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto"> {{-- Here we also want to replace the div and input a x-card --}} 
         <x-card-sec>
         {{-- ? Do we need a x-card, always found it wierd (cedric) --}}
         {{-- * Yeah we need it no worries mate --}}
@@ -200,6 +133,6 @@
                 </div>
             </form>
         </x-card-sec>
-    </x-card>{{-- Here we also want to replace the div and input a /x-card --}}
+    </div>{{-- Here we also want to replace the div and input a /x-card --}}
 
 </x-layout>{{-- /x-layout, end of the layout --}}
