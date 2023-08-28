@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     {{-- AlpineJS --}}
     <script src="//unpkg.com/alpinejs" defer></script>
     {{-- tailwind css --}}
@@ -23,11 +24,11 @@
                         onhover: "#f07c0f",
                         // onhover: "#E5A66C",
                         background: "#D9D9D9",
-                        buttons : "#C3C3C3",
-                        disabled : "#4f4f4f",
-                        bgsec : "#949494",
-                        open : "#B1E320",
-                        closed : "#E34320"
+                        buttons: "#C3C3C3",
+                        disabled: "#4f4f4f",
+                        bgsec: "#949494",
+                        open: "#B1E320",
+                        closed: "#E34320"
                     },
                     borderRadius: {
                         'lg': '10px',
@@ -38,7 +39,7 @@
         };
     </script>
     <style>
-        body{
+        body {
             min-height: fit-content;
         }
     </style>
@@ -46,8 +47,15 @@
 </head>
 
 <body>
-    {{-- message box --}}
-    {{-- <x-flash-message/>  --}}
+    {{-- Creating session variables on every page reload for authenticated users --}}
+    @if (auth()->check())
+        @php
+        //Creat last_conversation session variable if it does not exist
+        if (!session()->has('last_conversation')) {
+            session(['last_conversation' => 0]);
+        }
+        @endphp
+    @endif
 
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
@@ -72,9 +80,10 @@
                     {{-- <a href="" class="text-center text-lg h-8 w-24 text-black rounded-lg bg-buttons hover:text-white hover:bg-onhover"><i class="fas fa-globe"></i></a> --}}
 
                     {{-- auth directive only shows the elements when logged in --}}
-                    @auth 
-                        <div class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">
-                            <a href="/users/{{auth()->user()->id}}">Account</a>
+                    @auth
+                        <div
+                            class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">
+                            <a href="/users/{{ auth()->user()->id }}">Account</a>
                         </div>
                         {{-- logout button --}}
                         <form class="inline" action="/logout" method="post">
@@ -84,12 +93,12 @@
                             </button>
                         </form>
                         {{-- else when not logged in --}}
-                        @else
+                    @else
                         <span class="text-center text-lg h-8 w-24 text-text-black rounded-lg bg-buttons hover:bg-onhover">
                             <a href="/login" class="hover:text-white">Login</a>
                         </span>
                         <span class="text-center text-lg h-8 w-24 text-white rounded-lg bg-accent hover:bg-onhover">
-                            <a href="/register" class="" >Register</a>
+                            <a href="/register" class="">Register</a>
                         </span>
                     @endauth
                 </div>
@@ -114,11 +123,11 @@
 
     <main class="pt-20 w-full">
 
-    {{-- message box --}}
-    <x-flash-message/> 
+        {{-- message box --}}
+        <x-flash-message />
         {{-- page contents --}}
-        {{$slot}}
-        
+        {{ $slot }}
+
     </main>
 
     {{-- footer --}}
@@ -130,12 +139,12 @@
             </div>
         </section>
         <section class="flex flex-col bg-background w-full pt-5 dropshadowFB">
-            
+
             <hr class="border-accent w-3/4 mx-auto my-2">
             {{-- logo and icons on left --}}
             <div class="flex flex-row justify-center w-full mt-4">
-                
-    
+
+
                 {{-- links from website --}}
                 <div class="flex flex-row gap-24 mx-24 xl:mx-32">
                     <a href="/about">About Us</a>
@@ -143,26 +152,25 @@
                 </div>
 
                 <div class="justify-center">
-                
-                    {{-- social media icons --}}    
+
+                    {{-- social media icons --}}
                     <div class="text-xl space-x-2">
                         <i class="fab fa-facebook"></i>
                         <i class="fab fa-twitter"></i>
                         <i class="fab fa-instagram"></i>
                         <i class="fab fa-linkedin"></i>
-                    </div> 
+                    </div>
                 </div>
 
                 <div class="flex flex-row gap-24 mx-24 xl:mx-32">
                     <a href="/services">Categories</a>
-                
+
                     @auth
-                    
-                        <a href="/users/{{auth()->user()->id}}">Account</a>
+
+                        <a href="/users/{{ auth()->user()->id }}">Account</a>
                     @else
-                        
                         <p class="text-disabled">Account</p>
-                    
+
                     @endauth
                 </div>
             </div>
@@ -174,12 +182,13 @@
             <hr>
             <a href="/login-as-user/2" class="btn btn-primary">
                 Login as Maus katti
-            </a>              
+            </a>
             <a href="/login-as-user/1" class="btn btn-primary">
                 Login as John Doe
-            </a>              
+            </a>
         </section>
     </footer>
 
 </body>
-</html>    
+
+</html>

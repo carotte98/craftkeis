@@ -119,31 +119,4 @@
                 
         </form>
     </x-card-sec>
-</div>  
-
-<div class="flex justify-center mt-3">
-    <a href="../../users/{{$user->id}}">
-        <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">
-            <i class="fa-solid fa-arrow-left"></i> Back
-        </button>
-    </a>
-</div>
-    <script>
-        function toggleInputs() {
-            const isChecked = document.getElementById('role').checked;
-            const bioInput = document.getElementById('bio-input');
-            const commissionInput = document.getElementById('commission-input');
-            const bankInput = document.getElementById('bank-input');
-
-            if (isChecked) {
-                bioInput.classList.remove('hidden');
-                commissionInput.classList.remove('hidden');
-                bankInput.classList.remove('hidden');
-            } else {
-                bioInput.classList.add('hidden');
-                commissionInput.classList.add('hidden');
-                bankInput.classList.add('hidden');
-            }
-        }
-    </script>
 </x-layout>

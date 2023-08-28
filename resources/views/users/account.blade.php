@@ -36,63 +36,36 @@
                     </button>
                 </a>
             </div>
-                <!-- {{-- inbox for creators, no longer needed i think? --}}
+                 {{-- inbox for creators, no longer needed i think? --}}
                 <span class="text-lg">
                     <i class="fa-solid fa-inbox"></i>
                     <a href="/users/account/commissions" class="hover:text-accent">Inbox</a>
-                </span> -->
-        </x-card-sec>
+                </span>
+            </x-card-sec>
 
-        @if ($user->is_creator ==1)
-            <x-dashboard-bank :user=$user/>
-        @endif
+            @if ($user->is_creator ==1)
+                <x-dashboard-bank :user=$user/>
+            @endif
 
-        @if ($user->is_creator ==1)
             <x-dashboard-service :user=$user/>
-        @endif
 
-        <x-dashboard-orderClient :user=$user/>
+            <x-dashboard-orderClient :user=$user/>
 
-        @if ($user->is_creator ==1)
             <x-dashboard-orderCreator :user=$user/>
-        @endif
 
-        <!-- Shop Manager, leave commented until shop is fully done -->
-        <!-- @if ($user->is_creator ==1)
-            <x-dashboard-product :user=$user/>
-        @endif -->
-
-        <x-card-sec> {{-- DMs --}}
-            <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
-                Contacts
-            </h2>
-            <div>
-                {{-- *TEST --}}
-                {{-- Click to add user to contacts --}}
-                <x-card-sec>
-                    <h2>All Users (click to add to contacts)</h2>
-                    @foreach ($tempContacts as $contact)
-                        <div>
-                            <strong>
-                                <a href="/users/account/chat/{{ $contact->id }}">{{ $contact->name }}</a>
-                            </strong>
-                        </div>
-                    @endforeach
-                </x-card-sec>
-                {{-- Contacts after conversation has been created --}}
-                {{-- Example user clicks to connect with creator --}}
-                <x-card-sec>
-                        <h2>Contacts</h2>
-                        @foreach ($contacts as $contact)
-                            <div>
-                                <strong>
-                                    <a href="/users/account/chat/conversation/{{ $contact->id }}">{{ $contact->name }}</a>
-                                </strong>
-                            </div>
-                        @endforeach
-                </x-card-sec>
-            </div>
+        <x-card-sec> 
+            {{-- DMs --}}
+            {{-- Contacts after conversation has been created --}}
+            {{-- Example user clicks to connect with creator --}}
+            <h2>Contacts</h2>
+            @foreach ($contacts as $contact)
+                <div id="contact" value="{{ $contact->conversation_id }}">
+                    {{ $contact->name }}
+                </div>
+            @endforeach
+            {{-- <x-window :conversationId=$conversationId :messages=$messages></x-window> --}}
+            {{-- <x-window :messages=$messages></x-window> --}}
+            <x-window></x-window>
         </x-card-sec>
     </x-card>
-
 </x-layout>

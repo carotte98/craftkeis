@@ -8,6 +8,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BankDetailsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ConversationController;
 
 /*
@@ -27,6 +28,8 @@ use App\Http\Controllers\ConversationController;
 // Route::get('/', function () {
 //     return view('test');
 // });
+//*ADMIN 
+
 
 // HomePage
 Route::get('/', function(){
@@ -89,25 +92,30 @@ Route::delete('/orders/{order}', [OrderController::class, 'destroy'])->middlewar
 // DEVELOPMENT DELETE LATER
 Route::get('/login-as-user/{userId}', [OrderController::class, 'loginAsUser']);
 
+//*MessageController
+//Create new message
+Route::post('/users/account/chat/conversation', [MessageController::class, 'store'])->middleware('auth');
+
 
 //*ConversationController
 //Open conversation
 Route::get('/users/account/chat/conversation/{contactId}',[ConversationController::class,'create'])->middleware('auth');
 //Create conversation
-Route::get('/users/account/chat/{contactId}', [ConversationController::class, 'createChat'])->middleware('auth');
+Route::post('/users/account/chat/{contactId}', [ConversationController::class, 'createChat'])->middleware('auth');
 //Polling conversation
 Route::get('/users/account/chat/conversation/poll/{conversationId}', [ConversationController::class, 'pollConversation'])->middleware('auth');
 
 
-//*MessageController
-//Create new message
-Route::post('/users/account/chat/conversation', [MessageController::class, 'store'])->middleware('auth');
 
 //BankDetailController
 //create bank_details
 Route::get('/register/{user}/bankDetails',[BankDetailsController::class,'create']);
 //store bank_details
 Route::post('/bankDetails',[BankDetailsController::class,'store']);
+//Edit bank_details
+Route::get('/bankDetails/{bank_details}/edit', [BankDetailsController::class, 'edit'])->middleware('auth');
+//Update bank_details
+Route::put('/bankDetails/{bank_details}', [BankDetailsController::class, 'update'])->middleware('auth');
 
 //payments
 //payment_page
@@ -116,3 +124,6 @@ Route::post('/payment/{order}/session', [PaymentController::class, 'session'])->
 //payment_success
 Route::get('/payment/{order}/success', [PaymentController::class, 'success'])->name('success');
 
+//contact us
+Route::get('/contact', [ContactController::class,'showForm']);
+Route::post('/contact', [ContactController::class,'sendMail']);
