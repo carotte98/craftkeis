@@ -15,6 +15,7 @@ class PaymentController extends Controller
     public function session(Request $request)
     {
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
+
         
         $productname=$request->get('service_name');
         $totalprice=$request->get('total');
