@@ -1,6 +1,5 @@
 <x-layout>
     <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left"></i> Back</a>
-    </a>
     <x-card>
         <x-card-sec> {{-- Profile details --}}
             <img class="w-48 mr-6 mb-6"
@@ -73,6 +72,7 @@
             </div>
         </x-card-sec>
     </x-card>
+    <x-card>
             <x-card-sec> {{-- DMs --}}
                 <h2>
                     Contacts

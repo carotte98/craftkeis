@@ -1,4 +1,5 @@
 <x-layout>
+    <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left"></i> Back</a>
     <x-card>
         <header>
             <h2>
@@ -57,62 +58,25 @@
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
-
-            <div>
-                <label for="is_creator">Are you a creator?</label>
-                <input type="checkbox" id="role" onclick="toggleInputs()" name="is_creator" value="{{$user->is_creator}}">
-            </div>
-
-            <div class="hidden" id="bio-input">
+            
+            <div id="bio-input">
                 <label for="bio">Bio: </label>
                 <input type="text" name="bio" value="{{$user->bio}}"/>
                 @error('bio')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
-
-            <div class="hidden" id="commission-input">
-                <label for="commission_amount">Commission Amount: </label>
-                <input type="number" name="commission_amount" value="{{$user->commission_amount}}"/>
-                @error('commission_amount')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="hidden" id="bank-input">
-                <label for="bank_id">Bank ID: </label>
-                <input type="text" name="bank_id" value="{{$user->bank_id}}"/>
-                @error('bank_id')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+            
+            <div>
+                <label for="is_creator">Are you a creator?</label>
+                <input type="checkbox" id="role" name="is_creator" value="1">
             </div>
     
             <div>
                 <button>
                     Update Account Settings
                 </button>
-    
-                <a href="../../users/{{$user->id}}"> Back </a>
             </div>
         </form>
-    </x-card>  
-
-    <script>
-        function toggleInputs() {
-            const isChecked = document.getElementById('role').checked;
-            const bioInput = document.getElementById('bio-input');
-            const commissionInput = document.getElementById('commission-input');
-            const bankInput = document.getElementById('bank-input');
-
-            if (isChecked) {
-                bioInput.classList.remove('hidden');
-                commissionInput.classList.remove('hidden');
-                bankInput.classList.remove('hidden');
-            } else {
-                bioInput.classList.add('hidden');
-                commissionInput.classList.add('hidden');
-                bankInput.classList.add('hidden');
-            }
-        }
-    </script>
+    </x-card>
 </x-layout>
