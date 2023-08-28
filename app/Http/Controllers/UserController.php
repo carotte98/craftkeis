@@ -184,7 +184,7 @@ class UserController extends Controller
         return view('users.account', [
             'user' => $user, //Can be removed
             'conversationId' => $firstConversation ? $firstConversation->id : "", //First conversations user has
-            'messages' => $messages,
+            //'messages' => $messages,
             'contacts' => $contactUsers,
         ]);
     }
