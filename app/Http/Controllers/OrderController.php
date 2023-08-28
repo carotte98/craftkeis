@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Service;
-use App\Models\User;
+use App\Models\Conversation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,7 @@ class OrderController extends Controller
 
         return redirect('/');
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -68,6 +69,31 @@ class OrderController extends Controller
 
         // dd($formFields);
         Order::create($formFields);
+
+        //CREATE CONVERSATION BETWEEN USERS
+        $user_id1 = $formFields['user_id1'];
+        $user_id2 = $formFields['user_id2'];
+        //If user does not write to himself then
+        if ($user_id1 != $user_id2) {
+            //In short, get that one specific conversation where user and contact is present
+            $conversation = Conversation::where([
+                ['user_id1', $user_id1],
+                ['user_id2', $user_id2],
+            ])->orWhere([
+                ['user_id1', $user_id2],
+                ['user_id2', $user_id1],
+            ])->first();
+
+            //If the conversation does not exist then create it
+            if (!$conversation) {
+                $conversation = Conversation::create([
+                    'user_id1' => $user_id1,
+                    'user_id2' => $user_id2,
+                ]);
+            }
+        }
+
+        return redirect('/')->with('message', 'Order created successfully');
     
         return redirect('/services/index')->with('message', 'Order created successfully');
     }

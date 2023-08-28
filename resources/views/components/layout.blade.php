@@ -34,13 +34,64 @@
                         'lg': '10px',
                     },
                 },
-               
             },
         };
+        // const scrollToTopButton = document.querySelector("#scrollToTopButton");
+        // console.log(scrollToTopButton);
+        // // Show or hide the button based on the scroll position
+        // window.addEventListener("scroll", () => {
+        //     if (window.pageYOffset > 100) {
+        //         scrollToTopButton.classList.add("show");
+        //     } else {
+        //         scrollToTopButton.classList.remove("show");
+        //     }
+        // });
+
+        // // Scroll to the top of the page when the button is clicked
+        // scrollToTopButton.addEventListener("click", () => {
+        //     window.scrollTo({
+        //         top: 0,
+        //         behavior: "smooth"
+        //     });
+        // });
     </script>
     <style>
         body {
             min-height: fit-content;
+        }
+
+        .active-contact {
+            background-color: lightgreen;
+        }
+
+        .message-window-page {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            z-index: 50;
+        }
+
+        .message-list {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overflow-y: scroll;
+        }
+
+        .message-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .message-window-open {
+            display: flex;
+            /* flex-direction: column; */
+        }
+
+        .arrow-up {
+            font-size: 3rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 50;
         }
     </style>
     <title>Craftkéis - Find Artists</title>
@@ -50,31 +101,30 @@
     {{-- Creating session variables on every page reload for authenticated users --}}
     @if (auth()->check())
         @php
-        //Creat last_conversation session variable if it does not exist
-        if (!session()->has('last_conversation')) {
-            session(['last_conversation' => 0]);
-        }
+            //Creat last_conversation session variable if it does not exist
+            if (!session()->has('last_conversation')) {
+                session(['last_conversation' => 0]);
+            }
+            
         @endphp
     @endif
 
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
+        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg">
             <div class="flex space-x-6 mr-6 items-center grid grid-cols-3 w-11/12 gap-x-52">
                 {{--  Col 1 --}}
-                <div class="flex"> 
+                <div class="flex">
                     {{-- Search bar --}}
                     @include('partials._search')
                 </div>
 
-                
                 <div class="w-full flex justify-center z-20">
                     <a href="/" class="customLogo">Craftkeis</a>
                 </div>
-                
+
                 <div class="w-full flex justify-evenly space-x-2 bg-background">
-                       
 
                     {{-- language select --}}
                     {{-- <a href="" class="text-center text-lg h-8 w-24 text-black rounded-lg bg-buttons hover:text-white hover:bg-onhover"><i class="fas fa-globe"></i></a> --}}
@@ -109,14 +159,28 @@
         {{-- categories list --}}
         <section class="flex w-2/3 h-16 xl:h-14 justify-center bg-background rounded-b-lg dropshadowCat">
             <ul class="flex space-x-2 h-14 xl:h-12 w-11/12 justify-center text-sm text-center align-middle">
-                <li class="w-1/6"><a href="/services/index"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">All</button></a></li>
+                <li class="w-1/6"><a href="/services/index"><button
+                            class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">All</button></a>
+                </li>
 
-                <li class="w-1/6"><a href="/services/index/?category_id=1"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">3D Modelling</button></a></li>
-                <li class="w-1/6"><a href="/services/index/?category_id=2"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">2D illustration</button></a></li>
-                <li class="w-1/6"><a href="/services/index/?category_id=3"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Painting</button></a></li>
-                <li class="w-1/6"><a href="/services/index/?category_id=4"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">SFX</button></a></li>
-                <li class="w-1/6"><a href="/services/index/?category_id=5"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Wood Sculpt</button></a></li>
-                <li class="w-1/6"><a href="/services/index/?category_id=6"><button class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Logo Design</button></a></li>
+                <li class="w-1/6"><a href="/services/index/?category_id=1"><button
+                            class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">3D
+                            Modelling</button></a></li>
+                <li class="w-1/6"><a href="/services/index/?category_id=2"><button
+                            class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">2D
+                            illustration</button></a></li>
+                <li class="w-1/6"><a href="/services/index/?category_id=3"><button
+                            class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Painting</button></a>
+                </li>
+                <li class="w-1/6"><a href="/services/index/?category_id=4"><button
+                            class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">SFX</button></a>
+                </li>
+                <li class="w-1/6"><a href="/services/index/?category_id=5"><button
+                            class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Wood
+                            Sculpt</button></a></li>
+                <li class="w-1/6"><a href="/services/index/?category_id=6"><button
+                            class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Logo
+                            Design</button></a></li>
             </ul>
         </section>
     </nav>
@@ -129,6 +193,40 @@
         {{ $slot }}
 
     </main>
+    @if (auth()->check())
+        {{-- <div class="divide-y divide-neutral-200 mx-auto"> --}}
+        <x-card-sec class="py-5 message-window-page">
+            <details class="group">
+                <summary class="flex items-center font-medium cursor-pointer list-none">
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                            width="24">
+                            <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                    </span>
+                    <p>MESSAGES</p>
+                </summary>
+                <div class="message-window-open">
+                    <div class="contacts-list">
+                        <h2>Contacts</h2>
+                        @foreach ($contactUsers as $contact)
+                            <p id="contact"
+                                class="{{ $contact->conversation_id == session('last_conversation') ? 'active-contact' : '' }}"
+                                value="{{ $contact->conversation_id }}">
+                                {{ $contact->name }}
+                            </p>
+                        @endforeach
+                    </div>
+                    <x-window />
+                </div>
+            </details>
+        </x-card-sec>
+        {{-- </div> --}}
+    @endif
+    <button id="scrollToTopButton">
+        <i class="fa-solid fa-circle-up arrow-up"></i>
+    </button>
 
     {{-- footer --}}
     <footer class="static bottom-0 w-full flex flex-col items-center justify-center mt-10">
