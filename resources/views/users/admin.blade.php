@@ -22,15 +22,17 @@
 </style>
 <x-layout>
     <x-card>
-        <x-card-sec class="flex flex-col items-center">
-            <h2 class="font-bold text-5xl mt-5 tracking-tight">
+        <x-card-sec class="flex flex-col items-center mb-4">
+            <hr class="border-accent w-5/6 mx-auto my-6">
+            <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                 ADMIN DASHBOARD
             </h2>
-            <p class="text-neutral-500 text-xl mt-3">
+            <p class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">
                 List of all Users
             </p>
+            <hr class="border-accent w-5/6 mx-auto my-6">
         </x-card-sec>
-        <div class="divide-y divide-neutral-200 mx-auto">
+        <div class="divide-y divide-neutral-200 mx-auto space-y-4">
             @foreach ($users as $user)
                 <x-card-sec class="py-5">
                     <details class="group">
@@ -42,7 +44,14 @@
                                     <path d="M6 9l6 6 6-6"></path>
                                 </svg>
                             </span>
-                            <p> {{ $user }}</p>
+                            <div class="w-5/6 mx-auto">
+                                <h2 class="text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $user->name }} (ID: {{$user->id}})</h2>
+                                <hr class="border-accent w-5/6 mx-auto my-6">
+                                <div><strong>Email : </strong> {{ $user->email }}</div>
+                                <div><strong>Bio : </strong></div>
+                                <div>{{ $user->bio }}</div>
+                                <hr class="border-accent w-5/6 mx-auto my-6">
+                            </div>
                         </summary>
                         <x-dashboard-bank :user=$user />
 
