@@ -108,4 +108,22 @@ body{
     text-align: center;
 }
 
+.stats-card {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
 
+.stats-card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.stats-card p {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+}
