@@ -1,7 +1,7 @@
 {{-- no more JS T.T --}}
 
 <x-layout> {{-- x-layout, not div please replace when layout finished --}}
-    <x-card class="w-2/6 "> {{-- Here we also want to replace the div and input a x-card --}} 
+    <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto"> {{-- Here we also want to replace the div and input a x-card --}} 
         <x-card-sec>
         {{-- ? Do we need a x-card, always found it wierd (cedric) --}}
         {{-- * Yeah we need it no worries mate --}}
@@ -133,6 +133,6 @@
                 </div>
             </form>
         </x-card-sec>
-    </x-card>{{-- Here we also want to replace the div and input a /x-card --}}
+    </div>{{-- Here we also want to replace the div and input a /x-card --}}
 
 </x-layout>{{-- /x-layout, end of the layout --}}

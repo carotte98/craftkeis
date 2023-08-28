@@ -49,7 +49,9 @@ class BankDetailsController extends Controller
      */
     public function show(Bank_details $bank_details)
     {
-        //
+        return view('components.dashboard-bank', [
+            'bank_details' => $bank_details
+        ]);
     }
 
     /**
@@ -57,7 +59,7 @@ class BankDetailsController extends Controller
      */
     public function edit(Bank_details $bank_details)
     {
-        //
+        return view('users.bankEdit', ['bank_details' => $bank_details]);
     }
 
     /**
@@ -65,7 +67,18 @@ class BankDetailsController extends Controller
      */
     public function update(Request $request, Bank_details $bank_details)
     {
-        //
+        $formFields = $request->validate([
+            'firstName'=>['required'],
+            'lastName'=>['required'],
+            'cardNumber'=>['required'],
+            'payment_method'=>['required'],
+            'ccv'=>['required'],
+            'expireDate'=>['required']
+        ]);
+
+        $bank_details->update($formFields);
+
+        return redirect('/users/' . $bank_details->user_id)->with('message', 'Bank details updated successfully');
     }
 
     /**

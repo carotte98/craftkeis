@@ -35,10 +35,12 @@ class MessageController extends Controller
             'user_id' => 'required',
         ]);
 
+        // dd($formFields);
+
         //Create the new message
         $user = Message::create($formFields);
 
-        return back();
+        return response()->json(['message' => 'Message stored successfully']);
     }
 
     /**
