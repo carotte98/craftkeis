@@ -9,6 +9,7 @@ use Stripe\PaymentIntent;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 
+
 class PaymentController extends Controller
 {
     public function session(Request $request)
