@@ -182,11 +182,6 @@
     {{-- ==================== --}}
 
     {{-- User stats --}}
-    @php
-        $totalUsers = \App\Models\User::count();
-        $totalCreators = \App\Models\User::where('is_creator', true)->count();
-        $totalServices = \App\Models\Service::count();
-    @endphp
 
     <div class="stats-card w-1/2">
         <h3>Total Users</h3>
@@ -199,11 +194,47 @@
         <p>{{ $totalServices }}</p>
     </div>
 
-
     {{-- Artworks --}}
 
+    <div x-data="carousel()" x-init="init()">
+        <div class="relative">
+            <!-- Carousel Items -->
+            <div 
+                class="absolute inset-0 flex transition-transform duration-500"
+                :style="`transform: translateX(-${current * 100}%)`"
+            >
+                @foreach ($artworks as $artwork)
+                    <div class="min-w-full bg-cover bg-center h-64" style="background-image: url('/images/{{ $artwork }}')"></div>
+                @endforeach
+            </div>
+    
+            <!-- Carousel Navigation (Optional) -->
+            <div class="absolute bottom-0 left-0 right-0 flex justify-center space-x-2">
+                @foreach ($artworks as $index => $artwork)
+                    <button 
+                        @click="current = {{ $index }}"
+                        :class="{ 'bg-white': current === {{ $index }}, 'bg-gray-400': current !== {{ $index }} }"
+                        class="w-4 h-4 rounded-full"
+                    ></button>
+                @endforeach
+            </div>
+        </div>
+    </div>
 
+    {{-- Javascript --}}
+    
     <script>
+
+        function carousel() {
+            return {
+                current: 0,
+                init() {
+                    setInterval(() => {
+                        this.current = (this.current + 1) % {{ count($artworks) }};
+                    }, 3000); // Change slide every 3 seconds
+                }
+            };
+        }
         
         // Buttons as variables
         const freelance = document.querySelector("#freeB");

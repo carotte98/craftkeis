@@ -10,6 +10,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,10 @@ use App\Http\Controllers\ConversationController;
 
 
 // HomePage
-Route::get('/', function(){
-    return view('welcome');
-});
-
+// Route::get('/', function(){
+//     return view('welcome');
+// });
+Route::get('/', [HomeController::class, 'index']);
 
 // Show all services
 Route::get('/services/index', [ServiceController::class, 'index']);
