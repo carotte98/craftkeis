@@ -112,8 +112,8 @@
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg">
-            <div class="flex space-x-6 mr-6 items-center grid grid-cols-3 w-11/12 gap-x-52">
+        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
+            <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
                 <div class="flex">
                     {{-- Search bar --}}
@@ -261,7 +261,7 @@
                 </div>
 
                 <div class="flex flex-row gap-24 mx-24 xl:mx-32">
-                    <a href="/services">Categories</a>
+                    <a href="/services/index">Services</a>
 
                     @auth
 
@@ -278,10 +278,10 @@
         {{-- bootom copyright part --}}
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
-            <a href="/login-as-user/2" class="btn btn-primary">
+            <a href="/login-as-user/3" class="btn btn-primary">
                 Login as Maus katti
             </a>
-            <a href="/login-as-user/1" class="btn btn-primary">
+            <a href="/login-as-user/2" class="btn btn-primary">
                 Login as John Doe
             </a>
         </section>

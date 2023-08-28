@@ -45,7 +45,7 @@ class ServiceController extends Controller
 
         Service::create($formFields);
 
-        return redirect('/')->with('message', 'Service created successfully');
+        return redirect('/services/index')->with('message', 'Service created successfully');
     }
 
     /**
@@ -91,7 +91,7 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $service->delete();
-        return redirect('/')->with('message', 'Service deleted successfully');
+        return redirect('/users/' . $service->users->id)->with('message', 'Service deleted successfully');
     }
 
     public function manage()

@@ -94,6 +94,8 @@ class OrderController extends Controller
         }
 
         return redirect('/')->with('message', 'Order created successfully');
+    
+        return redirect('/services/index')->with('message', 'Order created successfully');
     }
 
     /**

@@ -1,11 +1,4 @@
 <x-layout>
-    <div class="flex justify-center mb-3">
-        <a href="{{ url()->previous() }}">
-            <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">
-                <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-        </a>
-    </div>
     <x-card>
         <x-card-sec> {{-- Profile details --}}
             <div class="flex justify-center">
@@ -36,22 +29,21 @@
                     </button>
                 </a>
             </div>
-            {{-- inbox for creators, no longer needed i think? --}}
-            <span class="text-lg">
-                <i class="fa-solid fa-inbox"></i>
-                <a href="/users/account/commissions" class="hover:text-accent">Inbox</a>
-            </span>
-        </x-card-sec>
+            </x-card-sec>
 
         @if ($user->is_creator == 1)
             <x-dashboard-bank :user=$user />
         @endif
 
-        <x-dashboard-service :user=$user />
+            @if ($user->is_creator ==1)
+                <x-dashboard-service :user=$user/>
+            @endif
 
         <x-dashboard-orderClient :user=$user />
 
-        <x-dashboard-orderCreator :user=$user />
+            @if ($user->is_creator ==1)
+                <x-dashboard-orderCreator :user=$user/>
+            @endif
 
         {{-- <x-card-sec>
             <h2>Contacts</h2>
@@ -63,4 +55,11 @@
             <x-window></x-window>
         </x-card-sec> --}}
     </x-card>
+    <div class="flex justify-center mb-3">
+        <a href="/">
+            <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </a>
+    </div>
 </x-layout>

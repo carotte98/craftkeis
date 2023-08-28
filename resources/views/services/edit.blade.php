@@ -100,15 +100,9 @@
                     <button class="bg-accent text-lg text-white rounded-lg py-2 px-4 hover:bg-onhover">
                         Update Service
                     </button>
+                    <a href="/users/{{auth()->user()->id}}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
                 </div>
             </form>
         </x-card-sec>
-    </x-card>  
-    <div class="flex justify-center mt-3">
-        <a href="/">
-            <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">
-                <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-        </a>
-    </div>
+    </x-card>
 </x-layout>

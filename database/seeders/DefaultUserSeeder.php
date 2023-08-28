@@ -13,11 +13,19 @@ class DefaultUserSeeder extends Seeder
      */
     public function run()
     {
+        // admin user
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => 'Password@123',
+            'is_creator' => false,
+        ]);
+
         // default logged in user
         $user = User::factory()->create([
             'name' => 'John Doe',
             'email' => 'john@gmail.com',
-            'password' => '1234',
+            'password' => 'Password@123',
             'is_creator' => false,
         ]);
 
@@ -28,7 +36,7 @@ class DefaultUserSeeder extends Seeder
         User::factory()->create([
             'name' => 'Maus Kaetti',
             'email' => 'maus@gmail.com',
-            'password' => '1234',
+            'password' => 'Password@123',
             'is_creator' => true,
         ]);
 
