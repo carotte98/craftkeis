@@ -61,7 +61,7 @@
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
         <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
-            <div class="flex space-x-6 mr-6 items-center grid grid-cols-3 w-11/12 gap-x-52">
+            <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
                 <div class="flex"> 
                     {{-- Search bar --}}
@@ -163,7 +163,7 @@
                 </div>
 
                 <div class="flex flex-row gap-24 mx-24 xl:mx-32">
-                    <a href="/services">Categories</a>
+                    <a href="/services/index">Services</a>
 
                     @auth
 

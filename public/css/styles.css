@@ -1,17 +1,4 @@
-@font-face {
-    font-family: Aquire;
-    src: url('/fonts/Aquire-BMWox.otf') format('otf');
-}
-
-@font-face {
-    font-family: AquireBold;
-    src: url('/fonts/AquireBold-8Ma60.otf') format('otf');
-}
-
-@font-face {
-    font-family: AquireLight;
-    src: url('/fonts/AquireLight-YzE0o.otf') format('otf');
-}
+@import url('https://fonts.cdnfonts.com/css/aquire?styles=58838,58840,58839');
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
@@ -62,6 +49,14 @@ body{
     font-size: 2rem;
     color: #676666;
     font-family: 'Aquire';
+    text-decoration: none;
+}
+
+.customLogoBold{
+    font-size: 2rem;
+    color: #676666;
+    font-family: 'Aquire';
+    font-weight: 700;
     text-decoration: none;
 }
 

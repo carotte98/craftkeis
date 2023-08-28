@@ -36,11 +36,7 @@
                     </button>
                 </a>
             </div>
-                 {{-- inbox for creators, no longer needed i think? --}}
-                <span class="text-lg">
-                    <i class="fa-solid fa-inbox"></i>
-                    <a href="/users/account/commissions" class="hover:text-accent">Inbox</a>
-                </span>
+                
             </x-card-sec>
 
             @if ($user->is_creator ==1)
@@ -63,8 +59,7 @@
                     {{ $contact->name }}
                 </div>
             @endforeach
-            {{-- <x-window :conversationId=$conversationId :messages=$messages></x-window> --}}
-            {{-- <x-window :messages=$messages></x-window> --}}
+
             <x-window></x-window>
         </x-card-sec>
     </x-card>

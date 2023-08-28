@@ -1,6 +1,6 @@
 <x-layout>
-    <x-card>
-        <div class="bg-background dropshadow rounded-lg p-6 mb-2 w-3/6">
+    <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
+        <x-card-sec>
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                 Contact Us
             </h2>
@@ -48,6 +48,6 @@
                     <a href="/" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
                 </div>
             </form>
-        </div>
-    </x-card>
+        </x-card-sec>
+    </div>
 </x-layout>
