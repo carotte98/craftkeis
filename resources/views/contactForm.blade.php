@@ -1,4 +1,11 @@
 <x-layout>
+    <div class="flex justify-center mb-3">
+        <a href="{{ url()->previous() }}">
+            <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </a>
+    </div>
     <x-card>
         <div class="bg-background dropshadow rounded-lg p-6 mb-2 w-3/6">
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
@@ -45,7 +52,6 @@
                     <button class="bg-accent text-lg text-white rounded-lg py-2 px-4 hover:bg-onhover">
                         Send Message
                     </button>
-                    <a href="/" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
                 </div>
             </form>
         </div>

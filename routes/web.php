@@ -127,3 +127,8 @@ Route::get('/payment/{order}/success', [PaymentController::class, 'success'])->n
 //contact us
 Route::get('/contact', [ContactController::class,'showForm']);
 Route::post('/contact', [ContactController::class,'sendMail']);
+
+// About Us
+Route::get('/about', function(){
+    return view('about');
+});

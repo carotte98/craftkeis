@@ -69,7 +69,7 @@ class OrderController extends Controller
         // dd($formFields);
         Order::create($formFields);
     
-        return redirect('/')->with('message', 'Order created successfully');
+        return redirect('/services/index')->with('message', 'Order created successfully');
     }
 
     /**
