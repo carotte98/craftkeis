@@ -1,5 +1,4 @@
 {{-- no more JS T.T --}}
-
 <x-layout> {{-- x-layout, not div please replace when layout finished --}}
     <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto"> {{-- Here we also want to replace the div and input a x-card --}} 
         <x-card-sec>
@@ -110,6 +109,7 @@
                         <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
                             Sign Up
                         </button>
+                        <a href="{{ url()->previous() }}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@
                     </button>
                     <button class="" id="facebook">
                         <a href="">
-                            <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
+                            <i class="fa-brands fa-facebook" style="color: #ffffff;"></i>
 
                         </a>
                     </button>
@@ -132,10 +132,10 @@
                 <div class="mt-4 register-footer">
                     <p>
                         Already have an account?
-                        <a href="/login" >Login</a>
+                        <a href="/login" ><strong>Login</strong></a>
                     </p>
                     <div>
-                        <a href="">Terms & conditions</a>
+                        <p>Terms & conditions</p>
                     </div>
                 </div>
             </form>

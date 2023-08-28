@@ -97,13 +97,15 @@
                         @enderror
                     </div>
 
+                    @unless ($user->is_creator == 1)
                     {{-- this div is for the checkbox --}}
                     <div class="bordered-div ">
                         <label for="is_creator" class="inline-block text-lg mb-2">
                             Are you a creator?
                         </label>
-                        <input type="checkbox" id="role" onclick="toggleInputs()" name="is_creator" value="{{$user->is_creator}}">
+                        <input type="checkbox" id="role" name="is_creator" value="1">
                     </div>
+                    @endunless
                     
                     <hr class="border-accent w-5/6 mx-auto my-6">
 
@@ -113,6 +115,7 @@
                                 Update Account
                             </button>
                         </div>
+                        <a href="/users/{{auth()->user()->id}}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
                     </div>
         
                     
