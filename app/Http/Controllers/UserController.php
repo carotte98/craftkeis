@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Message;
+use App\Models\Conversation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\Password;
 
 use function Laravel\Prompts\password;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -57,18 +59,17 @@ class UserController extends Controller
             //public/logos/ instead of just public
         }
 
-        
+
         //validation, to check if passwords match or not
-        if($request->confirm_password==$formFields['password'])
-        {
+        if ($request->confirm_password == $formFields['password']) {
             //Hash the password with bcrypt 
             $formFields['password'] = bcrypt($formFields['password']);
-    
+
             // You can explicitly set the attributes to their default values if they are not provided
             $formFields['bio'] = $formFields['bio'] ?? null;
             $formFields['is_creator'] = $formFields['is_creator'] ?? null;
             // $formFields['bank_id'] = $formFields['bank_id'] ?? null;
-             // Set is_creator value based on checkbox
+            // Set is_creator value based on checkbox
             $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
 
 
@@ -76,27 +77,25 @@ class UserController extends Controller
             //Create the new user
             $user = User::create($formFields);
             auth()->login($user);
-    
-            if($user->is_creator)
-            {
+
+            if ($user->is_creator) {
                 session_start();
-                session(['user'=> $user]);
+                session(['user' => $user]);
                 return redirect('/register/{user}/bankDetails');
             }
-    
+
             //TODO
             //Using auth() helper handles all the login/logout process for us
             //It saves us an ENORMUS amount of time
-    
+
             //When user is created and logged in, we will show them the homepage so they can start navigate the website
             return redirect('/')->with('message', 'User created and logged in!');
+        } else {
+            return back()->withErrors([
+                'confirm_password' => "Passwords don't match",
+                'password' => "Passwords don't match"
+            ]);
         }
-        else
-        {
-            return back()->withErrors(['confirm_password' => "Passwords don't match" ,
-                                        'password'=>"Passwords don't match"]);
-        }
-
     }
 
     public function login()
@@ -118,7 +117,7 @@ class UserController extends Controller
             $request->session()->regenerate();
 
             //Redirect to account page for now
-            return redirect('users/account'); //->with('message', 'You are now logged in!');
+            return redirect('/')->with('message', 'You are now logged in!');
         }
 
         //Go back to login form with error message for 'email' field
@@ -139,19 +138,53 @@ class UserController extends Controller
 
         $contactUsers = [];
 
+        //Search for first conversation of user
+        $firstConversation = Conversation::where('user_id1', $user->id)
+        ->orWhere('user_id2', $user->id)
+        ->first();
+
         //For each conversation put the other contact(user) in an array 
         foreach ($conversations as $conversation) {
             $contactUserId = $conversation->user_id1 == $user->id ? $conversation->user_id2 : $conversation->user_id1;
             $contactUser = DB::table('users')->find($contactUserId);
 
-            // Append the other user's details to the $otherUsers array
+            //Get exact conversation id for that user
+            $conversation = Conversation::where([
+                ['user_id1', $user->id],
+                ['user_id2', $contactUser->id],
+            ])->orWhere([
+                ['user_id1', $contactUser->id],
+                ['user_id2', $user->id],
+            ])->first();
+
+            // Append the other user's details along with the conversation ID
+            $contactUser->conversation_id = $conversation->id;
             $contactUsers[] = $contactUser;
+            // dd($contactUser);
+        }
+
+        // If user is admin then return admin dashboard view
+        if ($user->email === 'admin@gmail.com') {
+            return view('users.admin', [
+                //'user' => $user,//Can be removed
+                'users' => User::all(), //Temporary for chat purpose
+                'contacts' => $contactUsers,
+            ]);
+        }
+        // dd($contactUser);
+        // dd($conversations[0]->id);
+        // dd($firstConversation->id);
+        // $messages = 0;
+        if ($firstConversation) {
+            $messages = $firstConversation->messages; // Accessing the messages relationship
+            // dd($messages);
         }
 
         // Pass the user data to the view
         return view('users.account', [
-            'user' => $user,
-            'tempContacts' => User::all(), //Temporary for chat purpose
+            'user' => $user, //Can be removed
+            'conversationId' => $firstConversation ? $firstConversation->id : "", //First conversations user has
+            'messages' => $messages,
             'contacts' => $contactUsers,
         ]);
     }
@@ -202,7 +235,7 @@ class UserController extends Controller
             'phone_number' => ['nullable'],
             'commission_amount' => ['nullable']
         ]);
-        
+
         if ($request->hasFile('image_address')) {
             $formFields['image_address'] = $request->file('image_address')->store('images', 'public');
         }
