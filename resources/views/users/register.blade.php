@@ -1,5 +1,4 @@
 {{-- no more JS T.T --}}
-
 <x-layout> {{-- x-layout, not div please replace when layout finished --}}
     <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto"> {{-- Here we also want to replace the div and input a x-card --}} 
         <x-card-sec>
@@ -114,7 +113,7 @@
                     </button>
                     <button class="" id="facebook">
                         <a href="">
-                            <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
+                            <i class="fa-brands fa-facebook" style="color: #ffffff;"></i>
 
                         </a>
                     </button>

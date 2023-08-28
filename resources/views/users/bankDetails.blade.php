@@ -56,6 +56,20 @@
 </head>
 {{-- end of styling --}}
 
+{{-- start of script --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const expireDateInput = document.querySelector('input[name="expireDate"]');
+
+        expireDateInput.addEventListener('input', function () {
+            const inputValue = expireDateInput.value;
+            if (inputValue.length === 2 && inputValue.indexOf('/') === -1) {
+                expireDateInput.value = inputValue + '/';
+            }
+        });
+    });
+</script>
+
 <x-layout>
     <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
         <x-card-sec>
