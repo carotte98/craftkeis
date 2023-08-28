@@ -36,6 +36,24 @@
                 },
             },
         };
+        // const scrollToTopButton = document.querySelector("#scrollToTopButton");
+        // console.log(scrollToTopButton);
+        // // Show or hide the button based on the scroll position
+        // window.addEventListener("scroll", () => {
+        //     if (window.pageYOffset > 100) {
+        //         scrollToTopButton.classList.add("show");
+        //     } else {
+        //         scrollToTopButton.classList.remove("show");
+        //     }
+        // });
+
+        // // Scroll to the top of the page when the button is clicked
+        // scrollToTopButton.addEventListener("click", () => {
+        //     window.scrollTo({
+        //         top: 0,
+        //         behavior: "smooth"
+        //     });
+        // });
     </script>
     <style>
         body {
@@ -44,6 +62,36 @@
 
         .active-contact {
             background-color: lightgreen;
+        }
+
+        .message-window-page {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            z-index: 50;
+        }
+
+        .message-list {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            overflow-y: scroll;
+        }
+
+        .message-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .message-window-open {
+            display: flex;
+            /* flex-direction: column; */
+        }
+
+        .arrow-up {
+            font-size: 3rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 50;
         }
     </style>
     <title>Craftkéis - Find Artists</title>
@@ -146,19 +194,39 @@
 
     </main>
     @if (auth()->check())
-        <x-card-sec>
-            <h2>Contacts</h2>
-            @foreach ($contactUsers as $contact)
-                <div id="contact"
-                    class="{{ $contact->conversation_id == session('last_conversation') ? 'active-contact' : '' }}"
-                    value="{{ $contact->conversation_id }}">
-                    {{ $contact->name }}
+        {{-- <div class="divide-y divide-neutral-200 mx-auto"> --}}
+        <x-card-sec class="py-5 message-window-page">
+            <details class="group">
+                <summary class="flex items-center font-medium cursor-pointer list-none">
+                    <span class="transition group-open:rotate-180">
+                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                            width="24">
+                            <path d="M6 9l6 6 6-6"></path>
+                        </svg>
+                    </span>
+                    <p>MESSAGES</p>
+                </summary>
+                <div class="message-window-open">
+                    <div class="contacts-list">
+                        <h2>Contacts</h2>
+                        @foreach ($contactUsers as $contact)
+                            <p id="contact"
+                                class="{{ $contact->conversation_id == session('last_conversation') ? 'active-contact' : '' }}"
+                                value="{{ $contact->conversation_id }}">
+                                {{ $contact->name }}
+                            </p>
+                        @endforeach
+                    </div>
+                    <x-window />
                 </div>
-            @endforeach
-            <x-window></x-window>
+            </details>
         </x-card-sec>
+        {{-- </div> --}}
     @endif
-
+    <button id="scrollToTopButton">
+        <i class="fa-solid fa-circle-up arrow-up"></i>
+    </button>
 
     {{-- footer --}}
     <footer class="static bottom-0 w-full flex flex-col items-center justify-center mt-10">

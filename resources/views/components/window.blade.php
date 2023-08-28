@@ -6,6 +6,7 @@
 
     let pollingTimeoutId = null;
     let userScrolledUp = false;
+    let initialFetch = true;
 
     // GET EMOJIS
     function getEmojis() {
@@ -116,7 +117,7 @@
                     // Scroll to the bottom of the message window
                     messageList.scrollTop = messageList.scrollHeight;
                     initialFetch = false;
-                } else if (userScrolledUp){
+                } else if (userScrolledUp) {
                     // Set the recorded scroll position
                     messageList.scrollTop = scrollPosition;
                 }
@@ -350,30 +351,28 @@
         overflow-wrap: break-word;
     }
 </style>
-<div>
-    {{-- Chat window --}}
-    <div class="window">
-        <div class="message-list" id="message-window">
-            {{-- Display all messages using message-card and javascript --}}
-            <div class="outer-message-card" id="outer-message-card">
-                <x-message-card />
+{{-- Chat window --}}
+<div class="window">
+    <div class="message-list" id="message-window">
+        {{-- Display all messages using message-card and javascript --}}
+        <div class="outer-message-card" id="outer-message-card">
+            <x-message-card />
+        </div>
+    </div>
+    <form method="POST" id="message-form">
+        @csrf
+        <input type="hidden" name="conversation_id" id="form-conversation_id" value="">
+        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+        <!-- Textarea with emoji insertion -->
+        <div class="emoji-icons" id="emoji-container">
+            <!-- Function will add more emoji icons/buttons here -->
+        </div>
+        <div class="text-area-container">
+            <textarea name="message_content" id="new_message" placeholder="Type your message..."></textarea>
+            <button id="show-emoji" type="button"> &#x1F600;</button>
+            <div class="text-buttons">
+                <button id="send-button" type="submit">Send</button>
             </div>
         </div>
-        <form method="POST" id="message-form">
-            @csrf
-            <input type="hidden" name="conversation_id" id="form-conversation_id" value="">
-            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-            <!-- Textarea with emoji insertion -->
-            <div class="emoji-icons" id="emoji-container">
-                <!-- Function will add more emoji icons/buttons here -->
-            </div>
-            <div class="text-area-container">
-                <textarea name="message_content" id="new_message" placeholder="Type your message..."></textarea>
-                <button id="show-emoji" type="button"> &#x1F600;</button>
-                <div class="text-buttons">
-                    <button id="send-button" type="submit">Send</button>
-                </div>
-            </div>
-        </form>
-    </div>
+    </form>
 </div>
