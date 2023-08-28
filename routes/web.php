@@ -8,6 +8,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BankDetailsController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ConversationController;
 
 /*
@@ -123,3 +124,6 @@ Route::post('/payment/{order}/session', [PaymentController::class, 'session'])->
 //payment_success
 Route::get('/payment/{order}/success', [PaymentController::class, 'success'])->name('success');
 
+//contact us
+Route::get('/contact', [ContactController::class,'showForm']);
+Route::post('/contact', [ContactController::class,'sendMail']);
