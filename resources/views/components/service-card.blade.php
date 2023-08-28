@@ -1,15 +1,6 @@
 @props(['service'])
-<style>
-    .connect-btn {
-        width: 100px;
-        height: 100px;
-        background-color: orange;
-        color: aliceblue;
-    }
-    .connect-btn input {
-        height: fit-content;
-    }
-</style>
+
+
 <x-card-sec>
     <div class="w-full">
 
@@ -25,21 +16,20 @@
         <div class="p-7 pt-0 pb-0">
 
             {{-- Div containing over the line content --}}
-            <div class="mb-2 flex flex-row justify-between  text-center">
-
+            <div class="mb-2 flex flex-row justify-between align-center text-center">
+                
                 <div class="flex flex-row space-x-2">
                     {{-- Artist name --}}
-                    <div class="text-sm font-bold p-1">
-                        by
+                    <div class="w-36 text-xs xl:text-sm font-bold p-1 -ml-6">
+                        by 
                         <a href="/creators/{{ $service->users->id }}">{{ $service->users->name }}</a>
                     </div>
 
                     {{-- Category bubble --}}
-                    <a class="w-24 rounded-full bg-buttons p-1 text-xs"
-                        href="?category_id={{ $service->category_id }}">{{ $service->categories->name }}</a>
+                    <a class="w-24 text-sm" href="?category_id={{$service->category_id}}"><button class=" w-full rounded-full bg-buttons p-1 text-xs">{{$service->categories->name}}</button></a>
                 </div>
 
-                <div class="flex flex-row space-x-2">
+                <div class=" space-x-2">
 
                     {{-- Order button --}}
                     <form action="" method="post" action="/orders/create">

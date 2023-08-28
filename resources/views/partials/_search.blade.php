@@ -7,7 +7,7 @@
         </div>
         <input type="text" name="search" class="h-8 w-full pl-10 pr-20 rounded-lg z-0 focus:shadow focus:outline-none"
             placeholder="Search services" />
-        <div class="absolute top-1 right-2">
+        <div class="absolute top-1 -right-24">
             <button type="submit" class="h-6 w-20 text-white rounded-lg bg-accent hover:bg-onhover">
                 Search
             </button>

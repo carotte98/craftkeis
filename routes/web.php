@@ -30,8 +30,14 @@ use App\Http\Controllers\ConversationController;
 //*ADMIN 
 
 
+// HomePage
+Route::get('/', function(){
+    return view('welcome');
+});
+
+
 // Show all services
-Route::get('/', [ServiceController::class, 'index']);
+Route::get('/services/index', [ServiceController::class, 'index']);
 // Create new service
 Route::get('/services/create', [ServiceController::class, 'create'])->middleware('auth');
 // Store new service
