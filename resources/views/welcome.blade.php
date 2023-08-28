@@ -50,6 +50,38 @@
     <br>
     {{-- How to use craftkeis --}}
 
+    {{-- User stats --}}
+
+    <x-card>
+        <x-card-sec>
+            <div class="flex flex-col items-center justify-center">
+                <hr class="border-accent w-5/6 my-6">
+                <div class="grid grid-cols-3 w-5/6 mx-auto p-4 text-center text-2xl my-4">
+                    <div class="border-4 border-accent w-1/2 rounded-full mx-auto">
+                        <i class="fa-solid fa-user relative -top-6 text-4xl"></i>
+                        <p class="font-bold">{{ $totalUsers }}</p>
+                        <h3 class="relative font-bold top-8 text-lg">Total Users</h3>
+                    </div>
+    
+                    <div class="border-4 border-accent w-1/2 rounded-full mx-auto">
+                        <i class="fa-solid fa-paintbrush relative -top-6 text-4xl"></i>
+                        <p class="font-bold">{{ $totalCreators }}</p>
+                        <h3 class="relative font-bold top-8 text-lg">Total Creators</h3>
+                    </div>
+    
+                    <div class="border-4 border-accent w-1/2 rounded-full mx-auto">
+                        <i class="fa-solid fa-file-pen relative -top-6 text-4xl"></i>
+                        <p class="font-bold">{{ $totalServices }}</p>
+                        <h3 class="relative font-bold top-8 text-lg">Total Services</h3>
+                    </div>
+                </div>
+                <hr class="border-accent w-5/6 my-6">
+            </div>
+        </x-card-sec>
+    </x-card>
+    <br>
+    {{-- ======================== --}}
+
     <x-card>
 
         {{-- TABS --}}
@@ -74,6 +106,7 @@
             </button>
 
         </div>
+
 
         {{-- TEXTS --}}
         <div class="relative bg-background dropshadowUp rounded-t-lg p-6 mb-2 z-40">
@@ -128,6 +161,7 @@
 
             {{-- ========================================= --}}
 
+
             {{-- Particular --}}
             <div id="part" class="hidden">
 
@@ -180,61 +214,10 @@
     </x-card>
 
     {{-- ==================== --}}
-
-    {{-- User stats --}}
-
-    <div class="stats-card w-1/2">
-        <h3>Total Users</h3>
-        <p>{{ $totalUsers }}</p>
-
-        <h3>Total Creators</h3>
-        <p>{{ $totalCreators }}</p>
-
-        <h3>Total Services</h3>
-        <p>{{ $totalServices }}</p>
-    </div>
-
-    {{-- Artworks --}}
-
-    <div x-data="carousel()" x-init="init()">
-        <div class="relative">
-            <!-- Carousel Items -->
-            <div 
-                class="absolute inset-0 flex transition-transform duration-500"
-                :style="`transform: translateX(-${current * 100}%)`"
-            >
-                @foreach ($artworks as $artwork)
-                    <div class="min-w-full bg-cover bg-center h-64" style="background-image: url('/images/{{ $artwork }}')"></div>
-                @endforeach
-            </div>
-    
-            <!-- Carousel Navigation (Optional) -->
-            <div class="absolute bottom-0 left-0 right-0 flex justify-center space-x-2">
-                @foreach ($artworks as $index => $artwork)
-                    <button 
-                        @click="current = {{ $index }}"
-                        :class="{ 'bg-white': current === {{ $index }}, 'bg-gray-400': current !== {{ $index }} }"
-                        class="w-4 h-4 rounded-full"
-                    ></button>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    {{-- Javascript --}}
+ 
     
     <script>
 
-        function carousel() {
-            return {
-                current: 0,
-                init() {
-                    setInterval(() => {
-                        this.current = (this.current + 1) % {{ count($artworks) }};
-                    }, 3000); // Change slide every 3 seconds
-                }
-            };
-        }
         
         // Buttons as variables
         const freelance = document.querySelector("#freeB");
