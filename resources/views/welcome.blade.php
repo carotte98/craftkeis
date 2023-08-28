@@ -183,12 +183,22 @@
 
     {{-- User stats --}}
 
+    <div class="stats-card w-1/2">
+        <h3>Total Users</h3>
+        <p>{{ $totalUsers }}</p>
 
+        <h3>Total Creators</h3>
+        <p>{{ $totalCreators }}</p>
 
+        <h3>Total Services</h3>
+        <p>{{ $totalServices }}</p>
+    </div>
 
     {{-- Artworks --}}
 
 
+    {{-- Javascript --}}
+    
     <script>
         
         // Buttons as variables

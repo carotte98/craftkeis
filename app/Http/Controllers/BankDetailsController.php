@@ -29,12 +29,11 @@ class BankDetailsController extends Controller
     public function store(Request $request)
     {
         $formFields =$request->validate([
-            'firstName'=>['required'],
-            'lastName'=>['required'],
-            'cardNumber'=>['required'],
-            'payment_method'=>['required'],
-            'ccv'=>['required'],
-            'expireDate'=>['required']
+            'full_name'=>['required'],
+            'cardNumber'=>['required','numeric', 'digits:16'],
+            // 'payment_method'=>['required'],
+            'expireDate'=>['required'],
+            'ccv'=>['required','numeric', 'digits:3']
         ]);
         $formFields['user_id']=auth()->user()->id;
 

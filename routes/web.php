@@ -10,6 +10,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\BankDetailsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,10 @@ use App\Http\Controllers\ConversationController;
 
 
 // HomePage
-Route::get('/', function(){
-    return view('welcome');
-});
-
+// Route::get('/', function(){
+//     return view('welcome');
+// });
+Route::get('/', [HomeController::class, 'index']);
 
 // Show all services
 Route::get('/services/index', [ServiceController::class, 'index']);
@@ -122,7 +123,7 @@ Route::put('/bankDetails/{bank_details}', [BankDetailsController::class, 'update
 Route::post('/payment/{order}/session', [PaymentController::class, 'session'])->name('session');
 
 //payment_success
-Route::get('/payment/{order}/success', [PaymentController::class, 'success'])->name('success');
+Route::get('/success', [PaymentController::class, 'success'])->name('success');
 
 //contact us
 Route::get('/contact', [ContactController::class,'showForm']);
