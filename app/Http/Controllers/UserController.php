@@ -164,7 +164,7 @@ class UserController extends Controller
         }
 
         // If user is admin then return admin dashboard view
-        if ($user->email === 'admin@gmail.com') {
+        if ($user->email === 'craftkeis.devs@gmail.com') {
             return view('users.admin', [
                 //'user' => $user,//Can be removed
                 'users' => User::all(), //Temporary for chat purpose

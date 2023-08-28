@@ -5,6 +5,8 @@
     const scrollThreshold = 80; // Adjust this value for scroll threshold
 
     let pollingTimeoutId = null;
+    let userScrolledUp = false;
+
     // GET EMOJIS
     function getEmojis() {
         fetch(apiUrl)
@@ -59,31 +61,41 @@
         fetch(`/users/account/chat/conversation/poll/${conversationId}`)
             .then(response => response.json())
             .then(data => {
+                // Record the current scroll position
+                const messageList = document.querySelector('#message-window');
+                const scrollPosition = messageList.scrollTop;
+                console.log(scrollPosition);
 
                 // UPDATE MESSAGE 
                 // clone last card, remove clear, html
-                const messageList = document.querySelector('#message-window');
+                // const messageList = document.querySelector('#message-window');
                 const innerMessageCard = document.querySelector('#inner-message-card')
 
                 // Clone the message card template
                 const messageCardToBeCloned = document.querySelector('#outer-message-card');
 
-                // Clear existing messages
-                messageList.innerHTML = '';
+                // Remove previous clones with the class name "got-created"
+                const elementsToRemove = document.querySelectorAll('.got-cloned');
 
-                // Clone for each message redundant later
+                // Loop through the NodeList and remove each previous clone
+                elementsToRemove.forEach(element => {
+                    element.remove();
+                });
+
+                // Clone for each message 
                 data.messages.forEach(message => {
+
                     //Last message card gets cloned
                     const messageCard = messageCardToBeCloned.cloneNode(true);
-                    const messageCardFirstChild = messageCard.firstElementChild; // Get the first child
+                    const messageCardLastChild = messageCard.lastElementChild; // Get the last child
 
-                    messageCardFirstChild.className = ''; // This removes all classes
+                    messageCardLastChild.className = ''; // This removes all classes
 
                     console.log(messageCard.firstElementChild.classList);
                     if ({{ auth()->user()->id }} == message.user_id) {
-                        messageCardFirstChild.classList.add('inner-message-card', 'user');
+                        messageCardLastChild.classList.add('got-cloned', 'inner-message-card', 'user');
                     } else {
-                        messageCardFirstChild.classList.add('inner-message-card');
+                        messageCardLastChild.classList.add('got-cloned', 'inner-message-card');
                     }
                     // Clean the date
                     const time = message.created_at.replace('T', ' ').slice(0, -8);
@@ -99,15 +111,35 @@
                     messageList.appendChild(messageCard);
                 });
 
-                // Check if the initial fetch is done
-                if (!initialFetchDone) {
-                    // Scroll to the bottom of the message list initially
-                    const messageList = document.querySelector('#message-window');
+                // // Check if the initial fetch is done
+                if (initialFetch) {
+                    // Scroll to the bottom of the message window
                     messageList.scrollTop = messageList.scrollHeight;
-
-                    // Set the flag to true after the initial fetch
-                    initialFetchDone = true;
+                    initialFetch = false;
+                } else if (userScrolledUp){
+                    // Set the recorded scroll position
+                    messageList.scrollTop = scrollPosition;
                 }
+                //     // Scroll to the bottom of the message list initially
+                //     // const messageList = document.querySelector('#message-window');
+                //     messageList.scrollTop = messageList.scrollHeight;
+                //     // Set the flag to true after the initial fetch
+                //     initialFetch = false;
+                // } else {
+                //     // Record the current scroll position
+                //     const messageList = document.querySelector('#message-window');
+                //     const scrollPosition = messageList.scrollTop;
+                //     // Load the new conversation and update the message list
+
+                //     // Set the recorded scroll position
+                //     messageList.scrollTop = scrollPosition;
+
+                // }
+
+                //If user did not scroll then go to bottom
+                // if (userScrolledUp) {
+                // messageList.scrollTop = messageList.scrollHeight;
+                // }
 
                 // Restart polling after a delay
                 pollingTimeoutId = setTimeout(() => {
@@ -120,7 +152,7 @@
                         messageList.scrollTop = messageList.scrollHeight;
                     }
                     pollConversation(conversationId);
-                }, 1500); // Poll after 1 second
+                }, 2000); // Poll after 1 second
             })
             .catch(error => {
                 console.error('Polling error:', error);
@@ -128,7 +160,7 @@
                 setTimeout(() => {
                     // conversationId = getConversationId();
                     pollConversation(conversationId);
-                }, 1500); // Retry after 1 second
+                }, 2000); // Retry after 1 second
             });
     }
 
@@ -181,7 +213,7 @@
             const newConversationIdValue = lastConversation;
             conversationIdInput.value = newConversationIdValue;
             // Set the flag to false before the initial fetch
-            initialFetchDone = false;
+            initialFetch = true;
             // Start new Conversation Polling
             pollConversation(newConversationIdValue);
         }
@@ -191,9 +223,15 @@
         const sendButton = document.querySelector('#send-button');
         sendButton.addEventListener('click', () => {
             // Prevent the default form submission
-            event.preventDefault(); 
+            event.preventDefault();
             const formData = new FormData(form);
             sendDataToServer(formData);
+        });
+
+        //EventListener if user scrolls up
+        const messageList = document.querySelector('#message-window');
+        messageList.addEventListener('scroll', () => {
+            userScrolledUp = messageList.scrollTop > 50;
         });
 
         //EventListener for each contact
@@ -203,7 +241,7 @@
                 stopPolling();
 
                 // Set the flag to false before the initial fetch
-                initialFetchDone = false;
+                initialFetch = true;
 
                 //Get the value(conversationID) of the clicked contact
                 const conversationId = parseInt(contact.getAttribute('value'));
@@ -212,6 +250,18 @@
                 const conversationIdInput = document.querySelector('#form-conversation_id');
                 const newConversationIdValue = conversationId;
                 conversationIdInput.value = newConversationIdValue;
+
+                //Remove the class active for each contact
+                // Get all contact elements
+                const contactElements = document.querySelectorAll('#contact');
+
+                // Remove all classes from all contact elements
+                contactElements.forEach(contact => {
+                    contact.classList.remove(
+                        'active-contact'); // Set the class to just 'contact'
+                });
+                //Set classes to highlight selected contact
+                contact.classList.add('active-contact')
 
                 // Start new Conversation Polling
                 pollConversation(conversationId);
