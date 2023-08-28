@@ -16,13 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->foreignId('bank_id')->nullable();
+            // $table->foreignId('bank_id')->nullable();
             $table->string('password');
             $table->longtext('bio')->nullable();
-            $table->boolean('is_creator')->nullable();
+            $table->boolean('is_creator')->default(0);
             $table->string('image_address')->nullable();
             $table->string('phone_number')->nullable();
-            $table->tinyInteger('commission_amount')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

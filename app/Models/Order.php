@@ -10,18 +10,18 @@ class Order extends Model
     use HasFactory;
 
     public function userClient() {
-        return $this->belongsTo(Order::class, 'user_id1');
+        return $this->belongsTo(User::class, 'user_id2'); // client = id2
     }
 
     public function userCreator() {
-        return $this->belongsTo(Order::class, 'user_id2');
+        return $this->belongsTo(User::class, 'user_id1'); // creator = id1
     }
 
     public function service() {
-        return $this->belongsTo(Order::class, 'service_id');
+        return $this->belongsTo(Service::class, 'service_id');
     }
 
     public function bank() {
-        return $this->belongsTo(Order::class, 'bank_id');
+        return $this->belongsTo(BankDetails::class, 'bank_id');
     }
 }

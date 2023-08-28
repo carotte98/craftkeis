@@ -50,10 +50,10 @@ class User extends Authenticatable
     ];
 
 
-    public function bankDetails()
-    {
-        return $this->belongsTo(BankDetail::class, 'bank_id');
-    }
+    // public function bankDetails()
+    // {
+    //     return $this->belongsTo(BankDetail::class, 'bank_id');
+    // }
 
     public function user1Conversation() {
         return $this->hasMany(Conversation::class, 'user_id1');
@@ -65,13 +65,21 @@ class User extends Authenticatable
         return $this->hasMany(Message::class, 'user_id');
     }
     public function orderClient() {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'user_id2');
     }
     public function orderCreator() {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'user_id1');
     }
     
     public function services(){
         return $this->hasMany(Service::class, 'user_id');
+    }
+    
+    public function products(){
+        return $this->hasMany(Product::class, 'user_id');
+    }
+    
+    public function bank_details(){
+        return $this->hasOne(Bank_details::class, 'user_id');
     }
 }

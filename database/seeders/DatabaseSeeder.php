@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Product;
 use App\Models\Service;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
@@ -13,9 +14,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::factory()->create();
 
-        $base = Category::create([
+        Category::create([
             'name' => '3D Modelling'
         ]);
         Category::create([
@@ -34,22 +34,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Logo Design'
         ]);
 
-        $client = User::factory()->create([
-            'name' => 'John Doe',
-            'is_creator' => false,
+        
+        $this->call([
+            DefaultUserSeeder::class,
+            ServiceSeeder::class,
         ]);
 
-        $creator = User::factory()->create([
-            'name' => 'Maus Kaetti',
-            'is_creator' => true,
-        ]);
-
-        Service::factory(4)->create([
-            'user_id' => $creator->id,
-            'category_id' => $base->id
-        ]);
-
-
+        Product::factory(10)->create();
 
     }
 }

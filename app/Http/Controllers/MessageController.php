@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,18 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'message_content' => 'required',
+            'conversation_id' => 'required',
+            'user_id' => 'required',
+        ]);
+
+        // dd($formFields);
+
+        //Create the new message
+        $user = Message::create($formFields);
+
+        return response()->json(['message' => 'Message stored successfully']);
     }
 
     /**
