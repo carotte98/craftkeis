@@ -54,7 +54,7 @@
                     <div class="bordered-div">
                         <div class="icon-input-container">
                             <i class="fas fa-image"></i>
-                            <input type="file" name="image_address" value="{{$user->image_address}}"/>
+                            <input type="file" name="image_address" value="{{$user->image_address}}" accept="image/png, image/jpeg">/>
                         </div>
                     </div>
                     <div>
