@@ -56,9 +56,9 @@
         });
     </script>
     <style>
-        body {
+        /* body {
             min-height: fit-content;
-        }
+        } */
 
         .active-contact {
             background-color: lightgreen;
@@ -120,8 +120,8 @@
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg">
-            <div class="flex space-x-6 mr-6 items-center grid grid-cols-3 w-11/12 gap-x-52">
+        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
+            <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
                 <div class="flex">
                     {{-- Search bar --}}
@@ -237,9 +237,11 @@
     </button>
 
     {{-- footer --}}
-    <footer class="static bottom-0 w-full flex flex-col items-center justify-center mt-10">
+    {{-- static bottom-0 w-full flex flex-col items-center justify-center mt-10 --}}
+    {{-- mt-10 causes space under footer --}}
+    <footer class="w-full flex flex-col items-center justify-center">
         {{-- top part --}}
-        <section class="bg-background w-max rounded-t-lg  dropshadowF">
+        <section class="bg-background w-max rounded-t-lg  dropshadowF mt-10">
             <div class="w-full flex justify-center p-2">
                 <a href="/" class="customLogo">Craftkeis</a>
             </div>
@@ -269,7 +271,7 @@
                 </div>
 
                 <div class="flex flex-row gap-24 mx-24 xl:mx-32">
-                    <a href="/services">Categories</a>
+                    <a href="/services/index">Services</a>
 
                     @auth
 
@@ -287,7 +289,7 @@
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
             <a href="/login-as-user/3" class="btn btn-primary">
-                Login as Maus katti
+                Login as Maus Kaetti
             </a>
             <a href="/login-as-user/2" class="btn btn-primary">
                 Login as John Doe
