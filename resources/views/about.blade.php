@@ -134,7 +134,12 @@
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>insert description</p>
+                    <p>I'm a backend enthusiast who has developed a strong foundation in coding since my school days. 
+                        My comfort zone lies in backend development, where I admire creating efficient and creative 
+                        solutions. As a dedicated team player, I thrive in collaborative group projects, 
+                        making teamprojects a great success.
+                        In addition to coding, I'm all about continuous learning, and keeping a friendly attitude towards comrades. 
+                    </p>
 
                     <hr class="border-accent w-5/6 my-6">
 
