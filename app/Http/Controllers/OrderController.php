@@ -69,11 +69,12 @@ class OrderController extends Controller
         $formFields['order_status'] = 'pending';
         $formFields['completed_at'] = null;
 
-        // send order confirmation email
-        // Mail::to($user->email)->send(new OrderConfirmationMail($user,$order));
-
         // dd($formFields);
         Order::create($formFields);
+
+        // send order confirmation email
+        $user = auth()->user();
+        Mail::to($user->email)->send(new OrderConfirmationMail($user,$formFields));
 
         //CREATE CONVERSATION BETWEEN USERS
         $user_id1 = $formFields['user_id1'];
@@ -98,9 +99,9 @@ class OrderController extends Controller
             }
         }
 
-        return redirect('/')->with('message', 'Order created successfully');
+        // return redirect('/')->with('message', 'Order created successfully');
     
-        // return redirect('/services/index')->with('message', 'Order created successfully');
+        return redirect('/services/index')->with('message', 'Order created successfully');
     }
 
     /**
