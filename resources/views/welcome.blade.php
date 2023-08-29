@@ -10,12 +10,12 @@
                 <div class="flex justify-center items-center flex-col w-2/3 text-xl text-center">
 
                     <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogoBold">
-                        What is Craftkéis
+                        What is Craftkeis
                     </h2>
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>Craftkéis is a premier online freelancing platform dedicated to the arts. We proudly host a diverse community of freelancers skilled in a broad spectrum of artistic domains, ranging from cutting-edge 3D modeling to traditional painting and wood sculpting. Explore our extensive roster of services offered by our esteemed freelancers, or join our community to secure your next distinguished project.</p>
+                    <p>Craftkeis is a premier online freelancing platform dedicated to the arts. We proudly host a diverse community of freelancers skilled in a broad spectrum of artistic domains, ranging from cutting-edge 3D modeling to traditional painting and wood sculpting. Explore our extensive roster of services offered by our esteemed freelancers, or join our community to secure your next distinguished project.</p>
 
                     <hr class="border-accent w-5/6 my-6">
 
