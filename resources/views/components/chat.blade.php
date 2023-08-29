@@ -1,5 +1,5 @@
 @props(['contactUsers'])
-<x-card class="py-5 message-window-page mr-4" style="width: 600px">
+<div class="py-5 message-window-page mr-4 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
     <details class="group">
         <summary class="flex items-center font-medium cursor-pointer list-none mb-3">
             <span class="transition group-open:rotate-180">
@@ -31,4 +31,4 @@
             <hr class="border-accent w-5/6 mx-auto my-6">
         </x-card-sec>
     </details>
-</x-card>
+</div>
