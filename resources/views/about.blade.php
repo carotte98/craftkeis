@@ -114,7 +114,7 @@
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>insert description</p>
+                    <p>Hello! I am a digital artist and web developer. My love for video games and past attempts to make my own have fuelled my interest in programming. When I encounter problems, I usually either manage to solve them by myself or know where an existing solution can be found.</p>
 
                     <hr class="border-accent w-5/6 my-6">
 
