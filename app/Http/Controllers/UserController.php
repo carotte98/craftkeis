@@ -269,4 +269,21 @@ class UserController extends Controller
         $user = User::find($userId);
         return view('users.admin-edit-user', ['user' => $user]);
     }
+
+    public function showConversation(string $conversationId)
+    {
+        $messages = Message::where('conversation_id', $conversationId)->get();
+
+        return view('users.admin-show-conversation', [
+            'messages' => $messages,
+            'conversationId' => $conversationId
+        ]);
+    }
+
+    public function clearConversation(string $conversationId)
+    {
+        // Delete all messages with the given conversation ID
+        Message::where('conversation_id', $conversationId)->delete();
+        return back()->with('message', 'Conversation cleared successfully.');
+    }
 }
