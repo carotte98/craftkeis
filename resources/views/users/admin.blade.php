@@ -34,16 +34,19 @@
         </x-card-sec>
         <x-card-sec> {{-- Profile details --}}
 
+            <h2 class="customLogo text-2xl text-center">
+                Hello {{ auth()->user()->name }}
+            </h2>
+
             <hr class="border-accent w-5/6 mx-auto my-6">
 
             {{-- ! GRID FOR THE SERVICES ECT  --}}
             <div class="grid grid-cols-3 w-5/6 mx-auto">
                 <div class="w-10/12 mx-auto">
-                    <h2 class="customLogo text-lg text-center">
-                        Hello {{ auth()->user()->name }}
-                    </h2>
+                    
                     <br>
-                    <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                    <br>
+                    <div class="hidden"><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
                     <br>
                     <h2><strong>Offered Services</strong></h2>
 
@@ -68,9 +71,8 @@
                     </div>
                 </div>
                 <div class="w-10/12 mx-auto">
-                    <h2 class="customLogo text-lg text-center">
-                        Hello {{ auth()->user()->name }}
-                    </h2>
+                    
+                    
                     <br>
                     <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
                     <br>
@@ -100,11 +102,11 @@
                     </div>
                 </div>
                 <div class="w-10/12 mx-auto">
-                    <h2 class="customLogo text-lg text-center">
-                        Hello {{ auth()->user()->name }}
-                    </h2>
+                    
+                   
                     <br>
-                    <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                    <br>
+                    <div class="hidden"><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
                     <br>
                     <h2><strong>Conversations</strong></h2>
 
@@ -168,24 +170,27 @@
                                     </svg>
                                 </span>
                                 <div class="w-5/6 mx-auto">
-                                    <h2 class="text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">
-                                        {{ $user->name }} (ID: {{ $user->id }})</h2>
-                                    <div class="flex justify-center">
-                                        <a href="/users/{{ auth()->user()->id }}/edit/{{ $user->id }}">
-                                            <button
-                                                class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
-                                                <i class="fa-solid fa-pencil"></i>Edit
-                                            </button>
-                                        </a>
-                                        <form method="POST"
-                                            action="/users/{{ auth()->user()->id }}/delete/{{ $user->id }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button
-                                                class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
-                                                <i class="fa-solid fa-trash"></i>Delete
-                                            </button>
-                                        </form>
+                                    <div class="flex flex-row justify-between items-center">
+                                        <div class="text-background">hg</div>
+                                        <h2 class="text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">
+                                            {{ $user->name }} (ID: {{ $user->id }})</h2>
+                                        <div class="flex justify-center space-x-2">
+                                            <a href="/users/{{ auth()->user()->id }}/edit/{{ $user->id }}">
+                                                <button
+                                                    class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                                                    <i class="fa-solid fa-pencil"></i>Edit
+                                                </button>
+                                            </a>
+                                            <form method="POST"
+                                                action="/users/{{ auth()->user()->id }}/delete/{{ $user->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button
+                                                    class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
+                                                    <i class="fa-solid fa-trash"></i>Delete
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                     <hr class="border-accent w-5/6 mx-auto my-6">
                                     <div><strong>Email : </strong> {{ $user->email }}</div>
