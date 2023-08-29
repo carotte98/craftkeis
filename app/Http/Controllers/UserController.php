@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\password;
 use Illuminate\Validation\Rules\Password;
@@ -168,10 +169,12 @@ class UserController extends Controller
         //*ADMIN
         // If user is admin then return admin dashboard view
         if ($user->email === 'craftkeis.devs@gmail.com') {
+            // dd(Conversation::with(['user1', 'user2'])->get());
             return view('users.admin', [
+                // 'queries' => $queries,
                 'services' => Service::all(),
                 'orders' => Order::all(),
-                'conversations' => Conversation::all(),
+                'conversations' => Conversation::with(['user1', 'user2'])->get(),
                 'users' => User::all(), //Temporary for chat purpose
                 'contacts' => $contactUsers,
             ]);
