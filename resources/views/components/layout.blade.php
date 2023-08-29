@@ -241,9 +241,15 @@
 
                     {{-- social media icons --}}
                     <div class="text-xl space-x-2">
-                        <i class="fab fa-facebook"></i>
-                        <i class="fab fa-twitter"></i>
-                        <i class="fab fa-instagram"></i>
+                        <a href="/login-as-user/3" class="btn btn-primary">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="/login-as-user/2" class="btn btn-primary">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="/login-as-user/1" class="btn btn-primary">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                         <i class="fab fa-linkedin"></i>
                     </div>
                 </div>
@@ -266,12 +272,8 @@
         {{-- bootom copyright part --}}
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
-            <a href="/login-as-user/3" class="btn btn-primary">
-                Login as Maus Kaetti
-            </a>
-            <a href="/login-as-user/2" class="btn btn-primary">
-                Login as John Doe
-            </a>
+            
+            
         </section>
     </footer>
 

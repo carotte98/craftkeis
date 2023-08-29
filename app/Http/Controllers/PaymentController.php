@@ -11,6 +11,7 @@ use App\Models\Service;
 use Stripe\PaymentIntent;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
+use Illuminate\Support\Facades\Auth;
 
 
 class PaymentController extends Controller
@@ -53,6 +54,9 @@ class PaymentController extends Controller
 
     public function success($order)
     {
+        if (Auth::user()->id !== $order->service->users->id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         $totalUsers = User::count();
         $totalCreators = User::where('is_creator', true)->count();
         $totalServices = Service::count();

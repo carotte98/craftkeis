@@ -1,6 +1,5 @@
 <x-layout>
     <div>
-        {{ $user }}
     </div>
         <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
                 
@@ -14,7 +13,7 @@
         
                 <hr class="border-accent w-5/6 mx-auto my-6">
         
-                <form action="/users/{{$user->id}}" method="POST" enctype="multipart/form-data">
+                <form action="/users/{{auth()->user()->id}}/edit/{{$user->id}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                 

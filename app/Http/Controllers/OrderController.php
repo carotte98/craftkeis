@@ -60,8 +60,8 @@ class OrderController extends Controller
         $formFields = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'user_id1' => 'required',
-            'user_id2' => 'required',
+            'user_id1' => 'required', // creator
+            'user_id2' => 'required', // client
             'service_id' => 'required',
             'price' => 'required',
         ]);
@@ -69,12 +69,28 @@ class OrderController extends Controller
         $formFields['order_status'] = 'pending';
         $formFields['completed_at'] = null;
 
-        // dd($formFields);
         Order::create($formFields);
 
+        ////// send order confirmation email
+        // Fetch user names
+        $user1 = User::find($formFields['user_id1']); //creator
+        // $user2 = User::find($formFields['user_id2']); //client
+
+        // Fetch service title
+        $service = Service::find($formFields['service_id']);
+        $serviceTitle = $service ? $service->title : 'Unknown Service';
+
         // send order confirmation email
-        $user = auth()->user();
-        Mail::to($user->email)->send(new OrderConfirmationMail($user,$formFields));
+        $currentLoggedUser = auth()->user();
+        $detailsToMail = [
+            'user1' => $user1->name,
+            // 'user2' => $user2->name,
+            'serviceTitle' => $serviceTitle,
+            'price' => $formFields['price'],
+            'title' => $formFields['title'],
+            'description' => $formFields['description'],
+        ];
+        Mail::to($currentLoggedUser->email)->send(new OrderConfirmationMail($currentLoggedUser, $detailsToMail));
 
         //CREATE CONVERSATION BETWEEN USERS
         $user_id1 = $formFields['user_id1'];
@@ -130,6 +146,9 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request, Order $order)
     {
+        if (Auth::user()->id !== $order->service->users->id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         // the creator updates the status of the order
         $newStatus = $request->input('status');
 

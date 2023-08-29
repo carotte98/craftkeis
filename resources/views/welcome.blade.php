@@ -10,12 +10,12 @@
                 <div class="flex justify-center items-center flex-col w-2/3 text-xl text-center">
 
                     <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogoBold">
-                        What is Craftkéis
+                        What is Craftkeis
                     </h2>
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>Craftkéis is a premier online freelancing platform dedicated to the arts. We proudly host a diverse community of freelancers skilled in a broad spectrum of artistic domains, ranging from cutting-edge 3D modeling to traditional painting and wood sculpting. Explore our extensive roster of services offered by our esteemed freelancers, or join our community to secure your next distinguished project.</p>
+                    <p>Craftkeis is a premier online freelancing platform dedicated to the arts. We proudly host a diverse community of freelancers skilled in a broad spectrum of artistic domains, ranging from cutting-edge 3D modeling to traditional painting and wood sculpting. Explore our extensive roster of services offered by our esteemed freelancers, or join our community to secure your next distinguished project.</p>
 
                     <hr class="border-accent w-5/6 my-6">
 
@@ -117,7 +117,7 @@
                     </h2>
             
                     <p class="mb-1 ml-2 text-lg">
-                        If you're an artist or freelancer seeking greater visibility and opportunities, Craftkéis is designed for you. Opt for the 'Creator' registration and seamlessly link your bank account for secure transactions.
+                        If you're an artist or freelancer seeking greater visibility and opportunities, Craftkeis is designed for you. Opt for the 'Creator' registration and seamlessly link your bank account for secure transactions.
                     </p>
             
                     <hr class="border-accent w-full my-3">
@@ -164,7 +164,7 @@
                     </h2>
             
                     <p class="mb-1 ml-2 text-lg">
-                        Join Craftkéis as a client with a straightforward registration process. No credit card required—simply input your details and become a part of our community.
+                        Join Craftkeis as a client with a straightforward registration process. No credit card required—simply input your details and become a part of our community.
                     </p>
             
                     <hr class="border-accent w-full my-3">
