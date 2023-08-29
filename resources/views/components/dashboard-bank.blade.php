@@ -5,8 +5,6 @@
     <hr class="border-accent w-5/6 mx-auto my-6">
     @unless ($user->bank_details == null)
         <div class="w-2/3 mx-auto text-center">
-            <div class="text-lg"><strong>Payment Method:</strong></div>
-            <p class="mb-4 text-lg">{{$user->bank_details->payment_method}}</p>
             <div class="text-lg"><strong>Card Number:</strong> 
             </div>
             <p class="text-lg">
@@ -19,7 +17,7 @@
         </div>
         <hr class="border-accent w-5/6 mx-auto my-6">
         <div class="flex justify-center">
-            <a href="/bankDetails/{{ $user->id }}/edit"> <!-- edit page for bank_details does not exist yet -->
+            <a href="/bankDetails/{{ $user->bank_details->id }}/edit"> <!-- edit page for bank_details does not exist yet -->
                 <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
                     <i class="fa-solid fa-pencil"></i>Edit
                 </button>
