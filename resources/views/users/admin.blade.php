@@ -21,8 +21,6 @@
     }
 </style>
 <x-layout>
-    <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left"></i> Back</a>
-    </a>
     <x-card>
         <x-card-sec class="flex flex-col items-center mb-4">
             <hr class="border-accent w-5/6 mx-auto my-6">
@@ -77,4 +75,11 @@
             </div>
         @endforeach
     </x-card>
+    <div class="flex justify-center mb-3">
+        <a href="/">
+            <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+        </a>
+    </div>
 </x-layout>

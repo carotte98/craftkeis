@@ -14,8 +14,8 @@ class HomeController extends Controller
         $totalUsers = User::count();
         $totalCreators = User::where('is_creator', true)->count();
         $totalServices = Service::count();
-        $artworks = collect(Storage::files('public/images/carousel'))->random(5)->all();
+        // $artworks = collect(Storage::files('public/images/carousel'))->random(5)->all();
 
-        return view('welcome', ['artworks' => $artworks, 'totalUsers' => $totalUsers, 'totalCreators' => $totalCreators, 'totalServices' => $totalServices]);
+        return view('welcome', ['totalUsers' => $totalUsers, 'totalCreators' => $totalCreators, 'totalServices' => $totalServices]);
     }
 }

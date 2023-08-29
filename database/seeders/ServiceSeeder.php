@@ -19,7 +19,7 @@ class ServiceSeeder extends Seeder
             'price' => '70.00',
             'time' => '2 weeks',
             'status' => 'open',
-            'user_id' => 2,
+            'user_id' => 3,
             'category_id' => 3
         ]);
 
