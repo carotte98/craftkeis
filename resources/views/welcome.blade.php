@@ -15,9 +15,7 @@
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>Craftkéis is an Online platform for freelance artists. A community of Creators in many domains of Arts are present already, ranging from 3D modelling and digital illustrations to traditional paintings or wood sculpting. Browse now our vast list of services offered by our Creators or join us as one and find your next dream gig!</p>
                     <p>Craftkéis is a premier online freelancing platform dedicated to the arts. We proudly host a diverse community of freelancers skilled in a broad spectrum of artistic domains, ranging from cutting-edge 3D modeling to traditional painting and wood sculpting. Explore our extensive roster of services offered by our esteemed freelancers, or join our community to secure your next distinguished project.</p>
-                    {{-- <p>Craftkéis is an Online freelancing platform. A community of Freelancers in many domains of Arts are present already, from the more modern approaches like 3d modelling to more classical painting or wood Sculpting. Browse now our vast list of services given by our Freelancers or join us as one and find your next dream contract !</p> --}}
 
                     <hr class="border-accent w-5/6 my-6">
 
@@ -108,109 +106,6 @@
             </button>
 
         </div>
-
-
-        {{-- TEXTS --}}
-        {{-- <div class="relative bg-background dropshadowUp rounded-t-lg p-6 mb-2 z-40"> --}}
-
-            {{-- Freelancer
-            <div id="free" class="block">
-
-                <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
-                    Safe and Easy Registration
-                </h2>
-
-                <p class="mb-1 ml-2 text-lg">
-                    A freelancer in need of visibility and some gigs? Search no further! Craftkeis is a platform made for freelance artists of all kind. Just check the Creator option during registration and you’ll be able to link your Bank account for future payments.
-                </p>
-
-                <hr class="border-accent w-full my-3">
-
-
-                <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
-                    Fast and Customizable Services
-                </h2>
-
-                <p class="mb-1 ml-2 text-lg">
-                    Offering several types of Services? No problem, you’ll be able to create your services in a very swift manner while still presenting enough information for any future clients. Add pictures, expected payments and much more!             
-                </p>
-
-                <hr class="border-accent w-full my-3">
-
-
-                <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
-                    Managing made Easy
-                </h2>
-
-                <p class="mb-1 ml-2 text-lg">
-                    With the creator dashboard managing your services and requests is very simple. See all of it at the same place, and edit or add in a few clicks!
-                </p>
-
-                <hr class="border-accent w-full my-3">
-
-
-                <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
-                    Chatting with Clients
-                </h2>
-
-                <p class="mb-1 ml-2 text-lg">
-                    The on-site web chat service we offer permits our creators to write in realtime with their clients! Gone are the times where you had to send dozens of emails before starting a gig. Hop into chat with your client and you’ll be able to roll!
-                </p>
-
-                <hr class="border-accent w-full my-3">
-
-            </div>
-
-            {{-- ========================================= --}}
-
-
-            {{-- Particular --}}
-            {{-- <div id="part" class="hidden">
-
-                <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
-                    Register as client
-                </h2>
-
-                <p class="mb-1 ml-2 text-lg">
-                    At Craftkeis you can easily and quickly create an account as a Client, no credit card needed just enter your information and join the community!
-                </p>
-
-                <hr class="border-accent w-full my-3">
-
-
-                <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
-                    Find Your Artist
-                </h2>
-
-                <p class="mb-1 ml-2 text-lg">
-                    Search through the vast selection of services offered by our partner Artists and Creators. Need something specific? Our categories will help you find it in no time!              
-                </p>
-
-                <hr class="border-accent w-full my-3">
-
-
-                <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
-                    Make A request
-                </h2>
-
-                <p class="mb-1 ml-2 text-lg">
-                    Found the perfect Artist for what you're looking for? Make a request in no time, describe your needs and we’ll send it all to the artist. Need more infos? Chat with them in real time before finalizing your request!
-                </p>
-
-                <hr class="border-accent w-full my-3">
-
-
-                <h2 class="text-2xl font-bold uppercase mb-1 customLogo ml-1 mb-1">
-                    Track the Progress
-                </h2>
-
-                <p class="mb-1 ml-2 text-lg">
-                    The chat function and our Client Dashboard will make tracking your requests and their current status easier then ever before!
-                </p>
-
-                <hr class="border-accent w-full my-3">
-
-            </div> --}}
 
             <div class="relative bg-background dropshadowUp rounded-t-lg p-6 mb-2 z-40">
 

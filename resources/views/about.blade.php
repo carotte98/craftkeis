@@ -86,7 +86,7 @@
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>insert description</p>
+                    <p>Skilled in a diverse range of programming languages and tools, I believe in continuous learning and collaboration to produce innovative solutions. Outside of coding, I enjoy listening to music and trying 3D modeling. Proud to be a part of this dynamic team, I look forward to contributing to our collective success.</p>
 
                     <hr class="border-accent w-5/6 my-6">
 

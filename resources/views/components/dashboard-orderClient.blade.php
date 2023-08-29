@@ -16,7 +16,7 @@
                     <p><strong>Category : </strong> {{ $order->service->categories->name }}</p>
                     <p><strong>Creator : </strong> {{ $order->userCreator->name }}</p>
                     <p><strong>Description : </strong> <br>{{ $order->description }}</p>
-                    <p><strong>Price : </strong> {{ $order->price }}</p>
+                    <p><strong>Price : </strong> {{ $order->price }} €</p>
                     <p><strong>Status : </strong>
                         @if ($order->order_status === 'pending') 
                             <i class="fa-solid fa-hourglass-half text-yellow-500"></i> Pending
@@ -29,7 +29,9 @@
                             
                         @elseif ($order->order_status === 'accepted')
                             <i class="fa-solid fa-check-circle text-blue-500"></i> Accepted
-                            
+
+                        @elseif ($order->order_status === 'paid')
+                            <i class="fa-solid fa-money-bill text-green-500"></i> Paid   
                         @else
                             Status Unknown
                         @endif
@@ -41,7 +43,7 @@
                                 @csrf
                                 <input type="hidden" name="service_name" value="{{ $order->title }}">
                                 <input type="hidden" name="total" value="{{ $order->price }}">
-                                {{-- <input type="hidden" name="completed_at" value="{{$order->completed_at}}"> --}}
+                                <input type="hidden" name="order_id" value="{{$order->id}}">
                                 <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-blue-500 hover:bg-blue-600">
                                     <i class="fa-solid fa-hand-holding-dollar"></i> Pay now
                                 </button>
@@ -51,7 +53,7 @@
                     
 
                     {{-- only cancel while not completed --}}
-                    @unless ($order->order_status === 'finished')
+                    @unless ($order->order_status === 'finished' || $order->order_status === 'paid')
                         <hr class="border-accent w-5/6 mx-auto my-6">
                         <div class="flex justify-center">
                             <form action="/orders/{{$order->id}}" method="POST">
