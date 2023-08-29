@@ -146,6 +146,9 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request, Order $order)
     {
+        if (Auth::user()->id !== $order->service->users->id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         // the creator updates the status of the order
         $newStatus = $request->input('status');
 

@@ -43,7 +43,7 @@
             {{-- ! GRID FOR THE SERVICES ECT  --}}
             <div class="grid grid-cols-3 w-5/6 mx-auto">
                 <div class="w-10/12 mx-auto">
-                    
+
                     <br>
                     <br>
                     <div class="hidden"><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
@@ -71,8 +71,8 @@
                     </div>
                 </div>
                 <div class="w-10/12 mx-auto">
-                    
-                    
+
+
                     <br>
                     <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
                     <br>
@@ -102,8 +102,6 @@
                     </div>
                 </div>
                 <div class="w-10/12 mx-auto">
-                    
-                   
                     <br>
                     <br>
                     <div class="hidden"><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
@@ -121,7 +119,7 @@
                             <div class="flex">
                                 <a href="/users/1/{{ $conversation->id }}"> <button
                                         class="text-center text-sm p-2 text-white rounded-lg bg-accent hover:bg-onhover">
-                                        See <i class="fa-regular fa-message"></i>
+                                        See<i class="fa-regular fa-message"></i>
                                     </button></a>
                                 <form method="POST"
                                     action="/users/{{ auth()->user()->id }}/delete-conversation/{{ $conversation->id }}">
@@ -134,20 +132,6 @@
                                 </form>
                             </div>
                             </p>
-                            {{-- <p>
-                            <strong>Title:</strong> {{ $order->title }} - <strong>Creator:</strong>
-                            {{ $order->userCreator->name }}
-                        </p>
-                        <p>
-                            <strong>Client:</strong>{{ $order->userClient->name }}
-                        </p>
-                        <p>
-                            <strong>Description:</strong> {{ $order->description }}
-                        </p>
-                        <p>
-                            <strong>Price:</strong> {{ $order->price }} - <strong>Status:</strong>
-                            {{ $order->order_status }} 
-                        </p> --}}
                             <br>
                         @endforeach
                     </div>
@@ -155,6 +139,14 @@
             </div>
 
             <hr class="border-accent w-5/6 mx-auto my-6">
+        </x-card-sec>
+        <x-card-sec>
+            <a href="/users/1/create">
+                <button
+                    class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                    <i class="fa-solid fa-pencil"></i>Create User
+                </button>
+            </a>
         </x-card-sec>
         <div class="divide-y divide-neutral-200 mx-auto space-y-4">
             @foreach ($users as $user)
@@ -212,15 +204,6 @@
             @endforeach
 
         </div>
-
-        <h2>Contacts</h2>
-        @foreach ($contacts as $contact)
-            <div>
-                <strong>
-                    <a href="/users/account/chat/conversation/{{ $contact->id }}">{{ $contact->name }}</a>
-                </strong>
-            </div>
-        @endforeach
     </x-card>
     <div class="flex justify-center mb-3">
         <a href="/">

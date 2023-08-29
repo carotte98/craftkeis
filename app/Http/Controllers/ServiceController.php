@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -37,11 +38,10 @@ class ServiceController extends Controller
             'time' => 'required',
             'category_id' => 'required'
         ]);
-        
+
         $formFields['status'] = 'open';
 
         $formFields['user_id'] = auth()->id();
-
 
         Service::create($formFields);
 
@@ -62,7 +62,12 @@ class ServiceController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Service $service)
-    {
+    {   
+        // dd($service);
+        // Check if the currently authenticated user matches the requested service user id
+        if (Auth::user()->id !== $service->user_id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         return view('services.edit', ['service' => $service]);
     }
 
@@ -71,6 +76,9 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
+        if (Auth::user()->id !== $service->user_id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         $formFields = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -90,6 +98,9 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
+        if (Auth::user()->id !== $service->user_id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         $service->delete();
         return redirect('/users/' . $service->users->id)->with('message', 'Service deleted successfully');
     }
