@@ -36,7 +36,7 @@
 
             <hr class="border-accent w-5/6 mx-auto my-6">
 
-            {{--! GRID FOR THE SERVICES ECT  --}}
+            {{-- ! GRID FOR THE SERVICES ECT  --}}
             <div class="grid grid-cols-3 w-5/6 mx-auto">
                 <div class="w-10/12 mx-auto">
                     <h2 class="customLogo text-lg text-center">
@@ -46,10 +46,10 @@
                     <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
                     <br>
                     <h2><strong>Offered Services</strong></h2>
-    
+
                     <br>
                     <div class="offered-services">
-    
+
                         @foreach ($services as $service)
                             <hr class="border-accent w-5/6 mx-auto my-4">
                             <p>
@@ -64,12 +64,76 @@
                                 {{ $service->status }} - <strong>Category:</strong> {{ $service->categories->name }}
                             </p>
                             <br>
-                            
                         @endforeach
                     </div>
                 </div>
+                <div class="w-10/12 mx-auto">
+                    <h2 class="customLogo text-lg text-center">
+                        Hello {{ auth()->user()->name }}
+                    </h2>
+                    <br>
+                    <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                    <br>
+                    <h2><strong>Current Orders</strong></h2>
 
-                
+                    <br>
+                    <div class="offered-services">
+
+                        @foreach ($orders as $order)
+                            <hr class="border-accent w-5/6 mx-auto my-4">
+                            <p>
+                                <strong>Title:</strong> {{ $order->title }} - <strong>Creator:</strong>
+                                {{ $order->userCreator->name }}
+                            </p>
+                            <p>
+                                <strong>Client:</strong>{{ $order->userClient->name }}
+                            </p>
+                            <p>
+                                <strong>Description:</strong> {{ $order->description }}
+                            </p>
+                            <p>
+                                <strong>Price:</strong> {{ $order->price }} - <strong>Status:</strong>
+                                {{ $order->order_status }}
+                            </p>
+                            <br>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="w-10/12 mx-auto">
+                    <h2 class="customLogo text-lg text-center">
+                        Hello {{ auth()->user()->name }}
+                    </h2>
+                    <br>
+                    <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                    <br>
+                    <h2><strong>Conversations</strong></h2>
+
+                    <br>
+                    <div class="offered-services">
+
+                        @foreach ($conversations as $conversation)
+                            <hr class="border-accent w-5/6 mx-auto my-4">
+                            <p>
+                                Conversation: {{ $conversation->user1->name }} and {{ $conversation->user2->name }}
+                            </p>
+                            {{-- <p>
+                            <strong>Title:</strong> {{ $order->title }} - <strong>Creator:</strong>
+                            {{ $order->userCreator->name }}
+                        </p>
+                        <p>
+                            <strong>Client:</strong>{{ $order->userClient->name }}
+                        </p>
+                        <p>
+                            <strong>Description:</strong> {{ $order->description }}
+                        </p>
+                        <p>
+                            <strong>Price:</strong> {{ $order->price }} - <strong>Status:</strong>
+                            {{ $order->order_status }} 
+                        </p> --}}
+                            <br>
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
             <hr class="border-accent w-5/6 mx-auto my-6">
