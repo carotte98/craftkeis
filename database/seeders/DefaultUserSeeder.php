@@ -16,7 +16,7 @@ class DefaultUserSeeder extends Seeder
         // admin user
         User::factory()->create([
             'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'craftkeis.devs@gmail.com',
             'password' => 'Password@123',
             'is_creator' => false,
         ]);

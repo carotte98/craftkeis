@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
+use App\Models\User;
 use Exception;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -48,7 +50,11 @@ class PaymentController extends Controller
 
     public function success()
     {
-        return view('welcome')->with('message','Payment successfull');
+        $totalUsers = User::count();
+        $totalCreators = User::where('is_creator', true)->count();
+        $totalServices = Service::count();
+
+        return view('welcome', ['totalUsers' => $totalUsers, 'totalCreators' => $totalCreators, 'totalServices' => $totalServices])->with('message','Payment successfull');
     }
         
 }
