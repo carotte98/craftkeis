@@ -128,9 +128,9 @@ Route::get('/register/{user}/bank-details',[BankDetailsController::class,'create
 //store bank_details
 Route::post('/bankDetails',[BankDetailsController::class,'store']);
 //Update bank_details
-Route::put('/bank-details/{bank_details}', [BankDetailsController::class, 'update'])->middleware('auth');
+Route::put('/bankDetails/{bank_details}', [BankDetailsController::class, 'update'])->middleware('auth');
 //Edit bank_details
-Route::get('/bank-details/{bank_details}/edit', [BankDetailsController::class, 'edit'])->middleware('auth');
+Route::get('/bankDetails/{bank_details}/edit', [BankDetailsController::class, 'edit'])->middleware('auth');
 
 //payments
 //payment_page
