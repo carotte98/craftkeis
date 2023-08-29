@@ -59,7 +59,7 @@ class BankDetailsController extends Controller
     public function edit(Bank_details $bank_details)
     {
         // dd($bank_details);
-        return view('users.bank-edit', ['bank_details' => $bank_details]);
+        return view('users.bankEdit', ['bank_details' => $bank_details]);
     }
 
     /**

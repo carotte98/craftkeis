@@ -112,27 +112,29 @@
                     <div class="offered-services">
 
                         @foreach ($conversations as $conversation)
-                            <hr class="border-accent w-5/6 mx-auto my-4">
-                            <p>
-                                {{ $conversation->user1->name }} and {{ $conversation->user2->name }}
+                            @if ($conversation->user_id1 !== 1 && $conversation->user_id2 !== 1)
+                                <hr class="border-accent w-5/6 mx-auto my-4">
+                                <p>
+                                    {{ $conversation->user1->name }} and {{ $conversation->user2->name }}
+                                    <br>
+                                <div class="flex">
+                                    <a href="/users/1/{{ $conversation->id }}"> <button
+                                            class="text-center text-sm p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                                            See<i class="fa-regular fa-message"></i>
+                                        </button></a>
+                                    <form method="POST"
+                                        action="/users/{{ auth()->user()->id }}/delete-conversation/{{ $conversation->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button
+                                            class="text-center text-sm p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
+                                            <i class="fa-solid fa-trash"></i>Clear
+                                        </button>
+                                    </form>
+                                </div>
+                                </p>
                                 <br>
-                            <div class="flex">
-                                <a href="/users/1/{{ $conversation->id }}"> <button
-                                        class="text-center text-sm p-2 text-white rounded-lg bg-accent hover:bg-onhover">
-                                        See<i class="fa-regular fa-message"></i>
-                                    </button></a>
-                                <form method="POST"
-                                    action="/users/{{ auth()->user()->id }}/delete-conversation/{{ $conversation->id }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button
-                                        class="text-center text-sm p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
-                                        <i class="fa-solid fa-trash"></i>Clear
-                                    </button>
-                                </form>
-                            </div>
-                            </p>
-                            <br>
+                            @endif
                         @endforeach
                     </div>
                 </div>
@@ -142,8 +144,7 @@
         </x-card-sec>
         <x-card-sec>
             <a href="/users/1/create">
-                <button
-                    class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
                     <i class="fa-solid fa-pencil"></i>Create User
                 </button>
             </a>

@@ -7,7 +7,7 @@
             
             <hr class="border-accent w-5/6 mx-auto my-6">
     
-            <form action="/bank-details/{{$bank_details->id}}" method="POST" enctype="multipart/form-data">
+            <form action="/bankDetails/{{$bank_details->id}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
