@@ -30,8 +30,11 @@ use App\Http\Controllers\HomeController;
 //     return view('test');
 // });
 //*ADMIN 
-
-
+// Delete user
+Route::delete('/users/1/delete/{user}', [UserController::class, 'destroy'])->middleware('auth');
+// Edit user
+Route::get('/users/1/edit/{user}', [UserController::class, 'showEditUser'])->middleware('auth');
+// Edit user
 // HomePage
 // Route::get('/', function(){
 //     return view('welcome');
