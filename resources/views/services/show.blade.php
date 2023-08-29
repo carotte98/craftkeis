@@ -21,8 +21,9 @@
                         <div class="flex flex-row space-x-2">
                             {{-- Artist name --}}
                             <div class="w-52 text-md xl:text-xl font-bold p-1 -ml-6">
-                                by 
+                                by <span class="w-full rounded-full hover:bg-buttons p-1">
                                 <a href="/creators/{{ $service->users->id }}">{{ $service->users->name }}</a>
+                                </span>
                             </div>
         
                         </div>

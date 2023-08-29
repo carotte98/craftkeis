@@ -56,9 +56,9 @@
         // });
     </script>
     <style>
-        body {
+        /* body {
             min-height: fit-content;
-        }
+        } */
 
         .active-contact {
             background-color: lightgreen;
@@ -229,9 +229,11 @@
     </button>
 
     {{-- footer --}}
-    <footer class="static bottom-0 w-full flex flex-col items-center justify-center mt-10">
+    {{-- static bottom-0 w-full flex flex-col items-center justify-center mt-10 --}}
+    {{-- mt-10 causes space under footer --}}
+    <footer class="w-full flex flex-col items-center justify-center">
         {{-- top part --}}
-        <section class="bg-background w-max rounded-t-lg  dropshadowF">
+        <section class="bg-background w-max rounded-t-lg  dropshadowF mt-10">
             <div class="w-full flex justify-center p-2">
                 <a href="/" class="customLogo">Craftkeis</a>
             </div>
@@ -279,7 +281,7 @@
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
             <a href="/login-as-user/3" class="btn btn-primary">
-                Login as Maus katti
+                Login as Maus Kaetti
             </a>
             <a href="/login-as-user/2" class="btn btn-primary">
                 Login as John Doe

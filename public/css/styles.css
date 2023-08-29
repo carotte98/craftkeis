@@ -8,11 +8,17 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
-
-
 body{
     background-color: #E7D0BB;
+    display: flex;
+    flex-direction: column;
+    /* to keep the footer at the bottom */
     min-height: 100vh;
+}
+
+footer {
+    /* to keep the footer at the bottom */
+    margin-top: auto;
 }
 
 .dropshadow{
@@ -136,3 +142,20 @@ body{
     color: #333;
     font-weight: bold;
 }
+
+/* for the password check */
+
+.invalid {
+    background: url(../images/invalid.png) no-repeat 0 50%;
+    padding-left: 22px;
+    line-height: 24px;
+    color: #ec3f41;
+  }
+  
+  .valid {
+    background: url(../images/valid.png) no-repeat 0 50%;
+    padding-left: 22px;
+    line-height: 24px;
+    color: #3a7d34;
+  }
+  
