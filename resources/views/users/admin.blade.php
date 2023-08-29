@@ -36,39 +36,42 @@
 
             <hr class="border-accent w-5/6 mx-auto my-6">
 
-            <div class="w-2/3 mx-auto">
-                <h2 class="text-lg">
-                    <strong>Hello {{ auth()->user()->name }}</strong>
-                    <a href="/users/{{ auth()->user()->id }}/edit">
-                        <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
-                            <i class="fa-solid fa-pencil"></i>Edit
-                        </button>
-                    </a>
-                </h2>
-                <br>
-                <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
-                <br>
-                <h2><strong>Offered Services</strong></h2>
-
-                <br>
-                <div class="offered-services">
-
-                    @foreach ($services as $service)
-                        <p>
-                            <strong>Title:</strong> {{ $service->title }} - <strong>Name:</strong>
-                            {{ $service->users->name }}
-                        </p>
-                        <p>
-                            <strong>Description:</strong> {{ $service->description }}
-                        </p>
-                        <p>
-                            <strong>Price:</strong> {{ $service->price }} - <strong>Status:</strong>
-                            {{ $service->status }} - <strong>Category:</strong> {{ $service->categories->name }}
-                        </p>
-                        <br>
-                    @endforeach
+            {{--! GRID FOR THE SERVICES ECT  --}}
+            <div class="grid grid-cols-3 w-5/6 mx-auto">
+                <div class="w-10/12 mx-auto">
+                    <h2 class="customLogo text-lg text-center">
+                        Hello {{ auth()->user()->name }}
+                    </h2>
+                    <br>
+                    <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                    <br>
+                    <h2><strong>Offered Services</strong></h2>
+    
+                    <br>
+                    <div class="offered-services">
+    
+                        @foreach ($services as $service)
+                            <hr class="border-accent w-5/6 mx-auto my-4">
+                            <p>
+                                <strong>Title:</strong> {{ $service->title }} - <strong>Name:</strong>
+                                {{ $service->users->name }}
+                            </p>
+                            <p>
+                                <strong>Description:</strong> {{ $service->description }}
+                            </p>
+                            <p>
+                                <strong>Price:</strong> {{ $service->price }} - <strong>Status:</strong>
+                                {{ $service->status }} - <strong>Category:</strong> {{ $service->categories->name }}
+                            </p>
+                            <br>
+                            
+                        @endforeach
+                    </div>
                 </div>
+
+                
             </div>
+
             <hr class="border-accent w-5/6 mx-auto my-6">
         </x-card-sec>
         <div class="divide-y divide-neutral-200 mx-auto space-y-4">
