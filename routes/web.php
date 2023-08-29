@@ -126,7 +126,7 @@ Route::put('/bankDetails/{bank_details}', [BankDetailsController::class, 'update
 Route::post('/payment/{order}/session', [PaymentController::class, 'session'])->name('session');
 
 //payment_success
-Route::get('/success', [PaymentController::class, 'success'])->name('success');
+Route::get('/success/{order}', [PaymentController::class, 'success'])->name('success');
 
 //contact us
 Route::get('/contact', [ContactController::class,'showForm']);

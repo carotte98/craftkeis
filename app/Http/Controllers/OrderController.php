@@ -132,7 +132,12 @@ class OrderController extends Controller
         // the creator updates the status of the order
         $newStatus = $request->input('status');
 
-        if ($newStatus === 'accepted' || $newStatus === 'declined' || $newStatus === 'finished') {
+        if ($newStatus === 'accepted' || $newStatus === 'declined' || $newStatus === 'finished' || $newStatus === 'paid') {
+            if ($newStatus === 'paid') {
+                
+                //update, completed_at
+                $order->completed_at = now();
+                }
             $order->order_status = $newStatus;
             $order->save();
 
@@ -142,7 +147,7 @@ class OrderController extends Controller
         return redirect()->back()->withErrors('Invalid status update.');
     }
 
-    /**
+    /*
      * Remove the specified resource from storage.
      */
     public function destroy(Order $order)
