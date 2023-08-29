@@ -2,13 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
 }
 
-body{
+body {
     background-color: #E7D0BB;
     display: flex;
     flex-direction: column;
@@ -21,44 +21,46 @@ footer {
     margin-top: auto;
 }
 
-.dropshadow{
-    box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
+.dropshadow {
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.35);
     z-index: 10;
 }
 
-.dropshadowCat{
+.dropshadowCat {
     z-index: 0;
-    box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.35);
 }
+
 /* Dropshadow Footer */
-.dropshadowF{
-    box-shadow: 0px -6px 20px 2px rgba(0,0,0,0.35);
+.dropshadowF {
+    box-shadow: 0px -6px 20px 2px rgba(0, 0, 0, 0.35);
     z-index: 0;
 }
+
 /* DropShadow footer bottom part */
-.dropshadowFB{
+.dropshadowFB {
     z-index: 10;
-    box-shadow: 0px -10px 10px 1px rgba(0,0,0,0.35);
+    box-shadow: 0px -10px 10px 1px rgba(0, 0, 0, 0.35);
 }
 
-.dropshadowUp{
-    box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
+.dropshadowUp {
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.35);
     z-index: 20;
 }
 
-.dropshadowDown{
-    box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
+.dropshadowDown {
+    box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.35);
     z-index: 0;
 }
 
-.customLogo{
+.customLogo {
     font-size: 2rem;
     color: #676666;
     font-family: 'Aquire';
     text-decoration: none;
 }
 
-.customLogoBold{
+.customLogoBold {
     font-size: 2rem;
     color: #676666;
     font-family: 'Aquire';
@@ -75,7 +77,7 @@ footer {
     width: 300px;
     /* Adjust width as needed */
     background-color: #f4f4f4;
-    margin:auto;
+    margin: auto;
     margin-top: 1rem;
 }
 
@@ -100,26 +102,28 @@ footer {
 .hidden {
     display: none;
 }
-#Link-button{
+
+#Link-button {
     text-align: center;
     margin-top: 0.8rem;
 }
-#facebook{
+
+#facebook {
     border: 2px solid #C3C3C3;
     background-color: #C3C3C3;
     border-radius: 10px;
-    padding:0.5rem 1rem 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 
 }
-#google
-{
+
+#google {
     border: 2px solid #C3C3C3;
     background-color: #C3C3C3;
     border-radius: 10px;
-    padding:0.5rem 1rem 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-.register-footer{
+.register-footer {
     text-align: center;
 }
 
@@ -150,12 +154,17 @@ footer {
     padding-left: 22px;
     line-height: 24px;
     color: #ec3f41;
-  }
-  
-  .valid {
+}
+
+.valid {
     background: url(../images/valid.png) no-repeat 0 50%;
     padding-left: 22px;
     line-height: 24px;
     color: #3a7d34;
-  }
-  
+}
+
+.offered-services {
+    width:50%;
+    height: 150px;
+    overflow: auto;
+}

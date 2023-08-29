@@ -1,8 +1,8 @@
 <x-layout>
     <x-card>
-        <x-card-sec>
-
-            @unless(count($services))
+        
+        @unless(count($services))
+            <x-card-sec>
                 {{-- no services found display --}}
 
                 {{-- cols containing the image and the text in their respective layout  --}}
@@ -31,18 +31,20 @@
                     <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/sad_robot.png')] bg-contain bg-no-repeat bg-center "></div>
     
                 </div>
+            </x-card-sec>
                 {{-- end no services --}}
                 
-                @else
-                    @foreach ($services as $service)
-                        <x-service-card :service="$service" />
-                    @endforeach
-                @endunless
+        @else
+            <div class="grid grid-cols-2 gap-3">
+                @foreach ($services as $service)
+                <x-service-card :service="$service" />
+                @endforeach
+            </div>
+        @endunless
                 
-                <div class="flex justify-between mt-3">
-                    {{$services->links()}}
-                </div>
+        <div class="flex justify-between mt-3">
+            {{$services->links()}}
+        </div>
                 
-            </x-card-sec>
         </x-card>
 </x-layout>
