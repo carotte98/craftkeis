@@ -117,7 +117,7 @@
                     </h2>
             
                     <p class="mb-1 ml-2 text-lg">
-                        If you're an artist or freelancer seeking greater visibility and opportunities, Craftkéis is designed for you. Opt for the 'Creator' registration and seamlessly link your bank account for secure transactions.
+                        If you're an artist or freelancer seeking greater visibility and opportunities, Craftkeis is designed for you. Opt for the 'Creator' registration and seamlessly link your bank account for secure transactions.
                     </p>
             
                     <hr class="border-accent w-full my-3">
@@ -164,7 +164,7 @@
                     </h2>
             
                     <p class="mb-1 ml-2 text-lg">
-                        Join Craftkéis as a client with a straightforward registration process. No credit card required—simply input your details and become a part of our community.
+                        Join Craftkeis as a client with a straightforward registration process. No credit card required—simply input your details and become a part of our community.
                     </p>
             
                     <hr class="border-accent w-full my-3">
