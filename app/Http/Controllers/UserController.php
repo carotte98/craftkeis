@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Message;
+use App\Models\Service;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\password;
 use Illuminate\Validation\Rules\Password;
 
@@ -140,8 +142,8 @@ class UserController extends Controller
 
         //Search for first conversation of user
         $firstConversation = Conversation::where('user_id1', $user->id)
-        ->orWhere('user_id2', $user->id)
-        ->first();
+            ->orWhere('user_id2', $user->id)
+            ->first();
 
         //For each conversation put the other contact(user) in an array 
         foreach ($conversations as $conversation) {
@@ -163,10 +165,13 @@ class UserController extends Controller
             // dd($contactUser);
         }
 
+        //*ADMIN
         // If user is admin then return admin dashboard view
         if ($user->email === 'craftkeis.devs@gmail.com') {
             return view('users.admin', [
-                //'user' => $user,//Can be removed
+                'services' => Service::all(),
+                'orders' => Order::all(),
+                'conversations' => Conversation::all(),
                 'users' => User::all(), //Temporary for chat purpose
                 'contacts' => $contactUsers,
             ]);
@@ -248,8 +253,17 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $userId)
     {
-        //
+        // dd($userId);
+        $user = User::find($userId);
+        $user->delete();
+        return back()->with('message', 'User deleted successfully.');
+    }
+
+    public function showEditUser(string $userId)
+    {
+        $user = User::find($userId);
+        return view('users.admin-edit-user', ['user' => $user]);
     }
 }
