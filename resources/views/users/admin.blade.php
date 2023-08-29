@@ -32,36 +32,95 @@
             </p>
             <hr class="border-accent w-5/6 mx-auto my-6">
         </x-card-sec>
+        <x-card-sec> {{-- Profile details --}}
+
+            <hr class="border-accent w-5/6 mx-auto my-6">
+
+            <div class="w-2/3 mx-auto">
+                <h2 class="text-lg">
+                    <strong>Hello {{ auth()->user()->name }}</strong>
+                    <a href="/users/{{ auth()->user()->id }}/edit">
+                        <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                            <i class="fa-solid fa-pencil"></i>Edit
+                        </button>
+                    </a>
+                </h2>
+                <br>
+                <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                <br>
+                <h2><strong>Offered Services</strong></h2>
+
+                <br>
+                <div class="offered-services">
+
+                    @foreach ($services as $service)
+                        <p>
+                            <strong>Title:</strong> {{ $service->title }} - <strong>Name:</strong>
+                            {{ $service->users->name }}
+                        </p>
+                        <p>
+                            <strong>Description:</strong> {{ $service->description }}
+                        </p>
+                        <p>
+                            <strong>Price:</strong> {{ $service->price }} - <strong>Status:</strong>
+                            {{ $service->status }} - <strong>Category:</strong> {{ $service->categories->name }}
+                        </p>
+                        <br>
+                    @endforeach
+                </div>
+            </div>
+            <hr class="border-accent w-5/6 mx-auto my-6">
+        </x-card-sec>
         <div class="divide-y divide-neutral-200 mx-auto space-y-4">
             @foreach ($users as $user)
-                <x-card-sec class="py-5">
-                    <details class="group">
-                        <summary class="flex items-center font-medium cursor-pointer list-none">
-                            <span class="transition group-open:rotate-180">
-                                <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                    <path d="M6 9l6 6 6-6"></path>
-                                </svg>
-                            </span>
-                            <div class="w-5/6 mx-auto">
-                                <h2 class="text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $user->name }} (ID: {{$user->id}})</h2>
-                                <hr class="border-accent w-5/6 mx-auto my-6">
-                                <div><strong>Email : </strong> {{ $user->email }}</div>
-                                <div><strong>Bio : </strong></div>
-                                <div>{{ $user->bio }}</div>
-                                <hr class="border-accent w-5/6 mx-auto my-6">
-                            </div>
-                        </summary>
-                        <x-dashboard-bank :user=$user />
+                @if ($user->id != 1)
+                    <x-card-sec class="py-5">
+                        <details class="group">
+                            <summary class="flex items-center font-medium cursor-pointer list-none">
+                                <span class="transition group-open:rotate-180">
+                                    <svg fill="none" height="24" shape-rendering="geometricPrecision"
+                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                        <path d="M6 9l6 6 6-6"></path>
+                                    </svg>
+                                </span>
+                                <div class="w-5/6 mx-auto">
+                                    <h2 class="text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">
+                                        {{ $user->name }} (ID: {{ $user->id }})</h2>
+                                    <div class="flex justify-center">
+                                        <a href="/users/{{ auth()->user()->id }}/edit/{{ $user->id }}">
+                                            <button
+                                                class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                                                <i class="fa-solid fa-pencil"></i>Edit
+                                            </button>
+                                        </a>
+                                        <form method="POST"
+                                            action="/users/{{ auth()->user()->id }}/delete/{{ $user->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button
+                                                class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
+                                                <i class="fa-solid fa-trash"></i>Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <hr class="border-accent w-5/6 mx-auto my-6">
+                                    <div><strong>Email : </strong> {{ $user->email }}</div>
+                                    <div><strong>Bio : </strong></div>
+                                    <div>{{ $user->bio }}</div>
+                                    <hr class="border-accent w-5/6 mx-auto my-6">
+                                </div>
+                            </summary>
+                            <x-dashboard-bank :user=$user />
 
-                        <x-dashboard-service :user=$user />
+                            <x-dashboard-service :user=$user />
 
-                        <x-dashboard-orderClient :user=$user />
+                            <x-dashboard-orderClient :user=$user />
 
-                        <x-dashboard-orderCreator :user=$user />
-                    </details>
-                </x-card-sec>
+                            <x-dashboard-orderCreator :user=$user />
+                        </details>
+                    </x-card-sec>
+                @endif
             @endforeach
 
         </div>
