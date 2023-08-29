@@ -61,7 +61,9 @@
         } */
 
         .active-contact {
-            background-color: lightgreen;
+            background-color: #F4A051;
+            border-radius: 10px;
+            padding: 2px;
         }
 
         .message-window-page {
@@ -92,6 +94,7 @@
             bottom: 0;
             left: 0;
             z-index: 50;
+            margin: 15px 20px;
         }
 
         .scrollToTopButton {
@@ -203,38 +206,13 @@
     </main>
     @if (auth()->check())
         {{-- <div class="divide-y divide-neutral-200 mx-auto"> --}}
-        <x-card-sec class="py-5 message-window-page">
-            <details class="group">
-                <summary class="flex items-center font-medium cursor-pointer list-none">
-                    <span class="transition group-open:rotate-180">
-                        <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
-                            stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
-                            width="24">
-                            <path d="M6 9l6 6 6-6"></path>
-                        </svg>
-                    </span>
-                    <p>MESSAGES</p>
-                </summary>
-                <div class="message-window-open">
-                    <div class="contacts-list">
-                        <h2>Contacts</h2>
-                        @foreach ($contactUsers as $contact)
-                            <p id="contact"
-                                class="{{ $contact->conversation_id == session('last_conversation') ? 'active-contact' : '' }}"
-                                value="{{ $contact->conversation_id }}">
-                                {{ $contact->name }}
-                            </p>
-                        @endforeach
-                    </div>
-                    <x-window />
-                </div>
-            </details>
-        </x-card-sec>
+        <x-chat :contactUsers="$contactUsers" />
         {{-- </div> --}}
     @endif
     <button class="scrollToTopButton">
-        <i class="fa-solid fa-circle-up arrow-up"></i>
+        <i class="fa-solid fa-angles-up arrow-up text-accent"></i>
     </button>
+    
 
     {{-- footer --}}
     {{-- static bottom-0 w-full flex flex-col items-center justify-center mt-10 --}}
