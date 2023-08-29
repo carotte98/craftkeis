@@ -58,7 +58,8 @@ class BankDetailsController extends Controller
      */
     public function edit(Bank_details $bank_details)
     {
-        return view('users.bankEdit', ['bank_details' => $bank_details]);
+        // dd($bank_details);
+        return view('users.bank-edit', ['bank_details' => $bank_details]);
     }
 
     /**
@@ -66,14 +67,15 @@ class BankDetailsController extends Controller
      */
     public function update(Request $request, Bank_details $bank_details)
     {
+        // dd($bank_details);
+        // dd($formFields);
         $formFields = $request->validate([
-            'firstName'=>['required'],
-            'lastName'=>['required'],
+            'full_name'=>['required'],
             'cardNumber'=>['required'],
-            'payment_method'=>['required'],
             'ccv'=>['required'],
             'expireDate'=>['required']
         ]);
+        // dd($formFields);
 
         $bank_details->update($formFields);
 

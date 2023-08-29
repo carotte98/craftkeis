@@ -17,7 +17,7 @@
         </div>
         <hr class="border-accent w-5/6 mx-auto my-6">
         <div class="flex justify-center">
-            <a href="/bankDetails/{{ $user->bank_details->id }}/edit"> <!-- edit page for bank_details does not exist yet -->
+            <a href="/bank-details/{{ $user->bank_details->id }}/edit"> <!-- edit page for bank_details does not exist yet -->
                 <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
                     <i class="fa-solid fa-pencil"></i>Edit
                 </button>
@@ -26,7 +26,9 @@
     @else
         <div>No bank data found!</div>
         <hr class="border-accent w-5/6 mx-auto my-6">
-        <a href="/register/{{ $user->id }}/bankDetails">
+        {{-- ! --}}
+        {{-- @if (auth()->user()->id == 1) --}}
+        <a href="/register/{{ $user->id }}/bank-details">
             <i class="fa-solid fa-pencil"></i>Add Bank Details
         </a>
     @endunless

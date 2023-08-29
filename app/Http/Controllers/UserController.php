@@ -75,8 +75,6 @@ class UserController extends Controller
             // Set is_creator value based on checkbox
             $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
 
-
-
             //Create the new user
             $user = User::create($formFields);
             auth()->login($user);
@@ -86,10 +84,6 @@ class UserController extends Controller
                 session(['user' => $user]);
                 return redirect('/register/{user}/bankDetails');
             }
-
-            //TODO
-            //Using auth() helper handles all the login/logout process for us
-            //It saves us an ENORMUS amount of time
 
             //When user is created and logged in, we will show them the homepage so they can start navigate the website
             return redirect('/')->with('message', 'User created and logged in!');
@@ -130,9 +124,39 @@ class UserController extends Controller
 
     public function account()
     {
+
         // Get the currently authenticated user
         $user = Auth::user();
-
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== $user->id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        //*Admin
+        if ($user->email === 'craftkeis.devs@gmail.com') {
+            // Create a conversation with every user for admin login
+            $allUsers = User::get();
+            foreach ($allUsers as $contact) {
+                //If user does not write to himself then
+                // dd($contact->id);
+                if ($user->id != $contact->id) {
+                    //In short, get that one specific conversation where user and contact is present
+                    $conversation = Conversation::where([
+                        ['user_id1', $user->id],
+                        ['user_id2', $contact->id],
+                    ])->orWhere([
+                        ['user_id1', $contact->id],
+                        ['user_id2', $user->id],
+                    ])->first();
+                    //If the conversation does not exist then create it
+                    if (!$conversation) {
+                        $conversation = Conversation::create([
+                            'user_id1' => $user->id,
+                            'user_id2' => $contact->id,
+                        ]);
+                    }
+                }
+            }
+        } //* END ADMIN
         //Search for all conversations where user is present
         $conversations = DB::table('conversations')
             ->where('user_id1', $user->id)
@@ -169,24 +193,16 @@ class UserController extends Controller
         //*ADMIN
         // If user is admin then return admin dashboard view
         if ($user->email === 'craftkeis.devs@gmail.com') {
-            // dd(Conversation::with(['user1', 'user2'])->get());
             return view('users.admin', [
                 // 'queries' => $queries,
                 'services' => Service::all(),
                 'orders' => Order::all(),
                 'conversations' => Conversation::with(['user1', 'user2'])->get(),
-                'users' => User::all(), //Temporary for chat purpose
+                'users' => User::all(),
                 'contacts' => $contactUsers,
             ]);
         }
-        // dd($contactUser);
-        // dd($conversations[0]->id);
-        // dd($firstConversation->id);
-        // $messages = 0;
-        if ($firstConversation) {
-            $messages = $firstConversation->messages; // Accessing the messages relationship
-            // dd($messages);
-        }
+        //*END ADMIN
 
         // Pass the user data to the view
         return view('users.account', [
@@ -215,6 +231,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== $user->id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         return view('users.creator', [
             'user' => $user
         ]);
@@ -225,6 +245,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== $user->id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+
         return view('users.edit', ['user' => $user]);
     }
 
@@ -233,6 +259,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== $user->id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
@@ -253,12 +283,13 @@ class UserController extends Controller
         return redirect('/users/' . $user->id)->with('message', 'Account updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
+    //*ADMIN
     public function destroy(string $userId)
     {
-        // dd($userId);
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         $user = User::find($userId);
         $user->delete();
         return back()->with('message', 'User deleted successfully.');
@@ -266,12 +297,18 @@ class UserController extends Controller
 
     public function showEditUser(string $userId)
     {
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         $user = User::find($userId);
         return view('users.admin-edit-user', ['user' => $user]);
     }
 
     public function showConversation(string $conversationId)
     {
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         $messages = Message::where('conversation_id', $conversationId)->get();
 
         return view('users.admin-show-conversation', [
@@ -282,8 +319,102 @@ class UserController extends Controller
 
     public function clearConversation(string $conversationId)
     {
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         // Delete all messages with the given conversation ID
         Message::where('conversation_id', $conversationId)->delete();
         return back()->with('message', 'Conversation cleared successfully.');
+    }
+
+    public function updateUser(Request $request, User $user)
+    {
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        $formFields = $request->validate([
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
+            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()],
+            'bio' => ['nullable'],
+            'is_creator' => ['nullable'],
+            'image_address' => ['nullable'],
+            'phone_number' => ['nullable'],
+            'commission_amount' => ['nullable']
+        ]);
+
+        if ($request->hasFile('image_address')) {
+            $formFields['image_address'] = $request->file('image_address')->store('images', 'public');
+        }
+
+        $user->update($formFields);
+
+        return redirect('/users/1' . $user->id)->with('message', 'Account updated successfully');
+    }
+
+    public function showCreateUser()
+    {
+        return view('users.admin-create-user');
+    }
+
+    public function createUser(Request $request)
+    {
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        $formFields = $request->validate([
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            // 'bank_id' => ['nullable'],
+            'password' => ['required', Password::min(6)->mixedCase()->numbers()->symbols()],
+            'bio' => ['nullable'],
+            'is_creator' => ['nullable'],
+            'image_address' => ['nullable'],
+            'phone_number' => ['nullable'],
+
+        ]);
+
+        //for the images storing them apart locally
+        if ($request->hasFile('image_address')) {
+            $formFields['image_address'] = $request->file('image_address')->store('images', 'public');
+            //formfields['logo']->this will add a 'logo' key to our array of data from the form
+            //$request->file('logo') >> retrieve the image file that has been uploaded(could be any file really)
+            //store('logos','public') > the file will be stored in
+            //public/logos/ instead of just public
+        }
+
+
+        //validation, to check if passwords match or not
+        if ($request->confirm_password == $formFields['password']) {
+            //Hash the password with bcrypt 
+            $formFields['password'] = bcrypt($formFields['password']);
+
+            // You can explicitly set the attributes to their default values if they are not provided
+            $formFields['bio'] = $formFields['bio'] ?? null;
+            $formFields['is_creator'] = $formFields['is_creator'] ?? null;
+            // $formFields['bank_id'] = $formFields['bank_id'] ?? null;
+            // Set is_creator value based on checkbox
+            $formFields['is_creator'] = isset($formFields['is_creator']) ? 1 : 0;
+
+            //Create the new user
+            $user = User::create($formFields);
+            auth()->login($user);
+
+            if ($user->is_creator) {
+                session_start();
+                session(['user' => $user]);
+                return redirect('/register/{user}/bankDetails');
+            }
+
+            //When user is created and logged in, we will show them the homepage so they can start navigate the website
+            return redirect('/')->with('message', 'User created and logged in!');
+        } else {
+            return back()->withErrors([
+                'confirm_password' => "Passwords don't match",
+                'password' => "Passwords don't match"
+            ]);
+        }
     }
 }

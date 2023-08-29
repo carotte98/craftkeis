@@ -29,15 +29,6 @@ use App\Http\Controllers\HomeController;
 // Route::get('/', function () {
 //     return view('test');
 // });
-//*ADMIN 
-// Delete user
-Route::delete('/users/1/delete/{user}', [UserController::class, 'destroy'])->middleware('auth');
-// Edit user
-Route::get('/users/1/edit/{user}', [UserController::class, 'showEditUser'])->middleware('auth');
-// See user conversation
-Route::get('/users/1/{conversationId}', [UserController::class, 'showConversation'])->middleware('auth');
-// Delete conversation messages
-Route::delete('/users/1/delete-conversation/{conversationId}', [UserController::class, 'clearConversation'])->middleware('auth');
 
 // HomePage
 // Route::get('/', function(){
@@ -45,6 +36,22 @@ Route::delete('/users/1/delete-conversation/{conversationId}', [UserController::
 // });
 Route::get('/', [HomeController::class, 'index']);
 
+//*ADMIN 
+// Delete user
+Route::delete('/users/1/delete/{user}', [UserController::class, 'destroy'])->middleware('auth');
+// Show edit user
+Route::get('/users/1/edit/{user}', [UserController::class, 'showEditUser'])->middleware('auth');
+// Show create user account
+Route::get('/users/1/create', [UserController::class, 'showCreateUser'])->middleware('auth');
+//Create user account
+Route::post('/users/1', [UserController::class, 'createUser'])->middleware('auth');
+// Show user conversation
+Route::get('/users/1/{conversationId}', [UserController::class, 'showConversation'])->middleware('auth');
+// Delete conversation messages
+Route::delete('/users/1/delete-conversation/{conversationId}', [UserController::class, 'clearConversation'])->middleware('auth');
+//Update user account
+Route::put('/users/1/edit/{user}', [UserController::class, 'updateUser'])->middleware('auth');
+//*
 // Show all services
 Route::get('/services/index', [ServiceController::class, 'index']);
 // Create new service
@@ -117,13 +124,13 @@ Route::get('/users/account/chat/conversation/poll/{conversationId}', [Conversati
 
 //BankDetailController
 //create bank_details
-Route::get('/register/{user}/bankDetails',[BankDetailsController::class,'create']);
+Route::get('/register/{user}/bank-details',[BankDetailsController::class,'create']);
 //store bank_details
 Route::post('/bankDetails',[BankDetailsController::class,'store']);
-//Edit bank_details
-Route::get('/bankDetails/{bank_details}/edit', [BankDetailsController::class, 'edit'])->middleware('auth');
 //Update bank_details
-Route::put('/bankDetails/{bank_details}', [BankDetailsController::class, 'update'])->middleware('auth');
+Route::put('/bank-details/{bank_details}', [BankDetailsController::class, 'update'])->middleware('auth');
+//Edit bank_details
+Route::get('/bank-details/{bank_details}/edit', [BankDetailsController::class, 'edit'])->middleware('auth');
 
 //payments
 //payment_page
@@ -140,3 +147,4 @@ Route::post('/contact', [ContactController::class,'sendMail']);
 Route::get('/about', function(){
     return view('about');
 });
+
