@@ -29,12 +29,4 @@ class ContactController extends Controller
         return redirect('/contact')->with('message', 'Your message has been sent successfully!');
     }
 
-    // public function sendOrderConfirmation(Order $order, User $user)
-    // {
-    //     // Send the email
-    //     Mail::to($user->email)->send(new OrderConfirmationMail($user,$order));
-
-    //     // Redirect or respond back
-    //     return redirect('/')->with('message', 'Your message has been sent successfully!');
-    // }
 }

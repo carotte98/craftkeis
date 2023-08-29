@@ -48,7 +48,7 @@ class ServiceFactory extends Factory
         return [
             'title' => fake()->randomElement($titles),
             'description' => fake()->words(12, true),
-            'price' => fake()->randomFloat(2, 3, 1000),
+            'price' => fake()->randomFloat(2, 10, 300),
             'time' => fake()->word(),
             'status' => 'open',
             'user_id' => fake()->numberBetween(5, 14),

@@ -34,22 +34,25 @@
         </x-card-sec>
         <x-card-sec> {{-- Profile details --}}
 
+            <h2 class="customLogo text-2xl text-center">
+                Hello {{ auth()->user()->name }}
+            </h2>
+
             <hr class="border-accent w-5/6 mx-auto my-6">
 
-            {{--! GRID FOR THE SERVICES ECT  --}}
+            {{-- ! GRID FOR THE SERVICES ECT  --}}
             <div class="grid grid-cols-3 w-5/6 mx-auto">
                 <div class="w-10/12 mx-auto">
-                    <h2 class="customLogo text-lg text-center">
-                        Hello {{ auth()->user()->name }}
-                    </h2>
+                    
                     <br>
-                    <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                    <br>
+                    <div class="hidden"><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
                     <br>
                     <h2><strong>Offered Services</strong></h2>
-    
+
                     <br>
                     <div class="offered-services">
-    
+
                         @foreach ($services as $service)
                             <hr class="border-accent w-5/6 mx-auto my-4">
                             <p>
@@ -64,12 +67,91 @@
                                 {{ $service->status }} - <strong>Category:</strong> {{ $service->categories->name }}
                             </p>
                             <br>
-                            
                         @endforeach
                     </div>
                 </div>
+                <div class="w-10/12 mx-auto">
+                    
+                    
+                    <br>
+                    <div><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                    <br>
+                    <h2><strong>Orders</strong></h2>
 
-                
+                    <br>
+                    <div class="offered-services">
+
+                        @foreach ($orders as $order)
+                            <hr class="border-accent w-5/6 mx-auto my-4">
+                            <p>
+                                <strong>Title:</strong> {{ $order->title }} - <strong>Creator:</strong>
+                                {{ $order->userCreator->name }}
+                            </p>
+                            <p>
+                                <strong>Client:</strong>{{ $order->userClient->name }}
+                            </p>
+                            <p>
+                                <strong>Description:</strong> {{ $order->description }}
+                            </p>
+                            <p>
+                                <strong>Price:</strong> {{ $order->price }} - <strong>Status:</strong>
+                                {{ $order->order_status }}
+                            </p>
+                            <br>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="w-10/12 mx-auto">
+                    
+                   
+                    <br>
+                    <br>
+                    <div class="hidden"><strong>Email : </strong> {{ auth()->user()->email }}</div><br>
+                    <br>
+                    <h2><strong>Conversations</strong></h2>
+
+                    <br>
+                    <div class="offered-services">
+
+                        @foreach ($conversations as $conversation)
+                            <hr class="border-accent w-5/6 mx-auto my-4">
+                            <p>
+                                {{ $conversation->user1->name }} and {{ $conversation->user2->name }}
+                                <br>
+                            <div class="flex">
+                                <a href="/users/1/{{ $conversation->id }}"> <button
+                                        class="text-center text-sm p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                                        See <i class="fa-regular fa-message"></i>
+                                    </button></a>
+                                <form method="POST"
+                                    action="/users/{{ auth()->user()->id }}/delete-conversation/{{ $conversation->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        class="text-center text-sm p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
+                                        <i class="fa-solid fa-trash"></i>Clear
+                                    </button>
+                                </form>
+                            </div>
+                            </p>
+                            {{-- <p>
+                            <strong>Title:</strong> {{ $order->title }} - <strong>Creator:</strong>
+                            {{ $order->userCreator->name }}
+                        </p>
+                        <p>
+                            <strong>Client:</strong>{{ $order->userClient->name }}
+                        </p>
+                        <p>
+                            <strong>Description:</strong> {{ $order->description }}
+                        </p>
+                        <p>
+                            <strong>Price:</strong> {{ $order->price }} - <strong>Status:</strong>
+                            {{ $order->order_status }} 
+                        </p> --}}
+                            <br>
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
             <hr class="border-accent w-5/6 mx-auto my-6">
@@ -88,24 +170,27 @@
                                     </svg>
                                 </span>
                                 <div class="w-5/6 mx-auto">
-                                    <h2 class="text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">
-                                        {{ $user->name }} (ID: {{ $user->id }})</h2>
-                                    <div class="flex justify-center">
-                                        <a href="/users/{{ auth()->user()->id }}/edit/{{ $user->id }}">
-                                            <button
-                                                class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
-                                                <i class="fa-solid fa-pencil"></i>Edit
-                                            </button>
-                                        </a>
-                                        <form method="POST"
-                                            action="/users/{{ auth()->user()->id }}/delete/{{ $user->id }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button
-                                                class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
-                                                <i class="fa-solid fa-trash"></i>Delete
-                                            </button>
-                                        </form>
+                                    <div class="flex flex-row justify-between items-center">
+                                        <div class="text-background">hg</div>
+                                        <h2 class="text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">
+                                            {{ $user->name }} (ID: {{ $user->id }})</h2>
+                                        <div class="flex justify-center space-x-2">
+                                            <a href="/users/{{ auth()->user()->id }}/edit/{{ $user->id }}">
+                                                <button
+                                                    class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                                                    <i class="fa-solid fa-pencil"></i>Edit
+                                                </button>
+                                            </a>
+                                            <form method="POST"
+                                                action="/users/{{ auth()->user()->id }}/delete/{{ $user->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button
+                                                    class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
+                                                    <i class="fa-solid fa-trash"></i>Delete
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                     <hr class="border-accent w-5/6 mx-auto my-6">
                                     <div><strong>Email : </strong> {{ $user->email }}</div>

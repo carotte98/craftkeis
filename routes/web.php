@@ -34,7 +34,11 @@ use App\Http\Controllers\HomeController;
 Route::delete('/users/1/delete/{user}', [UserController::class, 'destroy'])->middleware('auth');
 // Edit user
 Route::get('/users/1/edit/{user}', [UserController::class, 'showEditUser'])->middleware('auth');
-// Edit user
+// See user conversation
+Route::get('/users/1/{conversationId}', [UserController::class, 'showConversation'])->middleware('auth');
+// Delete conversation messages
+Route::delete('/users/1/delete-conversation/{conversationId}', [UserController::class, 'clearConversation'])->middleware('auth');
+
 // HomePage
 // Route::get('/', function(){
 //     return view('welcome');
