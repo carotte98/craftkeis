@@ -36,24 +36,24 @@
                 },
             },
         };
-        // const scrollToTopButton = document.querySelector("#scrollToTopButton");
-        // console.log(scrollToTopButton);
-        // // Show or hide the button based on the scroll position
-        // window.addEventListener("scroll", () => {
-        //     if (window.pageYOffset > 100) {
-        //         scrollToTopButton.classList.add("show");
-        //     } else {
-        //         scrollToTopButton.classList.remove("show");
-        //     }
-        // });
-
-        // // Scroll to the top of the page when the button is clicked
-        // scrollToTopButton.addEventListener("click", () => {
-        //     window.scrollTo({
-        //         top: 0,
-        //         behavior: "smooth"
-        //     });
-        // });
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollToTopButton = document.querySelector(".scrollToTopButton");
+            // // Show or hide the button based on the scroll position
+            window.addEventListener("scroll", () => {
+                if (window.pageYOffset > 100) {
+                    scrollToTopButton.classList.add("show");
+                } else {
+                    scrollToTopButton.classList.remove("show");
+                }
+            });
+            // // Scroll to the top of the page when the button is clicked
+            scrollToTopButton.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        });
     </script>
     <style>
         body {
@@ -92,6 +92,14 @@
             bottom: 0;
             left: 0;
             z-index: 50;
+        }
+
+        .scrollToTopButton {
+            display: none;
+        }
+
+        .show {
+            display: block;
         }
     </style>
     <title>Craftkéis - Find Artists</title>
@@ -224,7 +232,7 @@
         </x-card-sec>
         {{-- </div> --}}
     @endif
-    <button id="scrollToTopButton">
+    <button class="scrollToTopButton">
         <i class="fa-solid fa-circle-up arrow-up"></i>
     </button>
 
