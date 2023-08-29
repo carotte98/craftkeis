@@ -69,11 +69,12 @@ class OrderController extends Controller
         $formFields['order_status'] = 'pending';
         $formFields['completed_at'] = null;
 
-        // send order confirmation email
-        // Mail::to($user->email)->send(new OrderConfirmationMail($user,$order));
-
         // dd($formFields);
         Order::create($formFields);
+
+        // send order confirmation email
+        $user = auth()->user();
+        Mail::to($user->email)->send(new OrderConfirmationMail($user,$formFields));
 
         //CREATE CONVERSATION BETWEEN USERS
         $user_id1 = $formFields['user_id1'];
@@ -98,9 +99,9 @@ class OrderController extends Controller
             }
         }
 
-        return redirect('/')->with('message', 'Order created successfully');
+        // return redirect('/')->with('message', 'Order created successfully');
     
-        // return redirect('/services/index')->with('message', 'Order created successfully');
+        return redirect('/services/index')->with('message', 'Order created successfully');
     }
 
     /**
@@ -132,7 +133,12 @@ class OrderController extends Controller
         // the creator updates the status of the order
         $newStatus = $request->input('status');
 
-        if ($newStatus === 'accepted' || $newStatus === 'declined' || $newStatus === 'finished') {
+        if ($newStatus === 'accepted' || $newStatus === 'declined' || $newStatus === 'finished' || $newStatus === 'paid') {
+            if ($newStatus === 'paid') {
+                
+                //update, completed_at
+                $order->completed_at = now();
+                }
             $order->order_status = $newStatus;
             $order->save();
 
@@ -142,7 +148,7 @@ class OrderController extends Controller
         return redirect()->back()->withErrors('Invalid status update.');
     }
 
-    /**
+    /*
      * Remove the specified resource from storage.
      */
     public function destroy(Order $order)
