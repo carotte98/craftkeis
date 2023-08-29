@@ -103,7 +103,7 @@
             <div class="flex flex-cols-2 gap-5">
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/tim.png)] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/tim.png')] bg-contain bg-no-repeat bg-center "></div>
 
                 {{-- TEXT --}}
                 <div class="flex justify-center items-center flex-col w-2/3 text-xl text-center">
