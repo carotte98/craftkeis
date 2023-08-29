@@ -15,9 +15,11 @@ class PaymentController extends Controller
     public function session(Request $request)
     {
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
+
         
         $productname=$request->get('service_name');
         $totalprice=$request->get('total');
+        $completedAt=$request->get('completed_at');
         $two0="00";
         $total="$totalprice$two0";
 
@@ -46,7 +48,7 @@ class PaymentController extends Controller
 
     public function success()
     {
-        return view('/')->with('message','Payment successfull');
+        return view('welcome')->with('message','Payment successfull');
     }
         
 }

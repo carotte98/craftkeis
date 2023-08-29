@@ -1,17 +1,4 @@
-@font-face {
-    font-family: Aquire;
-    src: url('/fonts/Aquire-BMWox.otf') format('otf');
-}
-
-@font-face {
-    font-family: AquireBold;
-    src: url('/fonts/AquireBold-8Ma60.otf') format('otf');
-}
-
-@font-face {
-    font-family: AquireLight;
-    src: url('/fonts/AquireLight-YzE0o.otf') format('otf');
-}
+@import url('https://fonts.cdnfonts.com/css/aquire?styles=58838,58840,58839');
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
@@ -21,11 +8,17 @@
     font-family: 'Noto Sans', sans-serif;
 }
 
-
-
 body{
     background-color: #E7D0BB;
+    display: flex;
+    flex-direction: column;
+    /* to keep the footer at the bottom */
     min-height: 100vh;
+}
+
+footer {
+    /* to keep the footer at the bottom */
+    margin-top: auto;
 }
 
 .dropshadow{
@@ -62,6 +55,14 @@ body{
     font-size: 2rem;
     color: #676666;
     font-family: 'Aquire';
+    text-decoration: none;
+}
+
+.customLogoBold{
+    font-size: 2rem;
+    color: #676666;
+    font-family: 'Aquire';
+    font-weight: 700;
     text-decoration: none;
 }
 
@@ -122,4 +123,39 @@ body{
     text-align: center;
 }
 
+.stats-card {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
 
+.stats-card h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.stats-card p {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* for the password check */
+
+.invalid {
+    background: url(../images/invalid.png) no-repeat 0 50%;
+    padding-left: 22px;
+    line-height: 24px;
+    color: #ec3f41;
+  }
+  
+  .valid {
+    background: url(../images/valid.png) no-repeat 0 50%;
+    padding-left: 22px;
+    line-height: 24px;
+    color: #3a7d34;
+  }
+  

@@ -36,29 +36,29 @@
                 },
             },
         };
-        // const scrollToTopButton = document.querySelector("#scrollToTopButton");
-        // console.log(scrollToTopButton);
-        // // Show or hide the button based on the scroll position
-        // window.addEventListener("scroll", () => {
-        //     if (window.pageYOffset > 100) {
-        //         scrollToTopButton.classList.add("show");
-        //     } else {
-        //         scrollToTopButton.classList.remove("show");
-        //     }
-        // });
-
-        // // Scroll to the top of the page when the button is clicked
-        // scrollToTopButton.addEventListener("click", () => {
-        //     window.scrollTo({
-        //         top: 0,
-        //         behavior: "smooth"
-        //     });
-        // });
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollToTopButton = document.querySelector(".scrollToTopButton");
+            // // Show or hide the button based on the scroll position
+            window.addEventListener("scroll", () => {
+                if (window.pageYOffset > 100) {
+                    scrollToTopButton.classList.add("show");
+                } else {
+                    scrollToTopButton.classList.remove("show");
+                }
+            });
+            // // Scroll to the top of the page when the button is clicked
+            scrollToTopButton.addEventListener("click", () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        });
     </script>
     <style>
-        body {
+        /* body {
             min-height: fit-content;
-        }
+        } */
 
         .active-contact {
             background-color: lightgreen;
@@ -93,6 +93,14 @@
             left: 0;
             z-index: 50;
         }
+
+        .scrollToTopButton {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
     </style>
     <title>Craftkéis - Find Artists</title>
 </head>
@@ -112,8 +120,8 @@
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg">
-            <div class="flex space-x-6 mr-6 items-center grid grid-cols-3 w-11/12 gap-x-52">
+        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
+            <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
                 <div class="flex">
                     {{-- Search bar --}}
@@ -224,14 +232,16 @@
         </x-card-sec>
         {{-- </div> --}}
     @endif
-    <button id="scrollToTopButton">
+    <button class="scrollToTopButton">
         <i class="fa-solid fa-circle-up arrow-up"></i>
     </button>
 
     {{-- footer --}}
-    <footer class="static bottom-0 w-full flex flex-col items-center justify-center mt-10">
+    {{-- static bottom-0 w-full flex flex-col items-center justify-center mt-10 --}}
+    {{-- mt-10 causes space under footer --}}
+    <footer class="w-full flex flex-col items-center justify-center">
         {{-- top part --}}
-        <section class="bg-background w-max rounded-t-lg  dropshadowF">
+        <section class="bg-background w-max rounded-t-lg  dropshadowF mt-10">
             <div class="w-full flex justify-center p-2">
                 <a href="/" class="customLogo">Craftkeis</a>
             </div>
@@ -261,7 +271,7 @@
                 </div>
 
                 <div class="flex flex-row gap-24 mx-24 xl:mx-32">
-                    <a href="/services">Categories</a>
+                    <a href="/services/index">Services</a>
 
                     @auth
 
@@ -278,10 +288,10 @@
         {{-- bootom copyright part --}}
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
-            <a href="/login-as-user/2" class="btn btn-primary">
-                Login as Maus katti
+            <a href="/login-as-user/3" class="btn btn-primary">
+                Login as Maus Kaetti
             </a>
-            <a href="/login-as-user/1" class="btn btn-primary">
+            <a href="/login-as-user/2" class="btn btn-primary">
                 Login as John Doe
             </a>
         </section>

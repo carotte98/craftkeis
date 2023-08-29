@@ -1,5 +1,4 @@
 <x-layout>
-    <a href="{{ url()->previous() }}"><i class="fa-solid fa-arrow-left"></i> Back</a>
     <x-card class="w-2/6 ">
         <x-card-sec>
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">

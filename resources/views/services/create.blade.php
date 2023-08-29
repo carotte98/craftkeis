@@ -84,7 +84,7 @@
                     <button class="bg-accent text-lg text-white rounded-lg py-2 px-4 hover:bg-onhover">
                         Create Service
                     </button>
-                    <a href="/" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
+                    <a href="/users/{{auth()->user()->id}}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
                 </div>
             </form>
         </x-card-sec>
