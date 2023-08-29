@@ -1,6 +1,6 @@
 {{-- no more JS T.T --}}
 <x-layout> {{-- x-layout, not div please replace when layout finished --}}
-    <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto"> {{-- Here we also want to replace the div and input a x-card --}} 
+    <div class="w-11/12 md:w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto"> {{-- Here we also want to replace the div and input a x-card --}} 
         <x-card-sec>
         {{-- ? Do we need a x-card, always found it wierd (cedric) --}}
         {{-- * Yeah we need it no worries mate --}}

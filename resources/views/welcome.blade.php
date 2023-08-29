@@ -39,7 +39,7 @@
                 </div>
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/Robits.jpg')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:70vh" class="w-full rounded-xl bg-[url('/public/storage/images/Robits.jpg')] bg-contain bg-no-repeat bg-center "></div>
 
             </div>
 

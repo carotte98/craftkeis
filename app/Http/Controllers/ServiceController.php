@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -21,7 +22,7 @@ class ServiceController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
         return view('services.create');
     }
 

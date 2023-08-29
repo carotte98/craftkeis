@@ -45,7 +45,7 @@
                 </div>
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/thierry.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:70vh" class="w-full rounded-xl bg-[url('/public/storage/images/thierry.png')] bg-contain bg-no-repeat bg-center "></div>
 
             </div>
 
@@ -55,7 +55,7 @@
             <div class="flex flex-cols-2 gap-5">
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/cedric.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:70vh" class="w-full rounded-xl bg-[url('/public/storage/images/cedric.png')] bg-contain bg-no-repeat bg-center "></div>
 
                 {{-- TEXT --}}
                 <div class="flex justify-center items-center flex-col w-2/3 text-xl text-center">
@@ -93,7 +93,7 @@
                 </div>
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/michelle.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:70vh" class="w-full rounded-xl bg-[url('/public/storage/images/michelle.png')] bg-contain bg-no-repeat bg-center "></div>
 
             </div>
 
@@ -103,7 +103,7 @@
             <div class="flex flex-cols-2 gap-5">
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/tim.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:70vh" class="w-full rounded-xl bg-[url('/public/storage/images/tim.png')] bg-contain bg-no-repeat bg-center "></div>
 
                 {{-- TEXT --}}
                 <div class="flex justify-center items-center flex-col w-2/3 text-xl text-center">
@@ -141,7 +141,7 @@
                 </div>
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/joe.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:70vh" class="w-full rounded-xl bg-[url('/public/storage/images/joe.png')] bg-contain bg-no-repeat bg-center "></div>
 
             </div>
 

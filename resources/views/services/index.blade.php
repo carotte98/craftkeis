@@ -28,14 +28,14 @@
                     </div>
     
                     {{-- IMAGE as background of the div ;) --}}
-                    <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/sad_robot.png')] bg-contain bg-no-repeat bg-center "></div>
+                    <div style="height:70vh" class="w-full rounded-xl bg-[url('/public/storage/images/sad_robot.png')] bg-contain bg-no-repeat bg-center "></div>
     
                 </div>
             </x-card-sec>
                 {{-- end no services --}}
                 
         @else
-            <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-2 md:grid md:grid-cols-2 md:gap-3">
                 @foreach ($services as $service)
                 <x-service-card :service="$service" />
                 @endforeach

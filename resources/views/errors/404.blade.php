@@ -8,9 +8,9 @@
                 {{-- no services found display --}}
 
                 {{-- cols containing the image and the text in their respective layout  --}}
-                <div class="flex flex-cols-2 gap-5">
+                <div class="flex flex-col md:grid md:grid-cols-2 md:gap-5">
                     {{-- TEXT --}}
-                    <div class="flex justify-center items-center flex-col w-2/3 text-xl text-center">
+                    <div class="flex md:justify-center md:items-center flex-col w-2/3 mx-auto text-xl text-center">
     
                         <hr class="border-accent w-5/6 my-6">
                         <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogoBold">
@@ -31,7 +31,7 @@
                     </div>
     
                     {{-- IMAGE as background of the div ;) --}}
-                    <div style="height:70vh" class="w-full rounded-xl bg-[url('/images/404.png')] bg-contain bg-no-repeat bg-center "></div>
+                    <div style="height:70vh" class="w-full rounded-xl bg-[url('/public/storage/images/404.png')] bg-contain bg-no-repeat bg-center "></div>
     
                 </div>
             </x-card-sec>
