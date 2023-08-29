@@ -15,7 +15,7 @@
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>Craftkéis is an Online freelancing platform. A community of Freelancers in many domains of Arts are present already, from the more modern approaches like 3d modelling to more classical painting or wood Sculpting. Browse now our vast list of services given by our Freelancers or join us as one and find your next dream contract !</p>
+                    <p>Craftkéis is an Online platform for freelance artists. A community of Creators in many domains of Arts are present already, ranging from 3D modelling and digital illustrations to traditional paintings or wood sculpting. Browse now our vast list of services offered by our Creators or join us as one and find your next dream gig!</p>
 
                     <hr class="border-accent w-5/6 my-6">
 
@@ -119,7 +119,7 @@
                 </h2>
 
                 <p class="mb-1 ml-2 text-lg">
-                    A freelancer in need of visibility and some contracts, search no further, creaftkeis is a plateform made for freelancer in the domain of Arts. Just check the Artist option during registration and you’ll be able to link your Bank account for future salary
+                    A freelancer in need of visibility and some gigs? Search no further! Craftkeis is a platform made for freelance artists of all kind. Just check the Creator option during registration and you’ll be able to link your Bank account for future payments.
                 </p>
 
                 <hr class="border-accent w-full my-3">
@@ -130,7 +130,7 @@
                 </h2>
 
                 <p class="mb-1 ml-2 text-lg">
-                    Giving a few types of Services ? No problem, you’ll be able to create your services in a very swift manner and still have enough information for your future clients. Add pictures, expected payments and much more !             
+                    Offering several types of Services? No problem, you’ll be able to create your services in a very swift manner while still presenting enough information for any future clients. Add pictures, expected payments and much more!             
                 </p>
 
                 <hr class="border-accent w-full my-3">
@@ -141,7 +141,7 @@
                 </h2>
 
                 <p class="mb-1 ml-2 text-lg">
-                    With the creator dashboard managing your services and orders is very simple. See all of it at the same place, and edit or add in a few clicks !
+                    With the creator dashboard managing your services and requests is very simple. See all of it at the same place, and edit or add in a few clicks!
                 </p>
 
                 <hr class="border-accent w-full my-3">
@@ -152,7 +152,7 @@
                 </h2>
 
                 <p class="mb-1 ml-2 text-lg">
-                    The on site web chat service we offer permits our Artists to write in realtime with their clients, done are the times where you had to send dozens of emails before starting a gig. hald an hour in chat with the client and you’ll be able to roll
+                    The on-site web chat service we offer permits our creators to write in realtime with their clients! Gone are the times where you had to send dozens of emails before starting a gig. Hop into chat with your client and you’ll be able to roll!
                 </p>
 
                 <hr class="border-accent w-full my-3">
@@ -170,7 +170,7 @@
                 </h2>
 
                 <p class="mb-1 ml-2 text-lg">
-                    At Craftkeis you can easily and quickly create an account as a Client, no credit card needed just enter your information and join the community
+                    At Craftkeis you can easily and quickly create an account as a Client, no credit card needed just enter your information and join the community!
                 </p>
 
                 <hr class="border-accent w-full my-3">
@@ -181,7 +181,7 @@
                 </h2>
 
                 <p class="mb-1 ml-2 text-lg">
-                    Search through our selection of partner Artists and Creators, need something specific, our categories will help you find it in no time               
+                    Search through the vast selection of services offered by our partner Artists and Creators. Need something specific? Our categories will help you find it in no time!              
                 </p>
 
                 <hr class="border-accent w-full my-3">
@@ -192,7 +192,7 @@
                 </h2>
 
                 <p class="mb-1 ml-2 text-lg">
-                    You think you found the perfect Artist on the website, make a request in no time, describe your needs and we’ll send your request to the artist. Need more infos ? Chat with the person in real time before ordering !
+                    Found the perfect Artist for what you're looking for? Make a request in no time, describe your needs and we’ll send it all to the artist. Need more infos? Chat with them in real time before finalizing your request!
                 </p>
 
                 <hr class="border-accent w-full my-3">
@@ -203,7 +203,7 @@
                 </h2>
 
                 <p class="mb-1 ml-2 text-lg">
-                    The chat function and our Client Dashboard will make tracking your order as easy as never. See all your orders, contacts and bank details in one place !
+                    The chat function and our Client Dashboard will make tracking your requests and their current status easier then ever before!
                 </p>
 
                 <hr class="border-accent w-full my-3">
