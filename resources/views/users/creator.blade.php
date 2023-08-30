@@ -11,13 +11,13 @@
             <hr class="border-accent w-5/6 mx-auto my-6">
 
             <div class="w-2/3 mx-auto">
-                <h2 class="text-lg">
+                <h2 class="text-sm md:text-lg">
                     <strong>Hi, I'm {{ $user->name }}</strong>
                 </h2>
                 <br>
-                <div><strong>Email : </strong> {{ $user->email }}</div><br>
-                <div><strong>Bio : </strong></div>
-                <div>{{ $user->bio }}</div>
+                <div class="text-xs md:text-base"><strong>Email : </strong> {{ $user->email }}</div><br>
+                <div class="text-xs md:text-base"><strong>Bio : </strong></div>
+                <div class="text-xs md:text-base">{{ $user->bio }}</div>
                 <br>
             </div>
 
@@ -31,7 +31,7 @@
 
             <hr class="border-accent w-5/6 mx-auto my-6">
             
-            <div class="grid grid-cols-2 gap-3">
+            <div class="md:grid md:grid-cols-2 md:gap-3">
                 @foreach ($user->services as $service)
                     <x-service-card :service="$service" />
                 @endforeach

@@ -1,5 +1,5 @@
 <x-layout>
-<div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
+<div class="w-11/12 md:w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
         
     <x-card-sec>
                 

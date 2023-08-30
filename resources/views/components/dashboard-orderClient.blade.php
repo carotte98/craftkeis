@@ -6,7 +6,7 @@
     <hr class="border-accent w-5/6 mx-auto my-6">
     
         @unless ($user->orderClient->isEmpty())   
-        <div class="grid grid-cols-2 gap-3">             
+        <div class="md:grid md:grid-cols-2 gap-3">             
             @foreach ($user->orderClient as $order)
                 <x-card-sec>
                     <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->service->title }}</h2>
@@ -62,7 +62,7 @@
                             <form action="/orders/{{$order->id}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-red-600">
+                                <button id="delete-button" type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-red-600">
                                     <i class="fa-solid fa-times mr-2"></i> Cancel
                                 </button>
                             </form>   

@@ -10,7 +10,7 @@
             border: 1px solid #ccc;
             padding: 10px;
             border-radius: 5px;
-            width: 300px;
+            width: 90%;
             /* Adjust width as needed */
             background-color: #f4f4f4;
             margin: auto;
@@ -68,29 +68,17 @@
             }
         });
     });
-
-    document.addEventListener('DOMContentLoaded', function(){
-        const cardNumberInput= document.querySelector('input[name="cardNumber"]');
-
-        cardNumberInput.addEventListener('input', function(){
-            const inputValue=cardNumberInput.value;
-            if(inputValue.length === 4 || inputValue.length === 9 || inputValue.length === 14 || inputValue.length === 19 ){
-                cardNumberInput.value = inputValue + ' ';
-            }
-        })
-    })
-
-    </script>
+</script>
 
 <x-layout>
-    <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
+    <div class="w-11/12 md:w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
         <x-card-sec>
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                 Bank Details
             </h2>
 
             <hr class="border-accent w-5/6 mx-auto my-6">
-            <form action="/bankDetails" method="POST">
+            <form action="/users/1/bank-create/{{$user}}" method="POST">
                 @csrf
 
                 {{-- this div is for the first name --}}
@@ -109,8 +97,8 @@
                 {{-- this div is for the cardNumber --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
-                        <i class="fa-solid fa-credit-card"></i>
-                        <input type="text" placeholder="Card Number" name="cardNumber"
+                        <i class="fa-solid fa-user"></i>
+                        <input type="number" placeholder="Card Number" name="cardNumber"
                             value="{{ old('cardNumber') }}">
                     </div>
                 </div>
@@ -123,7 +111,7 @@
                 {{-- this div is for the expiration Date --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
-                        <i class="fa-solid fa-credit-card"></i>
+                        <i class="fa-solid fa-user"></i>
                         <input type="text" placeholder="MM / YY" name="expireDate" value="{{ old('expireDate') }}">
                     </div>
                 </div>
@@ -136,7 +124,7 @@
                 {{-- this div is for the CCV --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
-                        <i class="fa-solid fa-credit-card"></i>
+                        <i class="fa-solid fa-user"></i>
                         <input type="number" placeholder="CCV" name="ccv" value="{{ old('ccv') }}">
                     </div>
                 </div>
