@@ -67,7 +67,7 @@ footer {
 }
 
 .customLogoBold {
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: #676666;
     font-family: 'Aquire';
     font-weight: 700;
@@ -183,4 +183,48 @@ footer {
     font-size: 1rem;
 }
 
+.active-contact {
+    background-color: #F4A051;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.message-window-page {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 50;
+}
+
+.message-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.message-list::-webkit-scrollbar {
+    display: none;
+}
+
+.message-window-open {
+    display: flex;
+    /* flex-direction: column; */
+}
+
+.arrow-up {
+    font-size: 3rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    margin: 15px 20px;
+}
+
+.scrollToTopButton {
+    display: none;
+}
+
+.show {
+    display: block;
+}
 

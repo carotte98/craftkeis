@@ -21,7 +21,7 @@
     }
 </style>
 <x-layout>
-    <x-card>
+    <div class="w-11/12 md:w-5/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
         <x-card-sec class="flex flex-col items-center mb-4">
             <hr class="border-accent w-5/6 mx-auto my-6">
             <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
@@ -41,7 +41,7 @@
             <hr class="border-accent w-5/6 mx-auto my-6">
 
             {{-- ! GRID FOR THE SERVICES ECT  --}}
-            <div class="grid grid-cols-3 w-5/6 mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 w-5/6 mx-auto">
                 <div class="w-10/12 mx-auto">
 
                     <br>
@@ -140,14 +140,27 @@
 
             <hr class="border-accent w-5/6 mx-auto my-6">
         </x-card-sec>
+
         <x-card-sec>
-            <a href="/users/1/create">
-                <button
-                    class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
-                    <i class="fa-solid fa-pencil"></i>Create User
-                </button>
-            </a>
+
+            <h2 class="customLogoBold md:customLogo text-2xl text-center">
+                Create new users
+            </h2>
+
+            <hr class="border-accent w-5/6 mx-auto my-6">
+            
+            <div class="flex justify-center">
+                <a href="/users/1/create">
+                    <button
+                        class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                        <i class="fa-solid fa-pencil"></i>Create User
+                    </button>
+                </a>
+            </div>
+
+            <hr class="border-accent w-5/6 mx-auto my-6">
         </x-card-sec>
+
         <div class="divide-y divide-neutral-200 mx-auto space-y-4">
             @foreach ($users as $user)
                 @if ($user->id != 1)
@@ -162,11 +175,12 @@
                                     </svg>
                                 </span>
                                 <div class="w-5/6 mx-auto">
-                                    <div class="flex flex-row justify-between items-center">
+
+                                    <div class="flex flex-col md:flex-row justify-between items-center">
                                         <div class="text-background">hg</div>
-                                        <h2 class="text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">
+                                        <h2 class="text-xl md:text-3xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                                             {{ $user->name }} (ID: {{ $user->id }})</h2>
-                                        <div class="flex justify-center space-x-2">
+                                        <div class="flex justify-center space-x-2 mt-2 md:mt-0 ">
                                             <a href="/users/{{ auth()->user()->id }}/edit/{{ $user->id }}">
                                                 <button
                                                     class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
@@ -184,6 +198,7 @@
                                             </form>
                                         </div>
                                     </div>
+
                                     <hr class="border-accent w-5/6 mx-auto my-6">
                                     <div><strong>Email : </strong> {{ $user->email }}</div>
                                     <div><strong>Bio : </strong></div>
@@ -204,7 +219,7 @@
             @endforeach
 
         </div>
-    </x-card>
+    </div>
     <div class="flex justify-center mb-3">
         <a href="/">
             <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">

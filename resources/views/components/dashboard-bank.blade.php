@@ -28,8 +28,14 @@
         <hr class="border-accent w-5/6 mx-auto my-6">
         {{-- ! --}}
         {{-- @if (auth()->user()->id == 1) --}}
-        <a href="/register/{{ $user->id }}/bank-details">
-            <i class="fa-solid fa-pencil"></i>Add Bank Details
-        </a>
+
+        <div class="flex justify-center">
+            <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                <a href="/register/{{ $user->id }}/bank-details">
+                    <i class="fa-solid fa-pencil"></i>Add Bank Details
+                </a>
+            </button>
+        </div>
+        
     @endunless
 </x-card-sec>

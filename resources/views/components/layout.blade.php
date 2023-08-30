@@ -40,50 +40,7 @@
             min-height: fit-content;
         } */
 
-        .active-contact {
-            background-color: #F4A051;
-            border-radius: 10px;
-            padding: 2px;
-        }
-
-        .message-window-page {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            z-index: 50;
-        }
-
-        .message-list {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            overflow-y: scroll;
-        }
-
-        .message-list::-webkit-scrollbar {
-            display: none;
-        }
-
-        .message-window-open {
-            display: flex;
-            /* flex-direction: column; */
-        }
-
-        .arrow-up {
-            font-size: 3rem;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 50;
-            margin: 15px 20px;
-        }
-
-        .scrollToTopButton {
-            display: none;
-        }
-
-        .show {
-            display: block;
-        }
+        
     </style>
     <title>Craftkéis - Find Artists</title>
 </head>
@@ -188,7 +145,7 @@
         <x-chat :contactUsers="$contactUsers" />
         {{-- </div> --}}
     @endif
-    <button class="scrollToTopButton">
+    <button class="scrollToTopButton scale-75 md:scale-100 -translate-x-12 translate-y-28 md:-translate-x-0 md:translate-y-0">
         <i class="fa-solid fa-angles-up arrow-up text-accent"></i>
     </button>
     
@@ -196,9 +153,9 @@
     {{-- footer --}}
     {{-- static bottom-0 w-full flex flex-col items-center justify-center mt-10 --}}
     {{-- mt-10 causes space under footer --}}
-    <footer class="w-full flex flex-col items-center justify-center">
+    <footer class="w-full flex flex-col items-center justify-center z-0">
         {{-- top part --}}
-        <section class="bg-background w-max rounded-t-lg  dropshadowF mt-10">
+        <section class="bg-background w-max rounded-t-lg  dropshadowF mt-10 z-0">
             <div class="w-full flex justify-center p-2">
                 <a href="/" class="customLogo">Craftkeis</a>
             </div>

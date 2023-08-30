@@ -6,7 +6,7 @@
     <hr class="border-accent w-5/6 mx-auto my-6">
     
         @unless ($user->orderClient->isEmpty())   
-        <div class="grid grid-cols-2 gap-3">             
+        <div class="md:grid md:grid-cols-2 gap-3">             
             @foreach ($user->orderClient as $order)
                 <x-card-sec>
                     <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->service->title }}</h2>
