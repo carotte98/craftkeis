@@ -51,7 +51,7 @@
                 <div class="bordered-div">
                     <div class="icon-input-container">
                         <i class="fas fa-image"></i>
-                        <input type="file" placeholder="Image" name="image_address" value="{{old('image_address')}}" accept="image/png, image/jpeg">>
+                        <input type="file" placeholder="Image" name="image_address" value="{{old('image_address')}}" accept="image/png, image/jpeg">
                     </div>
                 </div>
 

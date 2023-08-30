@@ -28,13 +28,17 @@ class BankDetailsController extends Controller
      */
     public function store(Request $request)
     {
+
         $formFields =$request->validate([
             'full_name'=>['required'],
-            'cardNumber'=>['required','numeric', 'digits:16'],
+            'cardNumber' => ['required', 'regex:/^\d{4}(\s\d{4}){3}$/'],
             // 'payment_method'=>['required'],
             'expireDate'=>['required'],
             'ccv'=>['required','numeric', 'digits:3']
         ]);
+
+        $formFields['cardNumber'] = preg_replace('/\D/', '', $formFields['cardNumber']); // Remove spaces
+
         $formFields['user_id']=auth()->user()->id;
 
         Bank_details::create($formFields);
