@@ -80,16 +80,17 @@ class BankDetailsController extends Controller
         // dd($formFields);
         $formFields = $request->validate([
             'full_name' => ['required'],
-            'cardNumber' => ['required'],
+            'cardNumber' => ['required', 'regex:/^\d{4}(\s\d{4}){3}$/'],
             'ccv' => ['required'],
             'expireDate' => ['required']
         ]);
         // dd($formFields);
 
+        $formFields['cardNumber'] = preg_replace('/\D/', '', $formFields['cardNumber']); // Remove spaces
         $bank_details->update($formFields);
 
         // Create Logs in admin.log
-        Log::channel('admin')->info("Bank Details Added: USER_ID" . $formFields['user_id']);
+        Log::channel('admin')->info("Bank Details Added: USER_ID" . $bank_details->user_id);
 
         return redirect('/users/' . $bank_details->user_id)->with('message', 'Bank details updated successfully');
     }
