@@ -35,7 +35,7 @@
                 {{-- end no services --}}
                 
         @else
-            <div class="space-y-2 md:grid md:grid-cols-2 md:gap-3">
+            <div class="md:grid md:grid-cols-2 md:gap-3">
                 @foreach ($services as $service)
                 <x-service-card :service="$service" />
                 @endforeach

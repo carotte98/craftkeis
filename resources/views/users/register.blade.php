@@ -97,7 +97,7 @@
                     <label for="is_creator" class="inline-block text-lg mb-2">
                         Are you a creator?
                     </label>
-                    <input type="checkbox" id="role" onclick="toggleInputs()" name="is_creator" value="1">
+                    <input type="checkbox" id="role" name="is_creator" value="1">
                 </div>
 
 

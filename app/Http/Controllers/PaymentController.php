@@ -54,9 +54,7 @@ class PaymentController extends Controller
 
     public function success($order)
     {
-        if (Auth::user()->id !== $order->service->users->id) {
-            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
-        }
+
         $totalUsers = User::count();
         $totalCreators = User::where('is_creator', true)->count();
         $totalServices = Service::count();

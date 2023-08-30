@@ -65,8 +65,8 @@
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg">
-            <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
+        <section class="w-full dropshadow flex -justify-center h-48 md:h-24 bg-background rounded-b-lg"> 
+            <div class=" space-x-6 items-center grid grid-cols-1 md:grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
                 <div class="flex w-5/6 mt-3 lg:mt-0 lg:w-full">
                     {{-- Search bar --}}
@@ -77,13 +77,17 @@
                     <a href="/" class="customLogo">Craftkeis</a>
                 </div>
 
-                <div class="w-full flex justify-evenly space-x-2 bg-background">
+                <div class="w-full flex items-center justify-evenly space-x-2 bg-background">
 
                     {{-- language select --}}
                     {{-- <a href="" class="text-center text-lg h-8 w-24 text-black rounded-lg bg-buttons hover:text-white hover:bg-onhover"><i class="fas fa-globe"></i></a> --}}
 
                     {{-- auth directive only shows the elements when logged in --}}
                     @auth
+                        <div
+                            class="hidden md:block text-center text-black">
+                            <span>Hi, {{ auth()->user()->name }}!</span>
+                        </div>
                         <div
                             class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">
                             <a href="/users/{{ auth()->user()->id }}">Account</a>
