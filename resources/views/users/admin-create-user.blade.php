@@ -4,15 +4,16 @@
         <x-card-sec>
         {{-- ? Do we need a x-card, always found it wierd (cedric) --}}
         {{-- * Yeah we need it no worries mate --}}
+        {{-- ! HELP --}}
 
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
-                Register
+                Create User
 
             </h2>
 
             <hr class="border-accent w-5/6 mx-auto my-6">
-
-            <form  action="/users" method="POST" enctype="multipart/form-data" id="signUp">
+{{-- ! --}}
+            <form  action="/users/1" method="POST" enctype="multipart/form-data" id="signUp"> 
                 @csrf
 
                 {{-- this div is for the name --}}
@@ -51,7 +52,7 @@
                 <div class="bordered-div">
                     <div class="icon-input-container">
                         <i class="fas fa-image"></i>
-                        <input type="file" placeholder="Image" name="image_address" value="{{old('image_address')}}" accept="image/png, image/jpeg">
+                        <input type="file" placeholder="Image" name="image_address" value="{{old('image_address')}}" accept="image/png, image/jpeg">>
                     </div>
                 </div>
 
@@ -95,9 +96,9 @@
                 {{-- this div is for the checkbox --}}
                 <div class="bordered-div ">
                     <label for="is_creator" class="inline-block text-lg mb-2">
-                        Are you a creator?
+                        Is he a creator?
                     </label>
-                    <input type="checkbox" id="role" onclick="toggleInputs()" name="is_creator" value="1">
+                    <input type="checkbox" id="role" name="is_creator" value="1">
                 </div>
 
 
@@ -107,35 +108,9 @@
                 <div class="w-full flex justify-center">
                     <div class="" id="Register-button">
                         <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
-                            Sign Up
+                            Create
                         </button>
                         <a href="{{ url()->previous() }}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
-                    </div>
-                </div>
-
-                <div class="mb-6 flex justify-center space-x-2 text-lg" id="Link-button">
-                    <button id="google">
-                        <a href="">
-                            <i class="fa-brands fa-google" style="color: #ffffff;"></i>
-                        </a>
-                    </button>
-                    <button class="" id="facebook">
-                        <a href="">
-                            <i class="fa-brands fa-facebook" style="color: #ffffff;"></i>
-
-                        </a>
-                    </button>
-                </div>
-
-                <hr class="border-accent w-5/6 mx-auto my-3">
-
-                <div class="mt-4 register-footer">
-                    <p>
-                        Already have an account?
-                        <a href="/login" ><strong>Login</strong></a>
-                    </p>
-                    <div>
-                        <p>Terms & conditions</p>
                     </div>
                 </div>
             </form>
