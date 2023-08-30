@@ -31,12 +31,12 @@
 
         <div class="flex justify-center">
             <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
-                <a href="/register/{{ $user->id }}/bank-details">
+                <a href="{{ auth()->user()->id == 1 ? '/users/1/bank-create/' . $user->id : '/register/' . $user->id . '/bank-details' }}">
                     <i class="fa-solid fa-pencil"></i>Add Bank Details
                 </a>
             </button>
         </div>
         
-        <a href="{{ auth()->user()->id == 1 ? '/users/1/bank-create/' . $user->id : '/register/' . $user->id . '/bank-details' }}">
+        
     @endunless
 </x-card-sec>

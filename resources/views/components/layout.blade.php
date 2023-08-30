@@ -16,7 +16,6 @@
     @vite('resources/css/app.css')
     <script src="{{ asset('js/deleteBtn.js') }}"></script>
     <script>
-       
         document.addEventListener('DOMContentLoaded', function() {
             const scrollToTopButton = document.querySelector(".scrollToTopButton");
             // // Show or hide the button based on the scroll position
@@ -41,8 +40,6 @@
         /* body {
             min-height: fit-content;
         } */
-
-        
     </style>
     <title>Craftkéis - Find Artists</title>
 </head>
@@ -61,15 +58,15 @@
     <div id="confirmModal" class="modal">
         <div class="modal-content">
             <p>Are you sure you want to delete?</p>
-            <button id="confirmButton">Confirm</button>
-            <button id="cancelButton">Cancel</button>
+            <button id="confirmButton" class="text-center text-lg h-8 w-24 text-text-black rounded-lg bg-buttons hover:bg-onhover">Confirm</button>
+            <button id="cancelButton" class="text-center text-lg h-8 w-24 text-text-black rounded-lg bg-accent hover:bg-onhover">Cancel</button>
         </div>
     </div>
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
-            <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
+        <section class="w-full dropshadow flex -justify-center h-48 md:h-24 bg-background rounded-b-lg"> 
+            <div class=" space-x-6 items-center grid grid-cols-1 md:grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
                 <div class="flex w-5/6 mt-3 lg:mt-0 lg:w-full">
                     {{-- Search bar --}}
@@ -80,13 +77,17 @@
                     <a href="/" class="customLogo">Craftkeis</a>
                 </div>
 
-                <div class="w-full flex justify-evenly space-x-2 bg-background">
+                <div class="w-full flex items-center justify-evenly space-x-2 bg-background">
 
                     {{-- language select --}}
                     {{-- <a href="" class="text-center text-lg h-8 w-24 text-black rounded-lg bg-buttons hover:text-white hover:bg-onhover"><i class="fas fa-globe"></i></a> --}}
 
                     {{-- auth directive only shows the elements when logged in --}}
                     @auth
+                        <div
+                            class="hidden md:block text-center text-black">
+                            <span>Hi, {{ auth()->user()->name }}!</span>
+                        </div>
                         <div
                             class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">
                             <a href="/users/{{ auth()->user()->id }}">Account</a>
@@ -114,7 +115,8 @@
 
         {{-- categories list --}}
         <section class="flex w-2/3 h-fit xl:h-14 justify-center bg-background rounded-b-lg dropshadowCat">
-            <ul class="grid grid-cols-2 gap-y-1 lg:gap-y-0 lg:flex lg:flex-row lg:space-x-2 h-fit lg:h-14 xl:h-12 w-11/12 justify-center text-sm text-center align-middle">
+            <ul
+                class="grid grid-cols-2 gap-y-1 lg:gap-y-0 lg:flex lg:flex-row lg:space-x-2 h-fit lg:h-14 xl:h-12 w-11/12 justify-center text-sm text-center align-middle">
                 <li class="w-11/12 text-center lg:w-1/6"><a href="/services/index"><button
                             class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">All</button></a>
                 </li>
@@ -153,7 +155,8 @@
         <x-chat :contactUsers="$contactUsers" />
         {{-- </div> --}}
     @endif
-    <button class="scrollToTopButton scale-75 md:scale-100 -translate-x-12 translate-y-28 md:-translate-x-0 md:translate-y-0">
+    <button
+        class="scrollToTopButton">
         <i class="fa-solid fa-angles-up arrow-up text-accent"></i>
     </button>
 

@@ -2,7 +2,8 @@
     const apiKey = "25a2f71e1af3649df4c7055758bf64fb6a52f7b7";
     const apiUrl = `https://emoji-api.com/emojis?access_key=${apiKey}`;
 
-    const scrollThreshold = 80; // Adjust this value for scroll threshold
+    const scrollThreshold = 1; // Adjust this value for scroll threshold
+    const messageList = document.querySelector('#message-window');
 
     let pollingTimeoutId = null;
     let userScrolledUp = false;
@@ -18,8 +19,7 @@
                 for (let i = 0; i < 100; i++) {
                     emojiArray.push(data[i].character);
                 }
-                // For testing
-                // console.log(emojiArray); // Display the fetched data in the console
+
 
                 // Populate the emoji-icons div with spans containing emojis
                 emojiArray.forEach(emoji => {
@@ -56,6 +56,12 @@
         clearTimeout(pollingTimeoutId);
     }
 
+    function isScrolledToBottom() {
+        const messageList = document.querySelector('#message-window');
+        console.log(messageList.scrollHeight - messageList.clientHeight <= messageList.scrollTop + scrollThreshold);
+        return messageList.scrollHeight - messageList.clientHeight <= messageList.scrollTop + scrollThreshold;
+    }
+
     // START POLLING
     function pollConversation(conversationId) {
         fetch(`/users/account/chat/conversation/poll/${conversationId}`)
@@ -63,12 +69,13 @@
             .then(data => {
                 // Record the current scroll position
                 const messageList = document.querySelector('#message-window');
+                // Check if the user is currently scrolled to the bottom
+                const userWasScrolledToBottom = isScrolledToBottom();
+                // Save current scroll position
                 const scrollPosition = messageList.scrollTop;
-                console.log(scrollPosition);
 
                 // UPDATE MESSAGE 
                 // clone last card, remove clear, html
-                // const messageList = document.querySelector('#message-window');
                 const innerMessageCard = document.querySelector('#inner-message-card')
 
                 // Clone the message card template
@@ -91,12 +98,13 @@
 
                     messageCardLastChild.className = ''; // This removes all classes
 
-                    console.log(messageCard.firstElementChild.classList);
+                    // console.log(messageCard.firstElementChild.classList);
                     if ({{ auth()->user()->id }} == message.user_id) {
                         messageCardLastChild.classList.add('got-cloned', 'inner-message-card', 'user');
                     } else {
                         messageCardLastChild.classList.add('got-cloned', 'inner-message-card');
                     }
+                    messageCard.classList.add('got-cloned');
                     // Clean the date
                     const time = message.created_at.replace('T', ' ').slice(0, -8);
 
@@ -111,46 +119,21 @@
                     messageList.appendChild(messageCard);
                 });
 
-                // // Check if the initial fetch is done
                 if (initialFetch) {
-                    // Scroll to the bottom of the message window
                     messageList.scrollTop = messageList.scrollHeight;
                     initialFetch = false;
-                } else if (userScrolledUp) {
-                    // Set the recorded scroll position
-                    messageList.scrollTop = scrollPosition;
+                } else {
+                    // Update scroll position if the user was previously at the bottom
+                    if (userWasScrolledToBottom) {
+                        messageList.scrollTop = messageList.scrollHeight;
+                    } else {
+                        messageList.scrollTop = scrollPosition;
+                    }
                 }
-                //     // Scroll to the bottom of the message list initially
-                //     // const messageList = document.querySelector('#message-window');
-                //     messageList.scrollTop = messageList.scrollHeight;
-                //     // Set the flag to true after the initial fetch
-                //     initialFetch = false;
-                // } else {
-                //     // Record the current scroll position
-                //     const messageList = document.querySelector('#message-window');
-                //     const scrollPosition = messageList.scrollTop;
-                //     // Load the new conversation and update the message list
-
-                //     // Set the recorded scroll position
-                //     messageList.scrollTop = scrollPosition;
-
-                // }
-
-                //If user did not scroll then go to bottom
-                // if (userScrolledUp) {
-                // messageList.scrollTop = messageList.scrollHeight;
-                // }
 
                 // Restart polling after a delay
                 pollingTimeoutId = setTimeout(() => {
-                    const messageList = document.querySelector('#message-window');
-                    const isNearBottom = messageList.scrollTop + messageList.clientHeight +
-                        scrollThreshold >= messageList.scrollHeight;
 
-                    // Scroll to the bottom of the message list if near the bottom
-                    if (isNearBottom) {
-                        messageList.scrollTop = messageList.scrollHeight;
-                    }
                     pollConversation(conversationId);
                 }, 2000); // Poll after 1 second
             })
@@ -191,6 +174,15 @@
     // START WHEN DOM IS READY
     document.addEventListener('DOMContentLoaded', () => {
 
+        //When chat window opens scroll to bottom
+        const detailsElement = document.querySelector('.group');
+        detailsElement.addEventListener('toggle', () => {
+            const messageList = document.querySelector('#message-window');
+            if (detailsElement.open) {
+                messageList.scrollTop = messageList.scrollHeight;;
+            }
+        });
+
         //Fetch Emojis, insert into HTML, add EventListener
         getEmojis();
 
@@ -206,7 +198,7 @@
 
         // If previous session variable exists then start conversation
         const lastConversation = {{ session('last_conversation') }};
-        // console.log(lastConversation)
+
         if (lastConversation != 0) {
             //Add conversationID to the form
             const conversationIdInput = document.querySelector('#form-conversation_id');
@@ -214,6 +206,7 @@
             conversationIdInput.value = newConversationIdValue;
             // Set the flag to false before the initial fetch
             initialFetch = true;
+
             // Start new Conversation Polling
             pollConversation(newConversationIdValue);
         }
@@ -226,12 +219,6 @@
             event.preventDefault();
             const formData = new FormData(form);
             sendDataToServer(formData);
-        });
-
-        //EventListener if user scrolls up
-        const messageList = document.querySelector('#message-window');
-        messageList.addEventListener('scroll', () => {
-            userScrolledUp = messageList.scrollTop > 50;
         });
 
         //EventListener for each contact
@@ -252,7 +239,7 @@
                 conversationIdInput.value = newConversationIdValue;
 
                 //Remove the class active for each contact
-                // Get all contact elements
+                //Get all contact elements
                 const contactElements = document.querySelectorAll('#contact');
 
                 // Remove all classes from all contact elements
@@ -287,8 +274,8 @@
         display: flex;
         flex-direction: column;
         padding: 6px;
-        box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
-        border-radius:15px 15px 0px 0px;
+        box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.35);
+        border-radius: 15px 15px 0px 0px;
     }
 
     .outer-message-card {
@@ -327,7 +314,7 @@
         transition: height .1s ease-in-out;
         border: #C3C3C3 solid 2px;
         background: #C3C3C3;
-        box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
+        box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.35);
     }
 
     .show {
@@ -347,7 +334,7 @@
         border-radius: 0px 0px 5px 5px;
         border: #C3C3C3 solid 2px;
         background: #C3C3C3;
-        box-shadow: 0px 2px 20px 2px rgba(0,0,0,0.35);
+        box-shadow: 0px 2px 20px 2px rgba(0, 0, 0, 0.35);
 
     }
 
