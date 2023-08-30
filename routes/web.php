@@ -51,7 +51,18 @@ Route::get('/users/1/{conversationId}', [UserController::class, 'showConversatio
 Route::delete('/users/1/delete-conversation/{conversationId}', [UserController::class, 'clearConversation'])->middleware('auth');
 //Update user account
 Route::put('/users/1/edit/{user}', [UserController::class, 'updateUser'])->middleware('auth');
-//*
+//*ADMIN BANK
+Route::get('/users/1/bank-create/{user}', [BankDetailsController::class, 'adminCreate'])->middleware('auth');
+//Create user account
+Route::post('/users/1/bank-create/{user}', [BankDetailsController::class, 'adminStore'])->middleware('auth');
+//*ADMIN SERVICES
+// Update Service
+Route::put('/users/1/update-service/{service}/update', [ServiceController::class, 'updateUserService'])->middleware('auth');
+// Show Update Service
+Route::get('/users/1/update-service/{service}', [ServiceController::class, 'showUpdateService'])->middleware('auth');
+
+//*END ADMIN
+
 // Show all services
 Route::get('/services/index', [ServiceController::class, 'index']);
 // Create new service

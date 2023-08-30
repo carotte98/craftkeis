@@ -16,25 +16,25 @@ class ConversationController extends Controller
         $contact = User::find($contactId);
         // dd($contactId);
 
-            //If user does not write to himself then
-            if ($user->id != $contact->id) {
-                //In short, get that one specific conversation where user and contact is present
-                $conversation = Conversation::where([
-                    ['user_id1', $user->id],
-                    ['user_id2', $contact->id],
-                ])->orWhere([
-                    ['user_id1', $contact->id],
-                    ['user_id2', $user->id],
-                ])->first();
+        //If user does not write to himself then
+        if ($user->id != $contact->id) {
+            //In short, get that one specific conversation where user and contact is present
+            $conversation = Conversation::where([
+                ['user_id1', $user->id],
+                ['user_id2', $contact->id],
+            ])->orWhere([
+                ['user_id1', $contact->id],
+                ['user_id2', $user->id],
+            ])->first();
 
-                //If the conversation does not exist then create it
-                if (!$conversation) {
-                    $conversation = Conversation::create([
-                        'user_id1' => $user->id,
-                        'user_id2' => $contact->id,
-                    ]);
-                }
+            //If the conversation does not exist then create it
+            if (!$conversation) {
+                $conversation = Conversation::create([
+                    'user_id1' => $user->id,
+                    'user_id2' => $contact->id,
+                ]);
             }
+        }
 
         return back();
     }

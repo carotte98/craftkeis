@@ -62,7 +62,7 @@
                             <form action="/orders/{{$order->id}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-red-600">
+                                <button id="delete-button" type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-red-600">
                                     <i class="fa-solid fa-times mr-2"></i> Cancel
                                 </button>
                             </form>   

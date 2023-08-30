@@ -21,7 +21,7 @@
                     <p>{{$service->description}}</p>
                     <hr class="border-accent w-5/6 mx-auto my-6">
                     <div class="flex flex-row gap-x-2 justify-center mt-3">
-                        <a href="/services/{{$service->id}}/edit">
+                        <a href="{{ auth()->user()->id == 1 ? '/users/1/update-service/' . $service->id : '/services/' . $service->id . '/edit' }}">
                             <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
                                 <i class="fa-solid fa-pencil"></i>Edit
                             </button>
@@ -29,7 +29,7 @@
                         <form method="POST" action="/services/{{$service->id}}">
                             @csrf
                             @method('DELETE')
-                            <button class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
+                            <button id="delete-button" class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
                                 <i class="fa-solid fa-trash"></i>Delete
                             </button>
                         </form>               

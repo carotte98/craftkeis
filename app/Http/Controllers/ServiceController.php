@@ -62,7 +62,7 @@ class ServiceController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Service $service)
-    {   
+    {
         // dd($service);
         // Check if the currently authenticated user matches the requested service user id
         if (Auth::user()->id !== $service->user_id) {
@@ -98,9 +98,9 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        if (Auth::user()->id !== $service->user_id) {
-            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
-        }
+        // if (Auth::user()->id !== $service->user_id) {
+        //     abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        // }
         $service->delete();
         return redirect('/users/' . $service->users->id)->with('message', 'Service deleted successfully');
     }
@@ -108,5 +108,32 @@ class ServiceController extends Controller
     public function manage()
     {
         return view('services.manage', ['services' => auth()->user()->services()->get()]);
+    }
+
+    public function showUpdateService($service)
+    {   
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        $service = Service::where('id', $service)->first();
+        return view('users.admin-update-service', ['service' => $service]);
+    }
+    public function updateUserService(Request $request, Service $service)
+    {
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        $formFields = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'time' => 'required',
+            'status' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $service->update($formFields);
+
+        return redirect('/users/1')->with('message', 'Service updated successfully');
     }
 }
