@@ -126,7 +126,7 @@
                                         action="/users/{{ auth()->user()->id }}/delete-conversation/{{ $conversation->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button
+                                        <button id="delete-button"
                                             class="text-center text-sm p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
                                             <i class="fa-solid fa-trash"></i>Clear
                                         </button>
@@ -178,7 +178,7 @@
                                                 action="/users/{{ auth()->user()->id }}/delete/{{ $user->id }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button
+                                                <button id="delete-button"
                                                     class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-onhover">
                                                     <i class="fa-solid fa-trash"></i>Delete
                                                 </button>

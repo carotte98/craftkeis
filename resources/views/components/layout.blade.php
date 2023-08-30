@@ -15,6 +15,8 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     {{-- tailwind css --}}
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ asset('js/deleteBtn.js') }}"></script>
+
     <script>
         tailwind.config = {
             theme: {
@@ -55,6 +57,7 @@
             });
         });
     </script>
+
     <style>
         /* body {
             min-height: fit-content;
@@ -104,6 +107,28 @@
         .show {
             display: block;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
     </style>
     <title>Craftkéis - Find Artists</title>
 </head>
@@ -119,11 +144,17 @@
             
         @endphp
     @endif
-
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete?</p>
+            <button id="confirmButton">Confirm</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
+    </div>
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
+        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg">
             <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
                 <div class="flex">
@@ -212,7 +243,7 @@
     <button class="scrollToTopButton">
         <i class="fa-solid fa-angles-up arrow-up text-accent"></i>
     </button>
-    
+
 
     {{-- footer --}}
     {{-- static bottom-0 w-full flex flex-col items-center justify-center mt-10 --}}
@@ -272,8 +303,8 @@
         {{-- bootom copyright part --}}
         <section class="flex justify-center bg-background pt-4 space-x-6 space-y-2 w-full">
             <hr>
-            
-            
+
+
         </section>
     </footer>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank_details;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BankDetailsController extends Controller
 {
@@ -33,8 +34,8 @@ class BankDetailsController extends Controller
             'full_name'=>['required'],
             'cardNumber' => ['required', 'regex:/^\d{4}(\s\d{4}){3}$/'],
             // 'payment_method'=>['required'],
-            'expireDate'=>['required'],
-            'ccv'=>['required','numeric', 'digits:3']
+            'expireDate' => ['required'],
+            'ccv' => ['required', 'numeric', 'digits:3']
         ]);
 
         $formFields['cardNumber'] = preg_replace('/\D/', '', $formFields['cardNumber']); // Remove spaces
@@ -43,8 +44,7 @@ class BankDetailsController extends Controller
 
         Bank_details::create($formFields);
 
-        return redirect('/')->with('message','Account and bank Details created');
-
+        return redirect('/')->with('message', 'Account and bank Details created');
     }
 
     /**
@@ -74,10 +74,10 @@ class BankDetailsController extends Controller
         // dd($bank_details);
         // dd($formFields);
         $formFields = $request->validate([
-            'full_name'=>['required'],
-            'cardNumber'=>['required'],
-            'ccv'=>['required'],
-            'expireDate'=>['required']
+            'full_name' => ['required'],
+            'cardNumber' => ['required'],
+            'ccv' => ['required'],
+            'expireDate' => ['required']
         ]);
         // dd($formFields);
 
@@ -92,5 +92,35 @@ class BankDetailsController extends Controller
     public function destroy(Bank_details $bank_details)
     {
         //
+    }
+
+    public function adminCreate($user)
+    {
+        // dd($user);
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        return view('users.admin-bank-create', ['user' => $user]);
+    }
+
+    public function adminStore(Request $request, $user)
+    {
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        $formFields = $request->validate([
+            'full_name' => ['required'],
+            'cardNumber' => ['required', 'numeric', 'digits:16'],
+            // 'payment_method'=>['required'],
+            'expireDate' => ['required'],
+            'ccv' => ['required', 'numeric', 'digits:3']
+        ]);
+        $formFields['user_id'] = $user;
+
+        Bank_details::create($formFields);
+
+        return redirect('/')->with('message', 'Account and bank Details created');
     }
 }
