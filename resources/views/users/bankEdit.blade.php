@@ -1,3 +1,29 @@
+{{-- start of script --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const expireDateInput = document.querySelector('input[name="expireDate"]');
+
+        expireDateInput.addEventListener('input', function () {
+            const inputValue = expireDateInput.value;
+            if (inputValue.length === 2 && inputValue.indexOf('/') === -1) {
+                expireDateInput.value = inputValue + '/';
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function(){
+        const cardNumberInput= document.querySelector('input[name="cardNumber"]');
+
+        cardNumberInput.addEventListener('input', function(){
+            const inputValue=cardNumberInput.value;
+            if(inputValue.length === 4 || inputValue.length === 9 || inputValue.length === 14 || inputValue.length === 19 ){
+                cardNumberInput.value = inputValue + ' ';
+            }
+        })
+    })
+
+    </script>
+
 <x-layout>
     <x-card class="w-2/6 ">
         <x-card-sec>
@@ -25,7 +51,7 @@
             {{-- this div is for the cardNumber --}}
             <div class="bordered-div">
                 <label for="cardNumber">Card Number: </label>
-                <input type="number" name="cardNumber" value="{{$bank_details->cardNumber}}">
+                <input type="text" name="cardNumber" value="{{$bank_details->cardNumber}}">
             </div>
             <div>
                 @error('cardNumber')
