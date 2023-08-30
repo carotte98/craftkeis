@@ -68,8 +68,8 @@
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
-            <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
+        <section class="w-full dropshadow flex -justify-center h-48 md:h-24 bg-background rounded-b-lg"> 
+            <div class=" space-x-6 items-center grid grid-cols-1 md:grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
                 <div class="flex w-5/6 mt-3 lg:mt-0 lg:w-full">
                     {{-- Search bar --}}
