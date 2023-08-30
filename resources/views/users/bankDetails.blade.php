@@ -68,7 +68,19 @@
             }
         });
     });
-</script>
+
+    document.addEventListener('DOMContentLoaded', function(){
+        const cardNumberInput= document.querySelector('input[name="cardNumber"]');
+
+        cardNumberInput.addEventListener('input', function(){
+            const inputValue=cardNumberInput.value;
+            if(inputValue.length === 4 || inputValue.length === 9 || inputValue.length === 14 || inputValue.length === 19 ){
+                cardNumberInput.value = inputValue + ' ';
+            }
+        })
+    })
+
+    </script>
 
 <x-layout>
     <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
@@ -97,8 +109,8 @@
                 {{-- this div is for the cardNumber --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="number" placeholder="Card Number" name="cardNumber"
+                        <i class="fa-solid fa-credit-card"></i>
+                        <input type="text" placeholder="Card Number" name="cardNumber"
                             value="{{ old('cardNumber') }}">
                     </div>
                 </div>
@@ -111,7 +123,7 @@
                 {{-- this div is for the expiration Date --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-credit-card"></i>
                         <input type="text" placeholder="MM / YY" name="expireDate" value="{{ old('expireDate') }}">
                     </div>
                 </div>
@@ -124,7 +136,7 @@
                 {{-- this div is for the CCV --}}
                 <div class="bordered-div">
                     <div class="icon-input-container">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-credit-card"></i>
                         <input type="number" placeholder="CCV" name="ccv" value="{{ old('ccv') }}">
                     </div>
                 </div>

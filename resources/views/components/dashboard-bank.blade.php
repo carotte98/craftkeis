@@ -26,9 +26,17 @@
     @else
         <div>No bank data found!</div>
         <hr class="border-accent w-5/6 mx-auto my-6">
-        {{-- ! ternary condition for admin below--}}
+        {{-- ! --}}
+        {{-- @if (auth()->user()->id == 1) --}}
+
+        <div class="flex justify-center">
+            <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                <a href="/register/{{ $user->id }}/bank-details">
+                    <i class="fa-solid fa-pencil"></i>Add Bank Details
+                </a>
+            </button>
+        </div>
+        
         <a href="{{ auth()->user()->id == 1 ? '/users/1/bank-create/' . $user->id : '/register/' . $user->id . '/bank-details' }}">
-            <i class="fa-solid fa-pencil"></i>Add Bank Details
-        </a>        
     @endunless
 </x-card-sec>

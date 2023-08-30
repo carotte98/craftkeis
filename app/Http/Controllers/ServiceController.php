@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
@@ -22,7 +23,7 @@ class ServiceController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
         return view('services.create');
     }
 
@@ -44,6 +45,9 @@ class ServiceController extends Controller
         $formFields['user_id'] = auth()->id();
 
         Service::create($formFields);
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Service created: Title" . $formFields['title']);
 
         return redirect('/services/index')->with('message', 'Service created successfully');
     }
@@ -90,6 +94,9 @@ class ServiceController extends Controller
 
         $service->update($formFields);
 
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Service Updated: Title" . $formFields['title']);
+
         return redirect('/services/' . $service->id)->with('message', 'Service updated successfully');
     }
 
@@ -102,6 +109,10 @@ class ServiceController extends Controller
         //     abort(403, 'Unauthorized'); // Return a 403 Forbidden response
         // }
         $service->delete();
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Service Deleted: Title" . $service->title);
+
         return redirect('/users/' . $service->users->id)->with('message', 'Service deleted successfully');
     }
 

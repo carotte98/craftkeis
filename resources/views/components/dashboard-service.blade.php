@@ -11,7 +11,7 @@
     
         
             @unless ($user->services->isEmpty())
-            <div class="grid grid-cols-3 gap-3">
+            <div class="md:grid md:grid-cols-2 xl:grid-cols-3 gap-3">
                 @foreach ($user->services as $service)
                 <x-card-sec>
                     <a class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo" href="/services/{{$service->id}}">

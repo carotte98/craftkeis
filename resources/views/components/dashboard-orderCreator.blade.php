@@ -8,7 +8,7 @@
     
 
         @unless ($user->orderCreator->isEmpty())   
-        <div class="grid grid-cols-2 gap-3">             
+        <div class="md:grid md:grid-cols-2 gap-3">             
         @foreach ($user->orderCreator as $order)
             <x-card-sec>
                 <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->service->title }}</h2>

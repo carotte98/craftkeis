@@ -551,6 +551,7 @@ class ComposerStaticInit86b0cf9919340ab2b4fbc7b6905d1477
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Mail\\ContactFormMail' => __DIR__ . '/../..' . '/app/Mail/ContactFormMail.php',
+        'App\\Mail\\OrderConfirmationMail' => __DIR__ . '/../..' . '/app/Mail/OrderConfirmationMail.php',
         'App\\Models\\Bank_details' => __DIR__ . '/../..' . '/app/Models/Bank_details.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Conversation' => __DIR__ . '/../..' . '/app/Models/Conversation.php',

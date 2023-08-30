@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank_details;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class BankDetailsController extends Controller
@@ -29,18 +30,26 @@ class BankDetailsController extends Controller
      */
     public function store(Request $request)
     {
-        $formFields = $request->validate([
-            'full_name' => ['required'],
-            'cardNumber' => ['required', 'numeric', 'digits:16'],
+
+        $formFields =$request->validate([
+            'full_name'=>['required'],
+            'cardNumber' => ['required', 'regex:/^\d{4}(\s\d{4}){3}$/'],
             // 'payment_method'=>['required'],
             'expireDate' => ['required'],
             'ccv' => ['required', 'numeric', 'digits:3']
         ]);
-        $formFields['user_id'] = auth()->user()->id;
+
+        $formFields['cardNumber'] = preg_replace('/\D/', '', $formFields['cardNumber']); // Remove spaces
+
+        $formFields['user_id']=auth()->user()->id;
 
         Bank_details::create($formFields);
 
-        return redirect('/')->with('message', 'Account and bank Details created');
+         // Create Logs in admin.log
+         Log::channel('admin')->info("Bank Details Added: USER_ID" . $formFields['user_id']);
+
+        return redirect('/')->with('message','Account and bank Details created');
+
     }
 
     /**
@@ -78,6 +87,9 @@ class BankDetailsController extends Controller
         // dd($formFields);
 
         $bank_details->update($formFields);
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Bank Details Added: USER_ID" . $formFields['user_id']);
 
         return redirect('/users/' . $bank_details->user_id)->with('message', 'Bank details updated successfully');
     }
