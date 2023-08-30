@@ -80,13 +80,17 @@
                     <a href="/" class="customLogo">Craftkeis</a>
                 </div>
 
-                <div class="w-full flex justify-evenly space-x-2 bg-background">
+                <div class="w-full flex items-center justify-evenly space-x-2 bg-background">
 
                     {{-- language select --}}
                     {{-- <a href="" class="text-center text-lg h-8 w-24 text-black rounded-lg bg-buttons hover:text-white hover:bg-onhover"><i class="fas fa-globe"></i></a> --}}
 
                     {{-- auth directive only shows the elements when logged in --}}
                     @auth
+                        <div
+                            class="hidden md:block text-center text-black">
+                            <span>Hi, {{ auth()->user()->name }}!</span>
+                        </div>
                         <div
                             class="text-center text-lg h-8 w-24 text-black hover:text-white rounded-lg bg-buttons hover:bg-onhover">
                             <a href="/users/{{ auth()->user()->id }}">Account</a>

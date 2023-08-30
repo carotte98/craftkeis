@@ -8,7 +8,7 @@
                 {{-- TEXT --}}
                 <div class="flex justify-center items-center flex-col w-2/3 text-xl text-center">
 
-                    <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
+                    <h2 class="text-4xl font-bold uppercase mb-1 mx-auto my-auto text-center customLogo">
                         About Us
                     </h2>
 
@@ -27,7 +27,7 @@
             {{-- cols containing the image and the text in their respective layout  --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {{-- TEXT --}}
-                <div class="flex justify-center items-center flex-col w-2/3 mx-auto text-xl text-center">
+                <div class="flex justify-center items-center flex-col w-2/3 mx-auto my-auto text-xl text-center">
 
                     <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                         Thierry
@@ -42,7 +42,7 @@
                 </div>
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:30vh" class="w-full rounded-xl bg-[url('/public/storage/images/thierry.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:40vh" class="w-full rounded-xl bg-[url('/public/storage/images/thierry.png')] bg-contain bg-no-repeat bg-center my-auto"></div>
 
             </div>
 
@@ -52,10 +52,10 @@
             <div class="grid grid-cols-1 md:grid-cols-2 md:gap-5">
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:30vh" class="w-full rounded-xl bg-[url('/public/storage/images/cedric.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:40vh" class="w-full rounded-xl bg-[url('/public/storage/images/cedric.png')] bg-contain bg-no-repeat bg-center my-auto"></div>
 
                 {{-- TEXT --}}
-                <div class="flex justify-center items-center flex-col w-2/3 mx-auto text-xl text-center">
+                <div class="flex justify-center items-center flex-col w-2/3 mx-auto my-auto text-xl text-center">
 
                     <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                         Cedric
@@ -75,7 +75,7 @@
             {{-- cols containing the image and the text in their respective layout  --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {{-- TEXT --}}
-                <div class="flex justify-center items-center flex-col w-2/3 mx-auto text-xl text-center">
+                <div class="flex justify-center items-center flex-col w-2/3 mx-auto my-auto text-xl text-center">
 
                     <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                         Michelle
@@ -90,7 +90,7 @@
                 </div>
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:30vh" class="w-full rounded-xl bg-[url('/public/storage/images/michelle.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:40vh" class="w-full rounded-xl bg-[url('/public/storage/images/michelle.png')] bg-contain bg-no-repeat bg-center my-auto"></div>
 
             </div>
 
@@ -100,10 +100,10 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:30vh" class="w-full rounded-xl bg-[url('/public/storage/images/tim.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:40vh" class="w-full rounded-xl bg-[url('/public/storage/images/tim.png')] bg-contain bg-no-repeat bg-center my-auto"></div>
 
                 {{-- TEXT --}}
-                <div class="flex justify-center items-center flex-col w-2/3 mx-auto v text-xl text-center">
+                <div class="flex justify-center items-center flex-col w-2/3 mx-auto my-auto text-xl text-center">
 
                     <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                         Tim
@@ -123,7 +123,7 @@
             {{-- cols containing the image and the text in their respective layout  --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {{-- TEXT --}}
-                <div class="flex justify-center items-center flex-col w-2/3 mx-auto text-xl text-center">
+                <div class="flex justify-center items-center flex-col w-2/3 mx-auto my-auto text-xl text-center">
 
                     <h2 class="text-4xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                         Joe
@@ -142,7 +142,7 @@
                 </div>
 
                 {{-- IMAGE as background of the div ;) --}}
-                <div style="height:30vh" class="w-full rounded-xl bg-[url('/public/storage/images/joe.png')] bg-contain bg-no-repeat bg-center "></div>
+                <div style="height:40vh" class="w-full rounded-xl bg-[url('/public/storage/images/joe.png')] bg-contain bg-no-repeat my-auto bg-center "></div>
 
             </div>
 

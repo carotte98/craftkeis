@@ -35,7 +35,7 @@ class DefaultUserSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Maus Kaetti',
-            'email' => 'maus@gmail.com',
+            'email' => 'aviikutb@sharklasers.com',
             'password' => 'Password@123',
             'is_creator' => true,
         ]);
