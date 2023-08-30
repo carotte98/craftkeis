@@ -435,7 +435,7 @@ class UserController extends Controller
 
             //Create the new user
             $user = User::create($formFields);
-            auth()->login($user);
+            // auth()->login($user);
 
             // Create Logs in admin.log
             Log::channel('admin')->info("User created by Admin: ID: $user->id");
@@ -443,7 +443,7 @@ class UserController extends Controller
             if ($user->is_creator) {
                 session_start();
                 session(['user' => $user]);
-                return redirect('/register/{user}/bankDetails');
+                return redirect('/register/{user}/bank-details');
             }
 
             
