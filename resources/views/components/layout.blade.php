@@ -58,8 +58,8 @@
     <div id="confirmModal" class="modal">
         <div class="modal-content">
             <p>Are you sure you want to delete?</p>
-            <button id="confirmButton">Confirm</button>
-            <button id="cancelButton">Cancel</button>
+            <button id="confirmButton" class="text-center text-lg h-8 w-24 text-text-black rounded-lg bg-buttons hover:bg-onhover">Confirm</button>
+            <button id="cancelButton" class="text-center text-lg h-8 w-24 text-text-black rounded-lg bg-accent hover:bg-onhover">Cancel</button>
         </div>
     </div>
     {{-- navbar --}}

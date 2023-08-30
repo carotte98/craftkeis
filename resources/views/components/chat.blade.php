@@ -14,7 +14,7 @@
         </summary>
         <div class="w-fit bg-background dropshadow rounded-lg p-6 mb-2">
             <hr class="border-accent w-5/6 mx-auto my-6">
-            <div class="message-window-open flex flex-col items-center mb:justify-startt mb-4 md:mb-0 md:flex-row">
+            <div class="message-window-open flex flex-col p-2 items-center mb:justify-startt mb-4 md:mb-0 md:flex-row">
                 <div class="md:mr-8 mb-4 md.mb-0">
                     <h2 class="customLogoBold text-sm">Contacts</h2>
                     <hr class="border-accent w-5/6 mx-auto my-2">

@@ -2,7 +2,7 @@
     const apiKey = "25a2f71e1af3649df4c7055758bf64fb6a52f7b7";
     const apiUrl = `https://emoji-api.com/emojis?access_key=${apiKey}`;
 
-    const scrollThreshold = 20; // Adjust this value for scroll threshold
+    const scrollThreshold = 1; // Adjust this value for scroll threshold
     const messageList = document.querySelector('#message-window');
 
     let pollingTimeoutId = null;
@@ -19,8 +19,7 @@
                 for (let i = 0; i < 100; i++) {
                     emojiArray.push(data[i].character);
                 }
-                // For testing
-                // console.log(emojiArray); // Display the fetched data in the console
+
 
                 // Populate the emoji-icons div with spans containing emojis
                 emojiArray.forEach(emoji => {
@@ -57,18 +56,11 @@
         clearTimeout(pollingTimeoutId);
     }
 
-    // Function to check if the user has scrolled to the bottom
-    // function isScrolledToBottom() {
-    //     const messageList = document.querySelector('#message-window');
-    //     console.log(messageList.scrollHeight - messageList.clientHeight <= messageList.scrollTop + 1);
-    //     console.log(`scrollTop: ${messageList.scrollTop}`);
-    //     console.log(`scrollHeight: ${messageList.scrollHeight}`);
-    //     console.log(`clientHeight: ${messageList.clientHeight}`);
-    //     console.log(messageList.scrollTop + messageList.clientHeight);
-    //     console.log(messageList.scrollHeight);
-    //     console.log(messageList.scrollTop + messageList.clientHeight <= messageList.scrollHeight + scrollThreshold );
-    //     return messageList.scrollTop + messageList.clientHeight <= messageList.scrollHeight + scrollThreshold ;
-    // }
+    function isScrolledToBottom() {
+        const messageList = document.querySelector('#message-window');
+        console.log(messageList.scrollHeight - messageList.clientHeight <= messageList.scrollTop + scrollThreshold);
+        return messageList.scrollHeight - messageList.clientHeight <= messageList.scrollTop + scrollThreshold;
+    }
 
     // START POLLING
     function pollConversation(conversationId) {
@@ -77,9 +69,11 @@
             .then(data => {
                 // Record the current scroll position
                 const messageList = document.querySelector('#message-window');
-                // const scrollPosition = messageList.scrollTop;
-                // console.log(scrollPosition);
-                // console.log(data);
+                // Check if the user is currently scrolled to the bottom
+                const userWasScrolledToBottom = isScrolledToBottom();
+                // Save current scroll position
+                const scrollPosition = messageList.scrollTop;
+
                 // UPDATE MESSAGE 
                 // clone last card, remove clear, html
                 const innerMessageCard = document.querySelector('#inner-message-card')
@@ -110,6 +104,7 @@
                     } else {
                         messageCardLastChild.classList.add('got-cloned', 'inner-message-card');
                     }
+                    messageCard.classList.add('got-cloned');
                     // Clean the date
                     const time = message.created_at.replace('T', ' ').slice(0, -8);
 
@@ -123,58 +118,22 @@
                     // Append the cloned message card to the message list
                     messageList.appendChild(messageCard);
                 });
-                // if (isScrolledToBottom()) {
-                //         const messageList = document.querySelector('#message-window');
-                        // messageList.scrollTop = messageList.scrollHeight - messageList.clientHeight;
-                        // console.log(`Result ${messageList.scrollTop}`);
-                messageList.scrollTop = messageList.scrollHeight;
-                // }
-                // messageList.scrollTop = messageList.scrollHeight;
-                // // Check if the initial fetch is done
-                // if (initialFetch) {
-                    // Scroll to the bottom of the message window
-                    // messageList.scrollTop = messageList.scrollHeight;
-                //     initialFetch = false;
-                // } 
-                // else if (isScrolledToBottom()) {
-                //     // Set the recorded scroll position
-                //     messageList.scrollTop = scrollPosition;
-                // }
-                // messageList.scrollTop = messageList.scrollHeight;
-                //     // Scroll to the bottom of the message list initially
-                //     // const messageList = document.querySelector('#message-window');
-                //     messageList.scrollTop = messageList.scrollHeight;
-                //     // Set the flag to true after the initial fetch
-                //     initialFetch = false;
-                // } else {
-                //     // Record the current scroll position
-                //     const messageList = document.querySelector('#message-window');
-                //     const scrollPosition = messageList.scrollTop;
-                //     // Load the new conversation and update the message list
 
-                //     // Set the recorded scroll position
-                //     messageList.scrollTop = scrollPosition;
-
-                // }
-
-                //If user did not scroll then go to bottom
-                // if (userScrolledUp) {
-                // messageList.scrollTop = messageList.scrollHeight;
-                // }
+                if (initialFetch) {
+                    messageList.scrollTop = messageList.scrollHeight;
+                    initialFetch = false;
+                } else {
+                    // Update scroll position if the user was previously at the bottom
+                    if (userWasScrolledToBottom) {
+                        messageList.scrollTop = messageList.scrollHeight;
+                    } else {
+                        messageList.scrollTop = scrollPosition;
+                    }
+                }
 
                 // Restart polling after a delay
                 pollingTimeoutId = setTimeout(() => {
-                    // const messageList = document.querySelector('#message-window');
-                    // const isNearBottom = messageList.scrollTop + messageList.clientHeight +
-                    //     scrollThreshold >= messageList.scrollHeight;
 
-                    // Scroll to the bottom of the message list if near the bottom
-                    // if (isScrolledToBottom()) {
-                        // const messageList = document.querySelector('#message-window');
-                        // messageList.scrollTop = messageList.scrollHeight - messageList.clientHeight;
-                        // console.log(`Result ${messageList.scrollTop}`);
-                        // messageList.scrollTop = messageList.scrollHeight;
-                    // }
                     pollConversation(conversationId);
                 }, 2000); // Poll after 1 second
             })
@@ -215,6 +174,15 @@
     // START WHEN DOM IS READY
     document.addEventListener('DOMContentLoaded', () => {
 
+        //When chat window opens scroll to bottom
+        const detailsElement = document.querySelector('.group');
+        detailsElement.addEventListener('toggle', () => {
+            const messageList = document.querySelector('#message-window');
+            if (detailsElement.open) {
+                messageList.scrollTop = messageList.scrollHeight;;
+            }
+        });
+
         //Fetch Emojis, insert into HTML, add EventListener
         getEmojis();
 
@@ -230,7 +198,7 @@
 
         // If previous session variable exists then start conversation
         const lastConversation = {{ session('last_conversation') }};
-        // console.log(lastConversation)
+
         if (lastConversation != 0) {
             //Add conversationID to the form
             const conversationIdInput = document.querySelector('#form-conversation_id');
@@ -238,6 +206,7 @@
             conversationIdInput.value = newConversationIdValue;
             // Set the flag to false before the initial fetch
             initialFetch = true;
+
             // Start new Conversation Polling
             pollConversation(newConversationIdValue);
         }
@@ -251,22 +220,6 @@
             const formData = new FormData(form);
             sendDataToServer(formData);
         });
-
-        //EventListener if user scrolls up
-        // const messageList = document.querySelector('#message-window');
-        // messageList.addEventListener('scroll', () => {
-        //     console.log(`scrollTop: ${messageList.scrollTop}`);
-        // console.log(`scrollHeight: ${messageList.scrollHeight}`);
-        // console.log(`clientHeight: ${messageList.clientHeight}`);
-        //     // If the user has scrolled to the bottom, update a flag
-        //     if (isScrolledToBottom()) {
-        //         userScrolledToBottom = true;
-        //     } else {
-        //         userScrolledToBottom = false;
-        //     }
-        // });
-
-
 
         //EventListener for each contact
         contacts.forEach(contact => {
