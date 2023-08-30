@@ -55,10 +55,13 @@
                 @enderror
             </div>
 
-            <div class="mb-6" id="Register-button">
-                <button type="submit">
-                    Update Bank Details
-                </button>
+            <div class="w-full flex justify-center mt-4">
+                <div class="" id="Register-button">
+                    <button type="submit" class="text-center text-sm md:text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover">
+                        Update Bank Details
+                    </button>
+                </div>
+                <a href="/users/{{auth()->user()->id}}" class="py-2 px-4 mx-2 text-center  text-sm md:text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
             </div>
             </form>
         </x-card-sec>

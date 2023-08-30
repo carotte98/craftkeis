@@ -10,7 +10,7 @@
             border: 1px solid #ccc;
             padding: 10px;
             border-radius: 5px;
-            width: 300px;
+            width: 90%;
             /* Adjust width as needed */
             background-color: #f4f4f4;
             margin: auto;
@@ -71,7 +71,7 @@
 </script>
 
 <x-layout>
-    <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
+    <div class="w-11/12 md:w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
         <x-card-sec>
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                 Bank Details

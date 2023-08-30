@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank_details;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class BankDetailsController extends Controller
@@ -44,7 +45,11 @@ class BankDetailsController extends Controller
 
         Bank_details::create($formFields);
 
-        return redirect('/')->with('message', 'Account and bank Details created');
+         // Create Logs in admin.log
+         Log::channel('admin')->info("Bank Details Added: USER_ID" . $formFields['user_id']);
+
+        return redirect('/')->with('message','Account and bank Details created');
+
     }
 
     /**
@@ -82,6 +87,9 @@ class BankDetailsController extends Controller
         // dd($formFields);
 
         $bank_details->update($formFields);
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Bank Details Added: USER_ID" . $formFields['user_id']);
 
         return redirect('/users/' . $bank_details->user_id)->with('message', 'Bank details updated successfully');
     }

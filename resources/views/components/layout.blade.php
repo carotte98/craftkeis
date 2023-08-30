@@ -10,34 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     {{-- AlpineJS --}}
     <script src="//unpkg.com/alpinejs" defer></script>
     {{-- tailwind css --}}
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite('resources/css/app.css')
     <script src="{{ asset('js/deleteBtn.js') }}"></script>
-
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        accent: "#F4A051",
-                        onhover: "#f07c0f",
-                        // onhover: "#E5A66C",
-                        background: "#D9D9D9",
-                        buttons: "#C3C3C3",
-                        disabled: "#4f4f4f",
-                        bgsec: "#949494",
-                        open: "#B1E320",
-                        closed: "#E34320"
-                    },
-                    borderRadius: {
-                        'lg': '10px',
-                    },
-                },
-            },
-        };
+       
         document.addEventListener('DOMContentLoaded', function() {
             const scrollToTopButton = document.querySelector(".scrollToTopButton");
             // // Show or hide the button based on the scroll position
@@ -63,72 +42,7 @@
             min-height: fit-content;
         } */
 
-        .active-contact {
-            background-color: #F4A051;
-            border-radius: 10px;
-            padding: 2px;
-        }
-
-        .message-window-page {
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            z-index: 50;
-        }
-
-        .message-list {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            overflow-y: scroll;
-        }
-
-        .message-list::-webkit-scrollbar {
-            display: none;
-        }
-
-        .message-window-open {
-            display: flex;
-            /* flex-direction: column; */
-        }
-
-        .arrow-up {
-            font-size: 3rem;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 50;
-            margin: 15px 20px;
-        }
-
-        .scrollToTopButton {
-            display: none;
-        }
-
-        .show {
-            display: block;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-        }
+        
     </style>
     <title>Craftkéis - Find Artists</title>
 </head>
@@ -154,10 +68,10 @@
     {{-- navbar --}}
     <nav class="w-full mx-auto flex flex-col items-center xl:w-3/4 xl:mx-auto xl:flex xl:flex-col xl:items-center ">
         {{-- top section of navbar --}}
-        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg">
+        <section class="w-full dropshadow flex -justify-center h-24 bg-background rounded-b-lg"> 
             <div class="flex space-x-6 items-center grid grid-cols-3 w-11/12 gap-x-52 justify-center mx-auto">
                 {{--  Col 1 --}}
-                <div class="flex">
+                <div class="flex w-5/6 mt-3 lg:mt-0 lg:w-full">
                     {{-- Search bar --}}
                     @include('partials._search')
                 </div>
@@ -199,28 +113,27 @@
         </section>
 
         {{-- categories list --}}
-        <section class="flex w-2/3 h-16 xl:h-14 justify-center bg-background rounded-b-lg dropshadowCat">
-            <ul class="flex space-x-2 h-14 xl:h-12 w-11/12 justify-center text-sm text-center align-middle">
-                <li class="w-1/6"><a href="/services/index"><button
+        <section class="flex w-2/3 h-fit xl:h-14 justify-center bg-background rounded-b-lg dropshadowCat">
+            <ul class="grid grid-cols-2 gap-y-1 lg:gap-y-0 lg:flex lg:flex-row lg:space-x-2 h-fit lg:h-14 xl:h-12 w-11/12 justify-center text-sm text-center align-middle">
+                <li class="w-11/12 text-center lg:w-1/6"><a href="/services/index"><button
                             class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">All</button></a>
                 </li>
-
-                <li class="w-1/6"><a href="/services/index/?category_id=1"><button
+                <li class="w-11/12 text-center lg:w-1/6"><a href="/services/index/?category_id=1"><button
                             class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">3D
                             Modelling</button></a></li>
-                <li class="w-1/6"><a href="/services/index/?category_id=2"><button
+                <li class="w-11/12 text-center lg:w-1/6"><a href="/services/index/?category_id=2"><button
                             class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">2D
                             illustration</button></a></li>
-                <li class="w-1/6"><a href="/services/index/?category_id=3"><button
+                <li class="w-11/12 text-center lg:w-1/6"><a href="/services/index/?category_id=3"><button
                             class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Painting</button></a>
                 </li>
-                <li class="w-1/6"><a href="/services/index/?category_id=4"><button
+                <li class="w-11/12 text-center lg:w-1/6"><a href="/services/index/?category_id=4"><button
                             class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">SFX</button></a>
                 </li>
-                <li class="w-1/6"><a href="/services/index/?category_id=5"><button
+                <li class="w-11/12 text-center lg:w-1/6"><a href="/services/index/?category_id=5"><button
                             class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Wood
                             Sculpt</button></a></li>
-                <li class="w-1/6"><a href="/services/index/?category_id=6"><button
+                <li class="w-11/12 text-center lg:w-1/6"><a href="/services/index/?category_id=6"><button
                             class="bg-buttons w-full h-14 xl:h-12 hover:bg-onhover p-1 pt-2 rounded-b-md">Logo
                             Design</button></a></li>
             </ul>
@@ -240,7 +153,7 @@
         <x-chat :contactUsers="$contactUsers" />
         {{-- </div> --}}
     @endif
-    <button class="scrollToTopButton">
+    <button class="scrollToTopButton scale-75 md:scale-100 -translate-x-12 translate-y-28 md:-translate-x-0 md:translate-y-0">
         <i class="fa-solid fa-angles-up arrow-up text-accent"></i>
     </button>
 
@@ -248,9 +161,9 @@
     {{-- footer --}}
     {{-- static bottom-0 w-full flex flex-col items-center justify-center mt-10 --}}
     {{-- mt-10 causes space under footer --}}
-    <footer class="w-full flex flex-col items-center justify-center">
+    <footer class="w-full flex flex-col items-center justify-center z-0">
         {{-- top part --}}
-        <section class="bg-background w-max rounded-t-lg  dropshadowF mt-10">
+        <section class="bg-background w-max rounded-t-lg  dropshadowF mt-10 z-0">
             <div class="w-full flex justify-center p-2">
                 <a href="/" class="customLogo">Craftkeis</a>
             </div>
@@ -259,16 +172,16 @@
 
             <hr class="border-accent w-3/4 mx-auto my-2">
             {{-- logo and icons on left --}}
-            <div class="flex flex-row justify-center w-full mt-4">
+            <div class="flex flex-col lg:flex-row justify-center items-center w-full mt-4">
 
 
                 {{-- links from website --}}
-                <div class="flex flex-row gap-24 mx-24 xl:mx-32">
+                <div class="flex flex-row gap-24 mx-24 lg:mx-32">
                     <a href="/about">About Us</a>
                     <a href="/contact">Contact</a>
                 </div>
 
-                <div class="justify-center">
+                <div class="flex justify-center my-4 lg:my-0">
 
                     {{-- social media icons --}}
                     <div class="text-xl space-x-2">
@@ -285,7 +198,7 @@
                     </div>
                 </div>
 
-                <div class="flex flex-row gap-24 mx-24 xl:mx-32">
+                <div class="flex flex-row gap-24 mx-24 lg:mx-32">
                     <a href="/services/index">Services</a>
 
                     @auth
