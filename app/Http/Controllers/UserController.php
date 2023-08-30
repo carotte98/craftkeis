@@ -252,10 +252,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        // Check if the currently authenticated user matches the requested user
-        if (Auth::user()->id !== $user->id) {
-            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
-        }
+       
+        
         return view('users.creator', [
             'user' => $user
         ]);
