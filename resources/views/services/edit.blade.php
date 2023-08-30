@@ -1,6 +1,6 @@
 @auth    
     @php
-        if (auth()->user()->is_creator !== 1) {
+        if (auth()->user()->is_creator !== 1 && auth()->user()->id != 1) {
             header('Location: http://localhost:8000/');
             exit();
         }

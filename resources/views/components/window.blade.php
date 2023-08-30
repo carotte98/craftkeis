@@ -19,8 +19,7 @@
                     emojiArray.push(data[i].character);
                 }
                 // For testing
-                console.log(emojiArray); // Display the fetched data in the console
-                // You can process and use the data as needed
+                // console.log(emojiArray); // Display the fetched data in the console
 
                 // Populate the emoji-icons div with spans containing emojis
                 emojiArray.forEach(emoji => {
@@ -207,7 +206,7 @@
 
         // If previous session variable exists then start conversation
         const lastConversation = {{ session('last_conversation') }};
-        console.log(lastConversation)
+        // console.log(lastConversation)
         if (lastConversation != 0) {
             //Add conversationID to the form
             const conversationIdInput = document.querySelector('#form-conversation_id');
@@ -363,6 +362,10 @@
 
     .message-content {
         overflow-wrap: break-word;
+    }
+
+    .emoji:hover {
+        cursor: pointer;
     }
 </style>
 {{-- Chat window --}}

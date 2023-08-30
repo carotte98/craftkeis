@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OrderConfirmationMail;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
+use App\Mail\OrderConfirmationMail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -60,8 +62,8 @@ class OrderController extends Controller
         $formFields = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'user_id1' => 'required',
-            'user_id2' => 'required',
+            'user_id1' => 'required', // creator
+            'user_id2' => 'required', // client
             'service_id' => 'required',
             'price' => 'required',
         ]);
@@ -69,11 +71,28 @@ class OrderController extends Controller
         $formFields['order_status'] = 'pending';
         $formFields['completed_at'] = null;
 
-        // send order confirmation email
-        // Mail::to($user->email)->send(new OrderConfirmationMail($user,$order));
-
-        // dd($formFields);
         Order::create($formFields);
+
+        ////// send order confirmation email
+        // Fetch user names
+        $user1 = User::find($formFields['user_id1']); //creator
+        // $user2 = User::find($formFields['user_id2']); //client
+
+        // Fetch service title
+        $service = Service::find($formFields['service_id']);
+        $serviceTitle = $service ? $service->title : 'Unknown Service';
+
+        // send order confirmation email
+        $currentLoggedUser = auth()->user();
+        $detailsToMail = [
+            'user1' => $user1->name,
+            // 'user2' => $user2->name,
+            'serviceTitle' => $serviceTitle,
+            'price' => $formFields['price'],
+            'title' => $formFields['title'],
+            'description' => $formFields['description'],
+        ];
+        Mail::to($currentLoggedUser->email)->send(new OrderConfirmationMail($currentLoggedUser, $detailsToMail));
 
         //CREATE CONVERSATION BETWEEN USERS
         $user_id1 = $formFields['user_id1'];
@@ -98,9 +117,12 @@ class OrderController extends Controller
             }
         }
 
-        return redirect('/')->with('message', 'Order created successfully');
+        // Create Logs in admin.log
+        Log::channel('admin')->info(" New Order: Client_ID: $user_id2, Creator_ID $user_id1, Service: $serviceTitle");
+
+        // return redirect('/')->with('message', 'Order created successfully');
     
-        // return redirect('/services/index')->with('message', 'Order created successfully');
+        return redirect('/services/index')->with('message', 'Order created successfully');
     }
 
     /**
@@ -129,6 +151,9 @@ class OrderController extends Controller
 
     public function updateStatus(Request $request, Order $order)
     {
+        if (Auth::user()->id !== $order->service->users->id && Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         // the creator updates the status of the order
         $newStatus = $request->input('status');
 
@@ -141,8 +166,14 @@ class OrderController extends Controller
             $order->order_status = $newStatus;
             $order->save();
 
+            // Create Logs in admin.log
+            Log::channel('admin')->info("Service Status Update: Service: " . $order->title . " Status: $newStatus");
+
             return redirect()->back()->with('status', 'Order status updated successfully.');
         }
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Service Status Update: Service: " . $order->title . " Status: FAILED");
 
         return redirect()->back()->withErrors('Invalid status update.');
     }
@@ -153,6 +184,10 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Service Status Deleted: Service: " . $order->title);
+
         return redirect(url()->previous())->with('message', 'Order deleted successfully');
     }
 }

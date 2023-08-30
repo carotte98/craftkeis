@@ -6,15 +6,18 @@
     <hr class="border-accent w-5/6 mx-auto my-6">
     
         @unless ($user->orderClient->isEmpty())   
-        <div class="grid grid-cols-2 gap-3">             
+        <div class="md:grid md:grid-cols-2 gap-3">             
             @foreach ($user->orderClient as $order)
                 <x-card-sec>
-                    <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->title }}</h2>
+                    <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->service->title }}</h2>
                     <hr class="border-accent w-5/6 mx-auto my-6">
                     {{-- uses the table relationships to get the information --}}
-                    <p><strong>Service : </strong> {{ $order->service->title }}</p>
                     <p><strong>Category : </strong> {{ $order->service->categories->name }}</p>
-                    <p><strong>Creator : </strong> {{ $order->userCreator->name }}</p>
+                    <p><strong>Creator : </strong>
+                         <a href="/creators/{{ $order->service->users->id }}" class="w-full rounded-full bg-buttons px-1">
+                            {{ $order->userCreator->name }}</a>
+                    </p>
+                    <p><strong>Title : </strong>{{ $order->title }}</p>
                     <p><strong>Description : </strong> <br>{{ $order->description }}</p>
                     <p><strong>Price : </strong> {{ $order->price }} €</p>
                     <p><strong>Status : </strong>
@@ -59,7 +62,7 @@
                             <form action="/orders/{{$order->id}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-red-600">
+                                <button id="delete-button" type="submit" class="text-center text-lg p-2 text-white rounded-lg bg-red-500 hover:bg-red-600">
                                     <i class="fa-solid fa-times mr-2"></i> Cancel
                                 </button>
                             </form>   

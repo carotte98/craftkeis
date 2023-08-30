@@ -29,6 +29,7 @@ return array(
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Mail\\ContactFormMail' => $baseDir . '/app/Mail/ContactFormMail.php',
+    'App\\Mail\\OrderConfirmationMail' => $baseDir . '/app/Mail/OrderConfirmationMail.php',
     'App\\Models\\Bank_details' => $baseDir . '/app/Models/Bank_details.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Conversation' => $baseDir . '/app/Models/Conversation.php',

@@ -8,14 +8,18 @@
     
 
         @unless ($user->orderCreator->isEmpty())   
-        <div class="grid grid-cols-2 gap-3">             
+        <div class="md:grid md:grid-cols-2 gap-3">             
         @foreach ($user->orderCreator as $order)
             <x-card-sec>
-                <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->title }}</h2>
+                <h2 class="text-lg font-bold uppercase mb-1 mx-auto text-center customLogo">{{ $order->service->title }}</h2>
                 <hr class="border-accent w-5/6 mx-auto my-6">
                 {{-- uses the table relationships to get the information --}}
                 <p><strong>Category : </strong> {{ $order->service->categories->name }}</p>
-                <p><strong>Client : </strong> {{ $order->userClient->name }}</p>
+                <p><strong>Client : </strong> 
+                    <a href="/creators/{{ $order->userClient->id }}" class="w-full rounded-full bg-buttons px-1">
+                        {{ $order->userClient->name }}</a>                    
+                </p>
+                <p><strong>Title : </strong>{{ $order->title }}</p>
                 <p><strong>Description : </strong> <br>{{ $order->description }}</p>
                 <p><strong>Price : </strong> {{ $order->price }}€</p>
                 <p><strong>Status : </strong>

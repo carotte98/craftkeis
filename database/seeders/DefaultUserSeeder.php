@@ -24,7 +24,7 @@ class DefaultUserSeeder extends Seeder
         // default logged in user
         $user = User::factory()->create([
             'name' => 'John Doe',
-            'email' => 'john@gmail.com',
+            'email' => 'ecbzguth@sharklasers.com',
             'password' => 'Password@123',
             'is_creator' => false,
         ]);
