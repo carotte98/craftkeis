@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MessageController extends Controller
 {
@@ -39,6 +40,9 @@ class MessageController extends Controller
 
         //Create the new message
         $user = Message::create($formFields);
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("New Message: CONV_ID" . $formFields['conversation_id']);
 
         return response()->json(['message' => 'Message stored successfully']);
     }

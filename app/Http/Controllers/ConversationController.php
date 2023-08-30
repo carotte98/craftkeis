@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Conversation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ConversationController extends Controller
 {
@@ -54,6 +55,9 @@ class ConversationController extends Controller
             ['user_id1', $contactId],
             ['user_id2', $user->id],
         ])->first();
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("New Conversation: USER1_ID" . $conversation['user_id1'] . " USER2_ID: " . $conversation['user_id2']);
 
         return view('component.window', [
             'user' => $user,

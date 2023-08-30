@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use function Laravel\Prompts\password;
 use Illuminate\Validation\Rules\Password;
 
@@ -79,6 +80,9 @@ class UserController extends Controller
             $user = User::create($formFields);
             auth()->login($user);
 
+            // Create Logs in admin.log
+            Log::channel('admin')->info("User created: ID: $user->id");
+
             if ($user->is_creator) {
                 session_start();
                 session(['user' => $user]);
@@ -112,6 +116,9 @@ class UserController extends Controller
         if (auth()->attempt($formFields)) {
             //Genereate a new session (to store the logged user data)
             $request->session()->regenerate();
+
+            // Create Logs in admin.log
+            Log::channel('admin')->info("User logged in: ID: " . auth()->user()->id);
 
             //Redirect to account page for now
             return redirect('/')->with('message', 'You are now logged in!');
@@ -155,6 +162,13 @@ class UserController extends Controller
                         ]);
                     }
                 }
+            }
+
+            $logFilePath = storage_path('logs/admin.log');
+    
+            if (File::exists($logFilePath)) {
+                $logContent = File::get($logFilePath);
+                $logLines = explode("\n", $logContent);
             }
         } //* END ADMIN
         //Search for all conversations where user is present
@@ -200,10 +214,11 @@ class UserController extends Controller
                 'conversations' => Conversation::with(['user1', 'user2'])->get(),
                 'users' => User::all(),
                 'contacts' => $contactUsers,
+                'logs' => $logLines,
             ]);
         }
         //*END ADMIN
-
+        
         // Pass the user data to the view
         return view('users.account', [
             'user' => $user, //Can be removed
@@ -216,6 +231,8 @@ class UserController extends Controller
     //Logout user
     public function logout(Request $request)
     {
+        $id = auth()->user()->id;
+        $name = auth()->user()->name;
         //Log user out
         auth()->logout();
 
@@ -223,6 +240,10 @@ class UserController extends Controller
         //Additionnal requirement to invalidate their session and need to regenerate the user token
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("User disconnected: $name, ID: $id");
+
         return redirect('/'); //->with('message', 'You have been logged out!');
     }
 
@@ -280,19 +301,28 @@ class UserController extends Controller
 
         $user->update($formFields);
 
+        // Create Logs in admin.log
+        Log::channel('admin')->info("User updated: " . $formFields['name'] .", ID: " . auth()->user()->id);
+
         return redirect('/users/' . $user->id)->with('message', 'Account updated successfully');
     }
 
 
     //*ADMIN
     public function destroy(string $userId)
-    {
+    {   
         if (Auth::user()->id !== 1) {
             abort(403, 'Unauthorized'); // Return a 403 Forbidden response
         }
         $user = User::find($userId);
         $user->delete();
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("User deleted: ID: $user");
+
         return back()->with('message', 'User deleted successfully.');
+
+        
     }
 
     public function showEditUser(string $userId)
@@ -322,6 +352,10 @@ class UserController extends Controller
         if (Auth::user()->id !== 1) {
             abort(403, 'Unauthorized'); // Return a 403 Forbidden response
         }
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Conversation cleared: ID: $conversationId");
+
         // Delete all messages with the given conversation ID
         Message::where('conversation_id', $conversationId)->delete();
         return back()->with('message', 'Conversation cleared successfully.');
@@ -349,6 +383,9 @@ class UserController extends Controller
         }
 
         $user->update($formFields);
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("User Updated By Admin: ID: $user->id");
 
         return redirect('/users/1' . $user->id)->with('message', 'Account updated successfully');
     }
@@ -402,11 +439,16 @@ class UserController extends Controller
             $user = User::create($formFields);
             auth()->login($user);
 
+            // Create Logs in admin.log
+            Log::channel('admin')->info("User created by Admin: ID: $user->id");
+
             if ($user->is_creator) {
                 session_start();
                 session(['user' => $user]);
                 return redirect('/register/{user}/bankDetails');
             }
+
+            
 
             //When user is created and logged in, we will show them the homepage so they can start navigate the website
             return redirect('/')->with('message', 'User created and logged in!');

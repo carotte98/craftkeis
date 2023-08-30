@@ -17,7 +17,8 @@ export default {
         disabled: "#4f4f4f",
         bgsec: "#949494",
         open: "#B1E320",
-        closed: "#E34320"
+        closed: "#E34320",
+        console: "#020f2b",
       },
       borderRadius: {
           'lg': '10px',

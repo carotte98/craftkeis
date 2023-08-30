@@ -219,7 +219,31 @@
             @endforeach
 
         </div>
+        <br>
+        {{-- LOGS --}}
+       <x-card-sec>
+
+            <h2 class="customLogo text-2xl text-center">
+                Website log
+            </h2>
+
+            <hr class="border-accent w-5/6 mx-auto my-6">
+
+            <div class="w-11/12 md:w-5/6 h-96 bg-console dropshadow rounded-lg p-6 mb-2 mx-auto text-white overflow-auto">
+
+                @foreach ($logs as $log)
+                    <p>{{ $log }}</p>
+                    <br>
+                @endforeach
+
+            </div>  
+
+            <hr class="border-accent w-5/6 mx-auto my-6">
+
+       </x-card-sec>
+
     </div>
+
     <div class="flex justify-center mb-3">
         <a href="/">
             <button class="text-center text-lg p-2 text-white rounded-lg bg-bgsec hover:bg-onhover">
