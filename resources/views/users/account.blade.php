@@ -3,7 +3,7 @@
         <x-card-sec> {{-- Profile details --}}
             <div class="flex justify-center">
                 <img class="w-48 mr-6 mb-6"
-                    src="{{ $user->image_address ? asset('storage/' . $user->image_address) : asset('images/no-image.png') }}"
+                    src="{{ $user->image_address ? asset('storage/' . $user->image_address) : asset('storage/images/no-image.png') }}"
                     alt="profile-picture" />
             </div>
 

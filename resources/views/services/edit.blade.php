@@ -1,6 +1,6 @@
 @auth    
     @php
-        if (auth()->user()->is_creator !== 1) {
+        if (auth()->user()->is_creator !== 1 && auth()->user()->id != 1) {
             header('Location: http://localhost:8000/');
             exit();
         }
@@ -86,7 +86,7 @@
                         <i class="fa-solid fa-bookmark"></i>
                         <select class="border border-gray-200 rounded p-2 w-full" name="status" value="{{$service->status}}">
                         <option value="open">Open</option>
-                        <option value="overbooked">Overbooked</option>
+                        <option value="closed">Closed</option>
                         </select>
                     </div>
                     @error('status')

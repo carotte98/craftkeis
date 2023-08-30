@@ -29,14 +29,39 @@ use App\Http\Controllers\HomeController;
 // Route::get('/', function () {
 //     return view('test');
 // });
-//*ADMIN 
-
 
 // HomePage
 // Route::get('/', function(){
 //     return view('welcome');
 // });
 Route::get('/', [HomeController::class, 'index']);
+
+//*ADMIN 
+// Delete user
+Route::delete('/users/1/delete/{user}', [UserController::class, 'destroy'])->middleware('auth');
+// Show edit user
+Route::get('/users/1/edit/{user}', [UserController::class, 'showEditUser'])->middleware('auth');
+// Show create user account
+Route::get('/users/1/create', [UserController::class, 'showCreateUser'])->middleware('auth');
+//Create user account
+Route::post('/users/1', [UserController::class, 'createUser'])->middleware('auth');
+// Show user conversation
+Route::get('/users/1/{conversationId}', [UserController::class, 'showConversation'])->middleware('auth');
+// Delete conversation messages
+Route::delete('/users/1/delete-conversation/{conversationId}', [UserController::class, 'clearConversation'])->middleware('auth');
+//Update user account
+Route::put('/users/1/edit/{user}', [UserController::class, 'updateUser'])->middleware('auth');
+//*ADMIN BANK
+Route::get('/users/1/bank-create/{user}', [BankDetailsController::class, 'adminCreate'])->middleware('auth');
+//Create user account
+Route::post('/users/1/bank-create/{user}', [BankDetailsController::class, 'adminStore'])->middleware('auth');
+//*ADMIN SERVICES
+// Update Service
+Route::put('/users/1/update-service/{service}/update', [ServiceController::class, 'updateUserService'])->middleware('auth');
+// Show Update Service
+Route::get('/users/1/update-service/{service}', [ServiceController::class, 'showUpdateService'])->middleware('auth');
+
+//*END ADMIN
 
 // Show all services
 Route::get('/services/index', [ServiceController::class, 'index']);
@@ -110,20 +135,20 @@ Route::get('/users/account/chat/conversation/poll/{conversationId}', [Conversati
 
 //BankDetailController
 //create bank_details
-Route::get('/register/{user}/bankDetails',[BankDetailsController::class,'create']);
+Route::get('/register/{user}/bank-details',[BankDetailsController::class,'create']);
 //store bank_details
 Route::post('/bankDetails',[BankDetailsController::class,'store']);
-//Edit bank_details
-Route::get('/bankDetails/{bank_details}/edit', [BankDetailsController::class, 'edit'])->middleware('auth');
 //Update bank_details
 Route::put('/bankDetails/{bank_details}', [BankDetailsController::class, 'update'])->middleware('auth');
+//Edit bank_details
+Route::get('/bankDetails/{bank_details}/edit', [BankDetailsController::class, 'edit'])->middleware('auth');
 
 //payments
 //payment_page
 Route::post('/payment/{order}/session', [PaymentController::class, 'session'])->name('session');
 
 //payment_success
-Route::get('/success', [PaymentController::class, 'success'])->name('success');
+Route::get('/success/{order}', [PaymentController::class, 'success'])->name('success');
 
 //contact us
 Route::get('/contact', [ContactController::class,'showForm']);
@@ -133,3 +158,4 @@ Route::post('/contact', [ContactController::class,'sendMail']);
 Route::get('/about', function(){
     return view('about');
 });
+

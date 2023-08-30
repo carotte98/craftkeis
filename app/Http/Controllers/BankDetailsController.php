@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bank_details;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class BankDetailsController extends Controller
 {
@@ -28,16 +30,23 @@ class BankDetailsController extends Controller
      */
     public function store(Request $request)
     {
+
         $formFields =$request->validate([
             'full_name'=>['required'],
-            'cardNumber'=>['required','numeric', 'digits:16'],
+            'cardNumber' => ['required', 'regex:/^\d{4}(\s\d{4}){3}$/'],
             // 'payment_method'=>['required'],
-            'expireDate'=>['required'],
-            'ccv'=>['required','numeric', 'digits:3']
+            'expireDate' => ['required'],
+            'ccv' => ['required', 'numeric', 'digits:3']
         ]);
+
+        $formFields['cardNumber'] = preg_replace('/\D/', '', $formFields['cardNumber']); // Remove spaces
+
         $formFields['user_id']=auth()->user()->id;
 
         Bank_details::create($formFields);
+
+         // Create Logs in admin.log
+         Log::channel('admin')->info("Bank Details Added: USER_ID" . $formFields['user_id']);
 
         return redirect('/')->with('message','Account and bank Details created');
 
@@ -58,6 +67,7 @@ class BankDetailsController extends Controller
      */
     public function edit(Bank_details $bank_details)
     {
+        // dd($bank_details);
         return view('users.bankEdit', ['bank_details' => $bank_details]);
     }
 
@@ -66,16 +76,21 @@ class BankDetailsController extends Controller
      */
     public function update(Request $request, Bank_details $bank_details)
     {
+        // dd($bank_details);
+        // dd($formFields);
         $formFields = $request->validate([
-            'firstName'=>['required'],
-            'lastName'=>['required'],
-            'cardNumber'=>['required'],
-            'payment_method'=>['required'],
-            'ccv'=>['required'],
-            'expireDate'=>['required']
+            'full_name' => ['required'],
+            'cardNumber' => ['required', 'regex:/^\d{4}(\s\d{4}){3}$/'],
+            'ccv' => ['required'],
+            'expireDate' => ['required']
         ]);
+        // dd($formFields);
 
+        $formFields['cardNumber'] = preg_replace('/\D/', '', $formFields['cardNumber']); // Remove spaces
         $bank_details->update($formFields);
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Bank Details Added: USER_ID" . $bank_details->user_id);
 
         return redirect('/users/' . $bank_details->user_id)->with('message', 'Bank details updated successfully');
     }
@@ -86,5 +101,35 @@ class BankDetailsController extends Controller
     public function destroy(Bank_details $bank_details)
     {
         //
+    }
+
+    public function adminCreate($user)
+    {
+        // dd($user);
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        return view('users.admin-bank-create', ['user' => $user]);
+    }
+
+    public function adminStore(Request $request, $user)
+    {
+        // Check if the currently authenticated user matches the requested user
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        $formFields = $request->validate([
+            'full_name' => ['required'],
+            'cardNumber' => ['required', 'numeric', 'digits:16'],
+            // 'payment_method'=>['required'],
+            'expireDate' => ['required'],
+            'ccv' => ['required', 'numeric', 'digits:3']
+        ]);
+        $formFields['user_id'] = $user;
+
+        Bank_details::create($formFields);
+
+        return redirect('/')->with('message', 'Account and bank Details created');
     }
 }

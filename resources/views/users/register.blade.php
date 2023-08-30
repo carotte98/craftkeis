@@ -1,6 +1,6 @@
 {{-- no more JS T.T --}}
 <x-layout> {{-- x-layout, not div please replace when layout finished --}}
-    <div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto"> {{-- Here we also want to replace the div and input a x-card --}} 
+    <div class="w-11/12 md:w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto"> {{-- Here we also want to replace the div and input a x-card --}} 
         <x-card-sec>
         {{-- ? Do we need a x-card, always found it wierd (cedric) --}}
         {{-- * Yeah we need it no worries mate --}}
@@ -51,7 +51,7 @@
                 <div class="bordered-div">
                     <div class="icon-input-container">
                         <i class="fas fa-image"></i>
-                        <input type="file" placeholder="Image" name="image_address" value="{{old('image_address')}}">
+                        <input type="file" placeholder="Image" name="image_address" value="{{old('image_address')}}" accept="image/png, image/jpeg">
                     </div>
                 </div>
 
@@ -62,11 +62,11 @@
                         <input id="pswd" type="password" placeholder="Password" name="password">
                     </div>
                     <div id="pswd_info" class="bg-green-100 p-4 mt-2 rounded border border-green-200" style="display: none;">
-                        <p id="number" class="text-red-500">Must contain at least one number</p>
-                        <p id="symbol" class="text-red-500">A special symbol</p>
-                        <p id="capital" class="text-red-500">Must contain at least one uppercase letter</p>
-                        <p id="letter" class="text-red-500">Must contain at least one lowercase letter</p>
-                        <p id="length" class="text-red-500">Must be at least 6 characters</p>
+                        <p id="number" class="invalid">a number</p>
+                        <p id="symbol" class="invalid">a symbol</p>
+                        <p id="capital" class="invalid">uppercase letter</p>
+                        <p id="letter" class="invalid">lowercase letter</p>
+                        <p id="length" class="invalid">at least 6 characters</p>
                     </div>
                 </div>
                 @error('password')
@@ -97,7 +97,7 @@
                     <label for="is_creator" class="inline-block text-lg mb-2">
                         Are you a creator?
                     </label>
-                    <input type="checkbox" id="role" onclick="toggleInputs()" name="is_creator" value="1">
+                    <input type="checkbox" id="role" name="is_creator" value="1">
                 </div>
 
 

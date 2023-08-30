@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -21,7 +23,7 @@ class ServiceController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
         return view('services.create');
     }
 
@@ -37,13 +39,15 @@ class ServiceController extends Controller
             'time' => 'required',
             'category_id' => 'required'
         ]);
-        
+
         $formFields['status'] = 'open';
 
         $formFields['user_id'] = auth()->id();
 
-
         Service::create($formFields);
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Service created: Title" . $formFields['title']);
 
         return redirect('/services/index')->with('message', 'Service created successfully');
     }
@@ -63,6 +67,11 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
+        // dd($service);
+        // Check if the currently authenticated user matches the requested service user id
+        if (Auth::user()->id !== $service->user_id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         return view('services.edit', ['service' => $service]);
     }
 
@@ -71,6 +80,9 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
+        if (Auth::user()->id !== $service->user_id) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
         $formFields = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -82,6 +94,9 @@ class ServiceController extends Controller
 
         $service->update($formFields);
 
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Service Updated: Title" . $formFields['title']);
+
         return redirect('/services/' . $service->id)->with('message', 'Service updated successfully');
     }
 
@@ -90,12 +105,46 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
+        // if (Auth::user()->id !== $service->user_id) {
+        //     abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        // }
         $service->delete();
+
+        // Create Logs in admin.log
+        Log::channel('admin')->info("Service Deleted: Title" . $service->title);
+
         return redirect('/users/' . $service->users->id)->with('message', 'Service deleted successfully');
     }
 
     public function manage()
     {
         return view('services.manage', ['services' => auth()->user()->services()->get()]);
+    }
+
+    public function showUpdateService($service)
+    {   
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        $service = Service::where('id', $service)->first();
+        return view('users.admin-update-service', ['service' => $service]);
+    }
+    public function updateUserService(Request $request, Service $service)
+    {
+        if (Auth::user()->id !== 1) {
+            abort(403, 'Unauthorized'); // Return a 403 Forbidden response
+        }
+        $formFields = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'time' => 'required',
+            'status' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $service->update($formFields);
+
+        return redirect('/users/1')->with('message', 'Service updated successfully');
     }
 }

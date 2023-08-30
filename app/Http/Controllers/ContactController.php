@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -25,7 +26,11 @@ class ContactController extends Controller
         // Send the email
         Mail::to('craftkeis.devs@gmail.com')->send(new ContactFormMail($validatedData));
 
+        // Create Logs in admin.log
+        Log::channel('admin')->info("New Email send via Contact Form");
+
         // Redirect or respond back
         return redirect('/contact')->with('message', 'Your message has been sent successfully!');
     }
+
 }

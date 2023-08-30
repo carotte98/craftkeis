@@ -16,17 +16,19 @@ class DefaultUserSeeder extends Seeder
         // admin user
         User::factory()->create([
             'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'craftkeis.devs@gmail.com',
             'password' => 'Password@123',
             'is_creator' => false,
+            'image_address' => 'images/Materials-manufacturing.png',
         ]);
 
         // default logged in user
         $user = User::factory()->create([
             'name' => 'John Doe',
-            'email' => 'john@gmail.com',
+            'email' => 'ecbzguth@sharklasers.com',
             'password' => 'Password@123',
             'is_creator' => false,
+            'image_address' => 'images/Laugh.png',
         ]);
 
         auth()->login($user); // Log in the created user
@@ -35,9 +37,10 @@ class DefaultUserSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Maus Kaetti',
-            'email' => 'maus@gmail.com',
+            'email' => 'aviikutb@sharklasers.com',
             'password' => 'Password@123',
             'is_creator' => true,
+            'image_address' => 'images/Maus-ketti.png',
         ]);
 
         User::factory()->create([

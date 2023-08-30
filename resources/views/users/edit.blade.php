@@ -1,5 +1,5 @@
 <x-layout>
-<div class="w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
+<div class="w-11/12 md:w-3/6 bg-bgsec dropshadow rounded-lg p-6 mb-2 mx-auto">
         
     <x-card-sec>
                 
@@ -54,7 +54,7 @@
                     <div class="bordered-div">
                         <div class="icon-input-container">
                             <i class="fas fa-image"></i>
-                            <input type="file" name="image_address" value="{{$user->image_address}}"/>
+                            <input type="file" name="image_address" value="{{$user->image_address}}" accept="image/png, image/jpeg">/>
                         </div>
                     </div>
                     <div>

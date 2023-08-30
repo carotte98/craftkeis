@@ -1,6 +1,6 @@
 @auth    
     @php
-        if (auth()->user()->is_creator !== 1) {
+        if (auth()->user()->is_creator !== 1 && auth()->user()->id != 1) {
             header('Location: http://localhost:8000/');
             exit();
         }
@@ -10,7 +10,7 @@
 <x-layout>
     @auth
     <x-card>
-        <x-card-sec>
+        <x-card-sec >
             <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">
                 Create a Service
             </h2>
@@ -81,10 +81,10 @@
                 <hr class="border-accent w-5/6 mx-auto my-6">
                 
                 <div class="w-full flex justify-center">
-                    <button class="bg-accent text-lg text-white rounded-lg py-2 px-4 hover:bg-onhover">
+                    <button class="bg-accent text-sm md:text-lg text-white rounded-lg py-2 px-4 hover:bg-onhover">
                         Create Service
                     </button>
-                    <a href="/users/{{auth()->user()->id}}" class="py-2 px-4 mx-2 text-center text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
+                    <a href="/users/{{auth()->user()->id}}" class="py-2 px-4 mx-2 text-center text-sm md:text-lg text-black rounded-lg bg-buttons hover:bg-onhover">Back</a>
                 </div>
             </form>
         </x-card-sec>
