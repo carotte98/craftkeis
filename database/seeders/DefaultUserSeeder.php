@@ -19,6 +19,7 @@ class DefaultUserSeeder extends Seeder
             'email' => 'craftkeis.devs@gmail.com',
             'password' => 'Password@123',
             'is_creator' => false,
+            'image_address' => 'images/Materials-manufacturing.png',
         ]);
 
         // default logged in user
@@ -27,6 +28,7 @@ class DefaultUserSeeder extends Seeder
             'email' => 'ecbzguth@sharklasers.com',
             'password' => 'Password@123',
             'is_creator' => false,
+            'image_address' => 'images/Laugh.png',
         ]);
 
         auth()->login($user); // Log in the created user
@@ -38,6 +40,7 @@ class DefaultUserSeeder extends Seeder
             'email' => 'maus@gmail.com',
             'password' => 'Password@123',
             'is_creator' => true,
+            'image_address' => 'images/Maus-ketti.png',
         ]);
 
         User::factory()->create([
