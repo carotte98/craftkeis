@@ -2,10 +2,16 @@
     <header>
         
         <h2 class="text-2xl font-bold uppercase mb-1 mx-auto text-center customLogo">Manage Services</h2>
-
+        <hr class="border-accent w-5/6 mx-auto my-6">
        <div class="flex justify-center text-lg my-5">
-        
-        <a href="/services/create"><button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover space-x-2 flex flex-row"><i class="fa-solid fa-pencil"></i><p>Create new Service</p></button></a>
+        @if(auth()->user()->id !== 1)
+        <a href="/services/create">
+            <button class="text-center text-lg p-2 text-white rounded-lg bg-accent hover:bg-onhover space-x-2 flex flex-row">
+                <i class="fa-solid fa-pencil"></i><p>Create new Service</p>
+            </button>
+        </a>
+        @endif
+        {{-- <a href="{{ auth()->user()->id == 1 ? '/users/1/bank-create/' . $user->id : '/register/' . $user->id . '/bank-details' }}"> --}}
        </div>
     </header>            
     
