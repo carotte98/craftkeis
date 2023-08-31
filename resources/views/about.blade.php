@@ -35,7 +35,10 @@
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>insert description</p>
+                    <p>Former game artist and game Designer, taking a trip into the IT world. I was working for some time as a freelancer in 3D arts
+                        This got mostly replaced by mw project of developing my very own video game and releasing it. I enjoy Front end as much as Back
+                        End work.
+                    </p>
 
                     <hr class="border-accent w-5/6 my-6">
 
@@ -63,7 +66,7 @@
 
                     <hr class="border-accent w-5/6 my-6">
 
-                    <p>insert description</p>
+                    <p>Hello there! I am a keen junior full stack developer who enjoys programming and is always up for a challenge. With a knack for Python, JavaScript, PHP and a dash of Linux, I'm excited to dive into the world of web development.</p>
 
                     <hr class="border-accent w-5/6 my-6">
 
