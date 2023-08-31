@@ -10,6 +10,7 @@ class ServiceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * change the seeder
      */
     public function run(): void
     {
